@@ -154,6 +154,8 @@ input, select, textarea {
 	h3 {
 		font-size: 1.25em;
 		line-height: 1.5em;
+		margin: 0 0 0.3em 0;
+
 	}
 
 	h4 {
@@ -1787,6 +1789,8 @@ input, select, textarea {
 
 	header.major h2 {
 		font-size: 2em;
+		color: #111111;
+		font-weight: bold;
 	}
 
 /* Form */
@@ -2044,8 +2048,8 @@ input, select, textarea {
 			-webkit-transition: opacity 0.2s ease-in-out;
 			-ms-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
-			background: url("images/overlay.png");
 			border-radius: 0.35em;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			content: '';
 			display: block;
 			height: 100%;
@@ -2089,7 +2093,7 @@ input, select, textarea {
 			}
 
 			.image.thumb:hover:before {
-				background: url("images/overlay.png"), url("images/overlay.png");
+				background: url("images/overlay.png");
 				opacity: 1.0;
 			}
 
