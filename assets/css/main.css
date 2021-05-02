@@ -1788,9 +1788,9 @@ input, select, textarea {
 	}
 
 	header.major h2 {
-		font-size: 2em;
+		font-size: 2.5em;
 		color: #111111;
-		font-weight: bold;
+		font-weight: 900;
 	}
 
 /* Form */
