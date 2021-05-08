@@ -110,7 +110,7 @@ a {
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     border-bottom: solid 1px;
-    color: #22A39F;
+    color: #000;
     text-decoration: none;
 }
 
