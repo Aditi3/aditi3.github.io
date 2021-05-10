@@ -2200,7 +2200,7 @@ ul.icons {
         }
 
         ul.icons li .icon:before {
-            font-size: 1.5em;
+            font-size: 1.8em;
         }
 
 /* Labeled Icons */
@@ -2644,7 +2644,7 @@ input[type="button"],
 }
 
     #footer .icons a {
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 1.0);
     }
 
 #footer .copyright {
