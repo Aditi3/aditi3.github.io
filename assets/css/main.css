@@ -110,7 +110,7 @@ a {
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     border-bottom: solid 1px;
-    color: #22A39F;
+    color: #000;
     text-decoration: none;
 }
 
@@ -2200,7 +2200,7 @@ ul.icons {
         }
 
         ul.icons li .icon:before {
-            font-size: 1.5em;
+            font-size: 1.8em;
         }
 
 /* Labeled Icons */
@@ -2644,7 +2644,7 @@ input[type="button"],
 }
 
     #footer .icons a {
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 1.0);
     }
 
 #footer .copyright {
