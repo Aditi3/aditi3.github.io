@@ -110,13 +110,13 @@ a {
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     border-bottom: solid 1px;
-    color: #000;
+    color: #222831;
     text-decoration: none;
 }
 
     a:hover {
         border-bottom-color: transparent;
-        color: #000 !important;
+        color: #222831 !important;
         text-decoration: none;
     }
 
@@ -1785,7 +1785,7 @@ header h6 + p {
 
 header.major h2 {
     font-size: 2.5em;
-    color: #000;
+    color: #222831;
     font-weight: 900;
 }
 
@@ -1836,7 +1836,7 @@ textarea {
     input[type="email"]:focus,
     select:focus,
     textarea:focus {
-        border-color: #000000;
+        border-color: #222831;
     }
 
 select {
@@ -1941,7 +1941,7 @@ input[type="radio"] {
 
     input[type="checkbox"]:focus + label:before,
     input[type="radio"]:focus + label:before {
-        border-color: #000000;
+        border-color: #222831;
     }
 
     input[type="checkbox"] + label:before {
@@ -2458,8 +2458,8 @@ input[type="button"],
     input[type="reset"]:hover,
     input[type="button"]:hover,
     .button:hover {
-        border-color: #000000;
-        color: #000000 !important;
+        border-color: #222831;
+        color: #222831 !important;
     }
 
     input[type="submit"]:active,
@@ -2467,8 +2467,8 @@ input[type="button"],
     input[type="button"]:active,
     .button:active {
         background-color: rgba(73, 191, 157, 0.1);
-        border-color: #000000;
-        color: #000000 !important;
+        border-color: #222831;
+        color: #222831 !important;
     }
 
     input[type="submit"].icon,
@@ -2511,8 +2511,8 @@ input[type="button"],
     input[type="reset"].primary,
     input[type="button"].primary,
     .button.primary {
-        background-color: #000000;
-        border-color: #000000;
+        background-color: #222831;
+        border-color: #222831;
         color: #ffffff !important;
     }
 
