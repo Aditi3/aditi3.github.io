@@ -80,7 +80,7 @@ html {
 }
 
 body {
-    background: #fff;
+    background: #121212;
     background-attachment: fixed;
     background-size: contain;
 }
@@ -97,7 +97,7 @@ body {
     }
 
 body, input, select, textarea {
-    color: #a2a2a2;
+    color: #EAEAEA;
     font-family: "GeoBrandBold,CenturyGothic,AppleGothic,Gill Sans,Gill Sans MT,sans-serif";
     font-size: 16pt;
     font-weight: 400;
@@ -110,13 +110,13 @@ a {
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     border-bottom: solid 1px;
-    color: #333333;
+    color: #fff;
     text-decoration: none;
 }
 
     a:hover {
         border-bottom-color: transparent;
-        color: #333333 !important;
+        color: #fff !important;
         text-decoration: none;
     }
 
@@ -190,7 +190,7 @@ sup {
 
 hr {
     border: 0;
-    border-bottom: solid 2px #efefef;
+    border-bottom: solid 1px #efefef;
     margin: 2em 0;
 }
 
@@ -1764,8 +1764,8 @@ header p {
 }
 
 header h2 + p {
-    font-size: 1.25em;
-    margin-top: -1em;
+    font-size: 1.3em;
+    margin-top: -1.5em;
     line-height: 1.5em;
 }
 
@@ -1785,7 +1785,13 @@ header h6 + p {
 
 header.major h2 {
     font-size: 2.5em;
-    color: #333333;
+    color: #F5F5F5;
+    font-weight: 900;
+}
+
+header.major h1 {
+    font-size: 2.5em;
+    color: #F5F5F5;
     font-weight: 900;
 }
 
@@ -1836,7 +1842,7 @@ textarea {
     input[type="email"]:focus,
     select:focus,
     textarea:focus {
-        border-color: #333333;
+        border-color: #fff;
     }
 
 select {
@@ -1941,7 +1947,7 @@ input[type="radio"] {
 
     input[type="checkbox"]:focus + label:before,
     input[type="radio"]:focus + label:before {
-        border-color: #333333;
+        border-color: #fff;
     }
 
     input[type="checkbox"] + label:before {
@@ -2100,18 +2106,18 @@ input[type="radio"] {
 
     .image.left {
         float: left;
-        margin: 0 1.5em 1em 0;
-        top: 0.25em;
+        margin: 0 1em 1em 0;
+        top: 0em;
     }
 
     .image.right {
         float: right;
-        margin: 0 0 1em 1.5em;
-        top: 0.25em;
+        margin: 0 0 1em 1em;
+        top: 0em;
     }
 
     .image.left, .image.right {
-        max-width: 40%;
+        max-width: 10%;
     }
 
         .image.left img, .image.right img {
@@ -2458,8 +2464,8 @@ input[type="button"],
     input[type="reset"]:hover,
     input[type="button"]:hover,
     .button:hover {
-        border-color: #333333;
-        color: #333333 !important;
+        border-color: #fff;
+        color: #fff !important;
     }
 
     input[type="submit"]:active,
@@ -2467,8 +2473,8 @@ input[type="button"],
     input[type="button"]:active,
     .button:active {
         background-color: rgba(73, 191, 157, 0.1);
-        border-color: #333333;
-        color: #333333 !important;
+        border-color: #fff;
+        color: #fff !important;
     }
 
     input[type="submit"].icon,
@@ -2511,8 +2517,8 @@ input[type="button"],
     input[type="reset"].primary,
     input[type="button"].primary,
     .button.primary {
-        background-color: #333333;
-        border-color: #333333;
+        background-color: #fff;
+        border-color: #fff;
         color: #ffffff !important;
     }
 
@@ -2683,9 +2689,9 @@ input[type="button"],
 }
 
     #main > section {
-        border-top: solid 2px #efefef;
-        margin: 4em 0 0 0;
-        padding: 4em 0 0 0;
+        border-top: solid 1px #efefef;
+        margin: 2em 0 0 0;
+        padding: 2em 0 0 0;
     }
 
         #main > section:first-child {

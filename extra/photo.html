@@ -1,0 +1,103 @@
+<!-- <html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+  <img id="viewer" src="" width="800px"/>
+  <div id="info"> </div>
+<script>
+$(function() {
+
+  var baseUrl = "../images/fulls/";
+  var pictureIndex = 0;
+  var pictures = [];
+
+  function getFiles() {
+    $.ajax(baseUrl).success(function(data) {
+      pictures = [];
+      $(data).find("a[href]").each(function() {
+        var href = $(this).attr('href');
+        if (href.indexOf('.jpg') > 0 || href.indexOf('.png') > 0 || href.indexOf('.jpeg') > 0) {
+          pictures.push(href);
+        }
+      });
+      console.log(pictures.length + " pictures loaded!");
+      changePicture(0);
+    });
+  }
+
+  function changePicture(indexOffset) {
+    pictureIndex += indexOffset;
+    if (pictureIndex >= pictures.length) {
+      pictureIndex = 0;
+    } else if (pictureIndex < 0) {
+      pictureIndex = pictures.length - 1;
+    }
+    $('#viewer').attr('src', baseUrl + pictures[pictureIndex]);
+    $('#info').text((pictureIndex + 1) + "/" + pictures.length);
+  }
+
+  getFiles();
+  $(document).keydown(function(e){
+    var left = -1, right = 1;
+      if (e.keyCode == 37) {
+         changePicture(left); return false;
+      } else if (e.keyCode == 39) {
+        changePicture(right); return false;
+      }
+  });
+});
+</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    img {
+      width: 47%;
+      margin: 10px 10px 20px 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    img:hover {
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+
+    #image-container {
+      background-color: blueviolet;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="color: green;">
+    Aditi
+  </h1>
+
+  <div id="image-container"></div>
+  <script>
+    var test = [];
+
+    for (let index = 1; index < 7; index++) {
+      test.push("https://raw.githubusercontent.com/Aditi3/aditi3.github.io/develop/img/" + (index) + ".jpg")
+    }
+
+    const container = document.getElementById('image-container');
+    for (let i = 0; i < test.length; i++) {
+      const img = document.createElement('img');
+      img.src = test[i];
+      container.appendChild(img);
+    }
+
+    console.log(test); // ["Ghana","Kenya","Nigeria","Rwanda"]
+
+  </script>
+
+</body>
+
+</html>
