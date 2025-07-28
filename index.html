@@ -12,6 +12,11 @@
 
 <body class="is-preload">
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="themeIcon"></i>
+    </button>
+
     <!-- Header -->
     <header id="header">
         <div class="inner">
@@ -172,10 +177,49 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        // Check for saved theme preference or default to dark theme
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        // Apply the saved theme
+        if (currentTheme === 'light') {
+            body.setAttribute('data-theme', 'light');
+            themeIcon.className = 'fas fa-moon';
+        } else {
+            body.removeAttribute('data-theme');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        // Toggle theme function
+        function toggleTheme() {
+            const isLight = body.getAttribute('data-theme') === 'light';
+            
+            if (isLight) {
+                // Switch to dark theme
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Switch to light theme
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Add event listener to toggle button
+        themeToggle.addEventListener('click', toggleTheme);
+    </script>
 
     <footer>
         <div class="container">
-          <p>&copy; 2025 by Maya Nelson. All rights reserved.</p>
+          <p>&copy; 2025 by Aditi Agrawal. All rights reserved.</p>
         </div>
       </footer>
       
