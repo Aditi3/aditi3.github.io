@@ -533,7 +533,7 @@ body {
     display: grid;
     grid-template-columns: 300px auto 1fr;
     gap: 2rem;
-    padding: 2.5rem 0;
+    padding: 2rem 0;
     border-bottom: 0px solid var(--border-color);
     animation: fadeInLeft var(--animation-duration) ease-out forwards;
     transform: translateX(-30px);
@@ -602,7 +602,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 0px;
-    height: 350px;
+    height: var(--timeline-height, 20rem);
     background: var(--nav-active);
     border: 0.5px dotted var(--nav-active);
     z-index: 1;
