@@ -304,7 +304,7 @@ body {
 }
 
 .hamburger-line {
-    width: 100%;
+        width: 100%;
     height: 3px;
     background: var(--nav-text);
     transition: all 0.3s ease;
@@ -378,15 +378,15 @@ body {
     border-top: none;
     margin-top: 10px;
     width: 100%;
-    display: flex;
+        display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
+        box-sizing: border-box;
 }
 
 .card-footer .social-links {
     display: flex;
-    justify-content: center;
+            justify-content: center;
     align-items: center;
     gap: 2rem;
     margin: 0 auto;
@@ -394,7 +394,7 @@ body {
 
 .card-footer .social-link {
     display: flex;
-    align-items: center;
+            align-items: center;
     justify-content: center;
     width: 20px;
     height: 20px;
@@ -420,7 +420,7 @@ body {
     background: var(--section-bg);
     position: relative;
     z-index: 2;
-    margin-top: 0;
+            margin-top: 0;
     padding-top: 0;
     padding-left: 0;
     padding-right: 0;
@@ -458,7 +458,7 @@ body {
 .about-section {
     padding: 4rem 0 6rem;
     background: var(--section-bg);
-    margin-top: 0;
+            margin-top: 0;
     position: relative;
     z-index: 1;
     animation: fadeInUp var(--animation-duration) ease-out 0.1s forwards;
@@ -554,9 +554,9 @@ body {
 .experience-left {
     text-align: right;
     padding-right: 0;
-    display: flex;
+        display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+            justify-content: flex-start;
     align-items: flex-end;
 }
 
@@ -589,7 +589,7 @@ body {
     border: 3px solid var(--nav-active);
     border-radius: 50%;
     display: flex;
-    align-items: center;
+            align-items: center;
     justify-content: center;
     z-index: 2;
     position: relative;
@@ -707,11 +707,11 @@ body {
 }
 
 .skill-items {
-    display: flex;
-    flex-wrap: wrap;
+        display: flex;
+        flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: center;
-}
+            justify-content: center;
+        }
 
 .skill-badge {
     background: var(--nav-active);
@@ -767,8 +767,8 @@ body {
 }
 
 .contact-form {
-    width: 100%;
-}
+            width: 100%;
+        }
 
 .form-row {
     display: grid;
@@ -801,7 +801,7 @@ body {
     font-family: inherit;
     resize: vertical;
     transition: border-color var(--transition-duration) ease;
-    box-sizing: border-box;
+        box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -843,7 +843,7 @@ body {
 
 .contact-method {
     display: flex;
-    align-items: center;
+            align-items: center;
     gap: 1rem;
     padding: 1.5rem;
     background: var(--card-bg);
@@ -1060,9 +1060,9 @@ body {
     .hero-card-section {
         padding: 140px 1rem 0;
         min-height: 60vh;
-        align-items: center;
-    }
-    
+            align-items: center;
+        }
+
     .profile-image img {
         width: 200px;
         height: 250px;
@@ -1212,7 +1212,7 @@ body {
         display: flex !important;
         flex-direction: column !important;
         background: var(--card-bg) !important;
-        border-radius: 12px !important;
+        border-radius: 3px !important;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
         border: 3px solid var(--nav-active) !important;
         overflow: hidden !important;
@@ -1245,7 +1245,7 @@ body {
         order: 1 !important;
         flex-shrink: 0 !important;
         overflow: hidden !important;
-        border-radius: 12px 12px 0 0 !important;
+        border-radius: 3px 3px 0 0 !important;
     }
     
     .profile-image img {
@@ -1301,10 +1301,11 @@ body {
     
     .contact-item {
         display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 0.15rem 0 !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 0.3rem 0 !important;
         line-height: 1.2 !important;
+        gap: 0.2rem !important;
     }
     
     .contact-item strong {
@@ -1312,13 +1313,16 @@ body {
         color: var(--content-text) !important;
         font-weight: 600 !important;
         line-height: 1.1 !important;
+        margin-bottom: 0.1rem !important;
     }
     
-    .contact-item span {
+    .contact-item span,
+    .contact-item a {
         font-size: 0.75rem !important;
         color: var(--text-secondary) !important;
-        text-align: right !important;
+        text-align: left !important;
         line-height: 1.1 !important;
+        margin-left: 0 !important;
     }
     
     .card-footer {
@@ -1330,7 +1334,7 @@ body {
         width: 100% !important;
         order: 3 !important;
         background: var(--card-bg) !important;
-        border-radius: 0 0 12px 12px !important;
+        border-radius: 0 0 3px 3px !important;
         flex-shrink: 0 !important;
         position: absolute !important;
         bottom: 0 !important;
@@ -1377,7 +1381,7 @@ body {
         margin-bottom: 1rem;
         align-items: flex-start;
         justify-content: flex-start;
-        position: relative;
+    position: relative;
     }
     
     .experience-years {
@@ -1405,7 +1409,7 @@ body {
     .experience-separator {
         display: none;
     }
-    
+
     .experience-right {
         padding-left: 0;
     }
@@ -1543,7 +1547,7 @@ body {
     background: var(--button-primary);
     border-radius: 50%;
     color: #ffffff;
-    text-decoration: none;
+            text-decoration: none;
     font-size: 1.2rem;
     transition: all var(--transition-duration) ease;
     border: 2px solid var(--button-primary);
@@ -1586,9 +1590,9 @@ body {
     background: greenyellow;
     display: flex;
     align-items: center;
-    justify-content: center;
+        justify-content: center;
     padding: 0rem;
-    width: 100%;
+        width: 100%;
     height: 300px;
     box-sizing: border-box;
     overflow: hidden; /* Prevents overflow if image is larger */
@@ -1598,18 +1602,18 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover; /* or use 'contain' depending on requirement */
-    border-radius: px;
+    border-radius: 0px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .profile-info {
     display: flex;
-    flex-direction: column;
+        flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     padding: 1.5rem;
     background: #ffffff;
-    width: 100%;
+            width: 100%;
     height: 300px;
     text-align: left;
     box-sizing: border-box;
@@ -1622,8 +1626,8 @@ body {
     margin-bottom: 0.1rem;
     line-height: 1.1;
     letter-spacing: -0.5px;
-    width: 100%;
-}
+                width: 100%;
+            }
 
 .profile-title {
     font-size: 0.7rem;
@@ -1632,15 +1636,15 @@ body {
     margin-bottom: 1rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    width: 100%;
-}
+            width: 100%;
+        }
 
 .contact-details {
     display: flex;
-    flex-direction: column;
+        flex-direction: column;
     gap: 0.8rem;
-    width: 100%;
-}
+            width: 100%;
+        }
 
 .contact-item strong {
     display: flex;
@@ -1655,7 +1659,7 @@ body {
     color: #5a6c7d;
     font-size: 0.75rem;
     line-height: 1.2;
-    font-weight: 400;
+        font-weight: 400;
 }
 
 .contact-item a {
@@ -1690,7 +1694,7 @@ body {
 }
 
 .footer-left p {
-    margin: 0;
+        margin: 0;
     color: var(--text-color);
     font-size: 0.9rem;
     font-weight: 500;
@@ -1715,8 +1719,8 @@ body {
     height: 40px;
     background: var(--nav-active);
     color: white;
-    border-radius: 8px;
-    text-decoration: none;
+    border-radius: 3px;
+        text-decoration: none;
     transition: all var(--transition-duration) ease;
     font-size: 1.2rem;
 }
