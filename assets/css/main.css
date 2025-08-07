@@ -750,7 +750,7 @@ body {
 /* Contact Form Styles */
 .contact-form-wrapper {
     max-width: 600px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 0rem auto;
     background: var(--card-bg);
     padding: 2.5rem;
     border-radius: 3px;
@@ -792,8 +792,8 @@ body {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     background: var(--section-bg);
     color: var(--content-text);
@@ -1674,7 +1674,7 @@ body {
     background: var(--card-bg);
     border-top: 1px solid var(--border-color);
     padding: 1.5rem 2rem;
-    margin-top: 3rem;
+    margin-top: 0.1rem;
     z-index: 10;
     position: relative;
 }
