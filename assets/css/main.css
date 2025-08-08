@@ -1723,7 +1723,7 @@ body {
     font-weight: 600;
     color: var(--content-text);
     font-size: 0.75rem;
-    margin-bottom: rem;
+    margin-bottom: 0.1rem;
 }
 
 .contact-item span {
@@ -1766,7 +1766,7 @@ body {
 
 .footer-left p {
     margin: 0;
-    color: var(--text-color);
+    color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
 }
