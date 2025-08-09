@@ -12,217 +12,672 @@
 
 <body class="is-preload">
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-sun" id="themeIcon"></i>
-    </button>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="inner">
-            <a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
-            <h1>
-                <strong>Aditi Agrawal</strong>
-            </h1>
-            Mobile Engineer | Code Architect | iOS <br /> Objective-C | Swift | JavaScript
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="navigation">
+            <div class="logo">
+                <h1>Aditi Agrawal</h1>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <nav class="nav-tabs">
+                <a href="#about" class="nav-tab">ABOUT ME</a>
+                <a href="#experience" class="nav-tab">EXPERIENCE</a>
+                <a href="#skills" class="nav-tab">SKILLS</a>
+                <a href="#contact" class="nav-tab">CONTACT ME</a>
+            </nav>
         </div>
     </header>
 
-    <!-- Main -->
-    <div id="main">
+    <!-- Hero Card Section -->
+    <section class="hero-card-section">
+        <!-- Background Pattern -->
+        <div class="background-pattern"></div>
 
-        <!-- One -->
-        <section id="one">
-            <header class="major">
-                <h1>About me</h1>
-            </header>
-            <p>
-                Hello, I'm an iOS Engineer & Leader experience in leading and managing teams, software development,
-                framework/ application development, product support, and project execution. Collaborated with
-                cross-functional teams to define, design, and ship new features. Experienced in owning and leading iOS
-                projects from start to finish.
-                <br /><br /> Previously, led, managed, and programmed an analytics and user engagement SDK(s) at <a
-                    href="https://clevertap.com/">CleverTap</a> used by numerous other applications. Ensuring the
-                performance, quality, and responsiveness of the iOS and auxiliary SDK(s) by delivering new SDK features
-                and supporting existing ones.
-                <br /><br /> I am enthusiastic about simple & beautiful UI, good quality code and aspire to closely work
-                with new technologies in the field of Mobile Application Development.
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="images/profile.png" alt="Aditi Agrawal" />
+                </div>
+                <div class="profile-info">
+                    <h2 class="profile-name">Aditi Agrawal</h2>
+                    <h3 class="profile-title">MOBILE ENGINEER & ENGINEERING MANAGER</h3>
 
-            </p>
-        </section>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <span>aditi.gvc@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>GitHub:</strong>
+                            <span>github.com/Aditi3</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Berlin, Germany</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Specialization:</strong>
+                            <span>Mobile Engineering • Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- two -->
-        <section id="two">
-            <header class="major">
-                <h1>My Journey</h1>
-            </header>
-            <span class="image left"><img src="images/journey/ct.jpg" alt="" /></span>
-            <header>
-                <h2 style="color:#22A39F;">CleverTap</a> </h2>
-                <p><strong>Engineering Manager,</strong> <em>Since</em> <em>Sep 2017 - Dec 2021</em></p>
-            </header>
-            <p>
-                During my time at CleverTap, I had the opportunity to contribute to all major CleverTap SDK releases. I
-                led the development and rollout of the open-source CleverTap iOS SDK and the iOS components of hybrid
-                SDKs.
-                My team and I built, released, and maintained analytics and user engagement framework SDKs, which are
-                integrated into thousands of applications used by millions of users. I collaborated with developers,
-                designers, and product/business managers to deliver new SDK features aligned with the Product Roadmap.
-                Beyond development, I worked closely with the customer success team to resolve customer queries and
-                ensure seamless SDK integration and installation.
-                <br /> GitHub open-source repositories:
-                <a href="https://github.com/CleverTap/clevertap-ios-sdk">CleverTap iOS SDK</a>,
-                <a href="https://github.com/CleverTap/clevertap-react-native">CleverTap React Native SDK</a>,
-                <a href="https://github.com/CleverTap/">More SDKs contributions</a>
-            </p>
-            <hr />
+            <!-- Social Links Footer -->
+            <footer class="card-footer">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/aditi-agrawal" class="social-link linkedin" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Aditi3" class="social-link github" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" class="social-link spotify"
+                        title="Spotify">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                    <a href="https://medium.com/@aditiagrawal" class="social-link medium" title="Medium">
+                        <i class="fab fa-medium-m"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </section>
 
-            <p><span class="image right"><img src="images/journey/drivezy.jpg" alt="" /></span></p>
-            <header>
-                <h2 style="color:#22A39F;">Drivezy</a> </h2>
-                <p><strong>Senior iOS Engineer,</strong> <em>Mar 2017 - Aug 2017</em></p>
-            </header>
-            <p>
-                I spent around six months at Drivezy, during which I had an exciting and impactful role.
-                I was responsible for revamping and developing both the customer and partner iOS applications from
-                scratch using Swift.
+    <!-- Main Content - Scrolling Sections -->
+    <main class="main-scrolling-content">
 
-                During this time, I gained hands-on experience with seamless payment gateway integration, Google Maps,
-                Firebase, Google Crashlytics, and Apple’s Contact and Calendar frameworks.
-            </p>
-            <hr />
-
-            <span class="image left"><img src="images/journey/holachef.jpg" alt="" /></span>
-            <header>
-                <h2 style="color:#22A39F;">Holachef</a> </h2>
-                <p><strong>iOS Engineer,</strong> <em>Mar 2015 - Feb 2017</em></p>
-            </header>
-            <p>
-                I joined Holachef as the first tech team member and had the opportunity to independently develop and
-                manage the iOS application from scratch in a fast-paced startup environment. I collaborated closely with
-                product managers, engineers, and UI/UX designers to shape the app’s development.
-
-                Over time, I pushed around 15 updates, including three major version changes, to ensure quick bug fixes,
-                optimal performance, and a seamless user experience. Holachef gave me the platform to design app logic
-                and UI/UX for mobile development.
-
-                On the job, I learned and integrated payment gateways like PayU, Paytm, Mobikwik, and Simpl, along with
-                Google Maps, Core Data design, API integration (JSON parsing), and CocoaPods.
-                <br /><span class="image fit"><img src="images/journey/hola-blog.jpg" alt="" /></span>
-            </p>
-            <hr />
-
-            <span class="image right"><img src="images/journey/arya.jpg" alt="" /></span>
-            <header>
-                <h2 style="color:#22A39F;">Aryavrat</a> </h2>
-                <p><strong>iOS Engineer,</strong> <em>Oct 2013 - Feb 2015</em></p>
-            </header>
-            <p>
-                After getting a Bachelor of Technology in Computer Science, I begin my work journey and joined Aryavrat,
-                a Project-based organisation as an iOS trainee.
-                Within a span of 2months, I got a confirmation letter as an iOS Engineer. I had worked with a team of 5
-                members and successfully delivered more than 9 projects.
-                Participated in app Logic design, UI/UX development & API integrations and learnt technologies like
-                Apple Push Notification Service, Apple Map Integration, Social Media Integration (Facebook, Twitter,
-                LinkedIn), Dropbox integration, Image and Video Compression as per client requirements and implemented
-                in applications.
-            </p>
-
-        </section>
-
-        <!-- four -->
-        <section id="four">
-            <header class="major">
-                <h1>Let’s connect</h1>
-            </header>
-            <div class="row">
-                <div class="col-4 col-12-small">
-                    <ul class="labeled-icons">
-                        <li>
-                            <h3 class="icon brands fa-github-square"><span class="label">Phone</span></h3>
-                            <a href="https://github.com/Aditi3"> https://github.com/Aditi3 </a>
-                        </li>
-                        <li>
-                            <h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-                            <a href="mailto:aditi.gvc@gmail.com">aditi.gvc@gmail.com</a>
-                        </li>
-                        <li>
-                            <h3 class="icon solid fa-music"><span class="label">Music</span></h3>
-                            <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu">https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu</a>
-                        </li>
-                    </ul>
+        <!-- About Me Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="about-greeting">Hello! I'm Aditi</h2>
+                    <div class="about-text">
+                        <p>
+                            I'm an iOS Engineer & Leader with experience in leading and managing teams, software
+                            development,
+                            framework/application development, product support, and project execution. I've collaborated
+                            with
+                            cross-functional teams to define, design, and ship new features, and have extensive
+                            experience in
+                            owning and leading iOS projects from start to finish.
+                        </p>
+                        <p>
+                            Previously, I led, managed, and programmed analytics and user engagement SDK(s) at
+                            <a href="https://clevertap.com/" target="_blank">CleverTap</a> used by numerous
+                            applications.
+                            I ensured the performance, quality, and responsiveness of iOS and auxiliary SDK(s) by
+                            delivering
+                            new SDK features and supporting existing ones.
+                        </p>
+                        <p>
+                            I am enthusiastic about simple & beautiful UI, good quality code, and aspire to work closely
+                            with
+                            new technologies in the field of Mobile Application Development. I'm always excited to take
+                            on new
+                            challenges and collaborate with talented teams to create exceptional mobile experiences.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
-    </div>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience-section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+
+                    <!-- Adjust -->
+                    <div class="experience-item">
+                        <div class="experience-left">
+                            <div class="experience-years">Dec'2017-Present</div>
+                            <div class="experience-position">Senior SDK Engineer</div>
+                        </div>
+                        <div class="experience-separator">•</div>
+                        <div class="experience-right">
+                            <h3 class="company-name">ADJUST GMBH</h3>
+                            <p class="experience-description">
+                                I work on the development and maintenance of the mobile attribution SDK used by
+                                thousands of iOS apps worldwide. I contribute to updates such as iOS 17 privacy changes,
+                                Web bridge improvements, and SDK architecture refinements to enhance performance and
+                                code quality. My work also includes building a custom Steamworks Unity plugin,
+                                maintaining React Native bridges, and creating demo apps, sample code, and documentation
+                                to support global developer integration. </p>
+                            <div class="project-links">
+                                <a href="https://github.com/adjust/ios_sdk" class="project-link">Adjust iOS SDK</a>
+                                <a href="https://github.com/adjust/react_native_sdk" class="project-link">React Native
+                                    SDK</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CleverTap -->
+                    <div class="experience-item">
+                        <div class="experience-left">
+                            <div class="experience-years">Sep'2017-Dec'2021</div>
+                            <div class="experience-position">Engineering Manager</div>
+                        </div>
+                        <div class="experience-separator">•</div>
+                        <div class="experience-right">
+                            <h3 class="company-name">CLEVERTAP</h3>
+                            <p class="experience-description">
+                                Led development and rollout of open-source CleverTap iOS SDK and hybrid SDKs. Built
+                                analytics and user engagement frameworks used by millions of users across thousands of
+                                applications. Contributed to all major CleverTap SDK releases and led team development
+                                of iOS components for hybrid SDKs. Collaborated with cross-functional teams on product
+                                roadmap and ensured performance, quality, and responsiveness of SDK solutions.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/CleverTap/clevertap-ios-sdk" class="project-link">iOS
+                                    SDK</a>
+                                <a href="https://github.com/CleverTap/clevertap-react-native" class="project-link">React
+                                    Native SDK</a>
+                                <a href="https://github.com/CleverTap/" class="project-link">More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drivezy -->
+                    <div class="experience-item">
+                        <div class="experience-left">
+                            <div class="experience-years">Mar'2017-Aug'2017</div>
+                            <div class="experience-position">Senior iOS Engineer</div>
+                        </div>
+                        <div class="experience-separator">•</div>
+                        <div class="experience-right">
+                            <h3 class="company-name">DRIVEZY</h3>
+                            <p class="experience-description">
+                                Revamped and developed customer and partner iOS applications from scratch using Swift.
+                                Gained expertise in payment integrations, mapping services, and Firebase implementation.
+                                Built complete customer and partner applications from ground up, integrated multiple
+                                payment gateways and Google Maps, implemented Firebase and Google Crashlytics, and
+                                worked with Apple's Contact and Calendar frameworks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Holachef -->
+                    <div class="experience-item">
+                        <div class="experience-left">
+                            <div class="experience-years">Feb'2015-Feb'2017</div>
+                            <div class="experience-position">iOS Engineer</div>
+                        </div>
+                        <div class="experience-separator">•</div>
+                        <div class="experience-right">
+                            <h3 class="company-name">HOLACHEF</h3>
+                            <p class="experience-description">
+                                First tech team member responsible for independently developing and managing the
+                                complete iOS application in a fast-paced startup environment. Built entire iOS
+                                application independently as first tech hire, released 15+ updates including 3 major
+                                version releases, integrated payment systems (PayU, Paytm, Mobikwik, Simpl), and
+                                designed app architecture and UI/UX for optimal performance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Aryavrat -->
+                    <div class="experience-item">
+                        <div class="experience-left">
+                            <div class="experience-years">Oct'2013-Jan'2015</div>
+                            <div class="experience-position">iOS Engineer</div>
+                        </div>
+                        <div class="experience-separator">•</div>
+                        <div class="experience-right">
+                            <h3 class="company-name">ARYAVRAT</h3>
+                            <p class="experience-description">
+                                Started career journey as iOS trainee and earned promotion to iOS Engineer within 2
+                                months. Successfully delivered 9+ projects in collaborative team environment. Rapid
+                                promotion from trainee to engineer in 2 months, delivered 9+ successful projects with
+                                5-member team, mastered Apple Push Notifications and Maps integration, and implemented
+                                social media and cloud storage integrations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Mobile Development</h3>
+                        <div class="skill-items">
+                            <span class="skill-badge">iOS Development</span>
+                            <span class="skill-badge">Swift</span>
+                            <span class="skill-badge">Objective-C</span>
+                            <span class="skill-badge">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Frameworks & SDKs</h3>
+                        <div class="skill-items">
+                            <span class="skill-badge">SDK Development</span>
+                            <span class="skill-badge">React Native</span>
+                            <span class="skill-badge">Cordova</span>
+                            <span class="skill-badge">Unity</span>
+                            <span class="skill-badge">Flutter</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Leadership & Strategy</h3>
+                        <div class="skill-items">
+                            <span class="skill-badge">Team Leadership</span>
+                            <span class="skill-badge">People Management & Coaching</span>
+                            <span class="skill-badge">Project Oversight & Roadmap</span>
+                            <span class="skill-badge">Technical Direction</span>
+                            <span class="skill-badge">Agile/Scrum</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Tools & Technologies</h3>
+                        <div class="skill-items">
+                            <span class="skill-badge">GitHub</span>
+                            <span class="skill-badge">Jira</span>
+                            <span class="skill-badge">App Store Connect</span>
+                            <span class="skill-badge">Bitrise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Let's Connect & Collaborate</h2>
+                <div class="contact-content">
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" action="mailto:aditi.gvc@gmail.com" method="post"
+                            enctype="text/plain">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Type your message here *</label>
+                                <textarea id="message" name="message" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                    </div>
+                    <!--                 
+                    <div class="availability">
+                        <h4>Current Focus</h4>
+                        <p>Open to discussing engineering roles, leadership positions, and exciting mobile development projects. Particularly interested in SDK development, team leadership opportunities, and innovative mobile technologies.</p>
+                    </div>
+                -->
+                </div>
+            </div>
+        </section>
+    </main>
+
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <ul class="icons">
-                <li><a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" class="icon brands fa-linkedin"><span
-                            class="label">LinkedIn</span></a></li>
-                <li><a href="https://github.com/Aditi3" class="icon brands fa-github-square"><span
-                            class="label">Github</span></a></li>
-                <li><a href="mailto:aditi.gvc@gmail.com" class="icon solid fa-envelope-square"><span
-                            class="label">Email</span></a></li>
-            </ul>
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 By Aditi Agrawal</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/aditiagrawal" target="_blank" class="footer-social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Aditi3" target="_blank" class="footer-social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" target="_blank" class="footer-social-link">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
+    <!-- Temporarily removed other scripts to avoid conflicts -->
+    <!-- <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.poptrox.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script> -->
 
-    <!-- Theme Toggle Script -->
+    <!-- Working Navigation Script -->
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const body = document.body;
+        console.log('=== SETTING UP WORKING NAVIGATION ===');
 
-        // Check for saved theme preference or default to dark theme
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        
-        // Apply the saved theme
-        if (currentTheme === 'light') {
-            body.setAttribute('data-theme', 'light');
-            themeIcon.className = 'fas fa-moon';
-        } else {
-            body.removeAttribute('data-theme');
-            themeIcon.className = 'fas fa-sun';
-        }
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM Content Loaded - initializing theme toggle');
 
-        // Toggle theme function
-        function toggleTheme() {
-            const isLight = body.getAttribute('data-theme') === 'light';
-            
-            if (isLight) {
-                // Switch to dark theme
-                body.removeAttribute('data-theme');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                // Switch to light theme
-                body.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
+            // Debug: Check if theme toggle button exists
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+
+            console.log('Theme toggle button found:', themeToggle);
+            console.log('Theme icon found:', themeIcon);
+
+            if (!themeToggle) {
+                console.error('THEME TOGGLE BUTTON NOT FOUND!');
             }
+
+            if (!themeIcon) {
+                console.error('THEME ICON NOT FOUND!');
+            }
+
+            // Only proceed if both elements exist
+            if (themeToggle && themeIcon) {
+                // Theme toggle functionality - Simplified approach
+                const body = document.body;
+                const currentTheme = localStorage.getItem('theme') || 'dark';
+
+                console.log('Current theme from storage:', currentTheme);
+
+                // Set initial theme
+                if (currentTheme === 'light') {
+                    body.setAttribute('data-theme', 'light');
+                    themeIcon.className = 'fas fa-moon';
+                    console.log('Set to light theme');
+                } else {
+                    body.removeAttribute('data-theme');
+                    themeIcon.className = 'fas fa-sun';
+                    console.log('Set to dark theme');
+                }
+
+                // Simple, direct event handler
+                themeToggle.onclick = function () {
+                    console.log('=== BUTTON CLICKED ===');
+
+                    const isCurrentlyLight = body.hasAttribute('data-theme');
+                    console.log('Currently light mode:', isCurrentlyLight);
+
+                    if (isCurrentlyLight) {
+                        // Switch to dark
+                        body.removeAttribute('data-theme');
+                        themeIcon.className = 'fas fa-sun';
+                        localStorage.setItem('theme', 'dark');
+                        console.log('✅ Switched to DARK theme');
+                    } else {
+                        // Switch to light
+                        body.setAttribute('data-theme', 'light');
+                        themeIcon.className = 'fas fa-moon';
+                        localStorage.setItem('theme', 'light');
+                        console.log('✅ Switched to LIGHT theme');
+                    }
+                };
+
+                console.log('✅ Theme toggle initialized successfully');
+            } else {
+                console.error('Cannot initialize theme toggle - missing elements');
+            }
+        });
+
+        // Scroll-triggered animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            const animatedElements = document.querySelectorAll(
+                '.about-section, .experience-section, .skills-section, .contact-section, .experience-item, .skill-category'
+            );
+
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
         }
 
-        // Add event listener to toggle button
-        themeToggle.addEventListener('click', toggleTheme);
+        // Enhanced navigation with smooth scrolling
+        function setupDirectNavigation() {
+            console.log('Setting up direct navigation...');
+
+            const navigationMap = {
+                'ABOUT ME': function () {
+                    const aboutEl = document.getElementById('about');
+                    if (aboutEl) {
+                        const targetPosition = aboutEl.offsetTop - 50;
+                        console.log('Scrolling to About Me at position:', targetPosition);
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                },
+                'EXPERIENCE': function () {
+                    const expEl = document.getElementById('experience');
+                    if (expEl) {
+                        const targetPosition = expEl.offsetTop - 50;
+                        console.log('Scrolling to Experience at position:', targetPosition);
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                },
+                'SKILLS': function () {
+                    const skillsEl = document.getElementById('skills');
+                    if (skillsEl) {
+                        const targetPosition = skillsEl.offsetTop - 50;
+                        console.log('Scrolling to Skills at position:', targetPosition);
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                },
+                'CONTACT ME': function () {
+                    const contactEl = document.getElementById('contact');
+                    if (contactEl) {
+                        const targetPosition = contactEl.offsetTop - 50;
+                        console.log('Scrolling to Contact at position:', targetPosition);
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                }
+            };
+
+            document.querySelectorAll('.nav-tab').forEach(function (link) {
+                const linkText = link.textContent.trim();
+                console.log('Adding handler for:', linkText);
+
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    console.log('=== CLICKED:', linkText, '===');
+
+                    if (navigationMap[linkText]) {
+                        navigationMap[linkText]();
+                    } else {
+                        console.log('No handler found for:', linkText);
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                setupDirectNavigation();
+                initScrollAnimations();
+            });
+        } else {
+            setupDirectNavigation();
+            initScrollAnimations();
+        }
     </script>
 
-    <footer>
-        <div class="container">
-          <p>&copy; 2025 by Aditi Agrawal. All rights reserved.</p>
-        </div>
-      </footer>
-      
+    <!-- Theme Toggle Button (moved here for debugging) -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="themeIcon"></i>
+    </button>
+
+    <!-- Initialize theme toggle immediately after button -->
+    <script>
+        (function initThemeToggleImmediate() {
+            console.log('=== IMMEDIATE THEME TOGGLE INIT ===');
+
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+
+            console.log('Immediate - Theme toggle found:', themeToggle);
+            console.log('Immediate - Theme icon found:', themeIcon);
+
+            if (themeToggle && themeIcon) {
+                const body = document.body;
+                const currentTheme = localStorage.getItem('theme') || 'dark';
+
+                // Set initial theme
+                if (currentTheme === 'light') {
+                    body.setAttribute('data-theme', 'light');
+                    themeIcon.className = 'fas fa-moon';
+                } else {
+                    body.removeAttribute('data-theme');
+                    themeIcon.className = 'fas fa-sun';
+                }
+
+                // Event handler
+                themeToggle.onclick = function () {
+                    console.log('🔄 THEME TOGGLE CLICKED!');
+
+                    const isLight = body.hasAttribute('data-theme');
+
+                    if (isLight) {
+                        body.removeAttribute('data-theme');
+                        themeIcon.className = 'fas fa-sun';
+                        localStorage.setItem('theme', 'dark');
+                        console.log('🌙 Switched to DARK');
+                    } else {
+                        body.setAttribute('data-theme', 'light');
+                        themeIcon.className = 'fas fa-moon';
+                        localStorage.setItem('theme', 'light');
+                        console.log('☀️ Switched to LIGHT');
+                    }
+                };
+
+                console.log('✅ Theme toggle initialized immediately!');
+            } else {
+                console.log('❌ Elements not found immediately, will retry...');
+
+                // Backup method with timeout
+                setTimeout(function () {
+                    const themeToggle2 = document.getElementById('themeToggle');
+                    const themeIcon2 = document.getElementById('themeIcon');
+
+                    if (themeToggle2 && themeIcon2) {
+                        console.log('✅ Found elements with timeout method');
+                        // Initialize with timeout method
+                        // ... same initialization code
+                    }
+                }, 500);
+            }
+        })();
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navTabs = document.querySelector('.nav-tabs');
+
+            if (mobileToggle && navTabs) {
+                // Ensure menu starts in closed state
+                mobileToggle.classList.remove('active');
+                navTabs.classList.remove('active');
+
+                mobileToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    console.log('🍔 Hamburger clicked!');
+                    mobileToggle.classList.toggle('active');
+                    navTabs.classList.toggle('active');
+
+                    console.log('Toggle active:', mobileToggle.classList.contains('active'));
+                });
+
+                // Close menu when clicking on nav links
+                const navLinks = document.querySelectorAll('.nav-tab');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        console.log('📱 Nav link clicked, closing menu');
+                        mobileToggle.classList.remove('active');
+                        navTabs.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!mobileToggle.contains(e.target) && !navTabs.contains(e.target)) {
+                        if (mobileToggle.classList.contains('active')) {
+                            console.log('🖱️ Clicked outside, closing menu');
+                            mobileToggle.classList.remove('active');
+                            navTabs.classList.remove('active');
+                        }
+                    }
+                });
+
+                // Reset menu when resizing to desktop
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768) {
+                        mobileToggle.classList.remove('active');
+                        navTabs.classList.remove('active');
+                        console.log('📱➡️💻 Switched to desktop, menu reset');
+                    }
+                });
+
+                console.log('✅ Mobile menu initialized successfully');
+            } else {
+                console.log('❌ Mobile menu elements not found');
+            }
+        });
+
+        // Dynamic Timeline Height Calculation
+        function setDynamicTimelineHeights() {
+            const experienceItems = document.querySelectorAll('.experience-item');
+
+            experienceItems.forEach((item, index) => {
+                if (index < experienceItems.length - 1) { // Not the last item
+                    const currentSeparator = item.querySelector('.experience-separator');
+                    const nextItem = experienceItems[index + 1];
+                    const nextSeparator = nextItem.querySelector('.experience-separator');
+
+                    if (currentSeparator && nextSeparator) {
+                        const currentRect = currentSeparator.getBoundingClientRect();
+                        const nextRect = nextSeparator.getBoundingClientRect();
+                        const distance = nextRect.top - currentRect.bottom;
+
+                        // Set CSS custom property for this specific separator
+                        currentSeparator.style.setProperty('--timeline-height', `${distance}px`);
+                    }
+                }
+            });
+        }
+
+        // Run on page load and resize
+        window.addEventListener('load', setDynamicTimelineHeights);
+        window.addEventListener('resize', setDynamicTimelineHeights);
+    </script>
+
 </body>
 
 </html>
