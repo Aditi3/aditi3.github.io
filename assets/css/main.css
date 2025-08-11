@@ -36,6 +36,21 @@
     /* Darker teal variant for pattern */
     --section-bg: #121212;
     --content-text: #EAEAEA;
+
+    /* Spacing scale */
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    /* Global layout spacing */
+    --section-padding-y: var(--space-4xl);
+    --container-x: 2rem;
 }
 
 /* Animation Keyframes */
@@ -170,6 +185,15 @@
     --blue-pattern: #235f6a;
     --section-bg: #f8f9fa;
     --content-text: #2c3e50;
+}
+
+/* Global container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--container-x);
+    padding-right: var(--container-x);
+    box-sizing: border-box;
 }
 
 /* Theme Toggle Button */
@@ -482,7 +506,7 @@ body {
     font-size: 2rem;
     font-weight: 500;
     color: var(--content-text);
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-2xl);
     text-align: center;
     position: relative;
 }
@@ -501,7 +525,7 @@ body {
 
 /* About Me Section */
 .about-section {
-    padding: 4rem 0 6rem;
+    padding: var(--section-padding-y) 0;
     background: var(--section-bg);
     margin-top: 0;
     position: relative;
@@ -556,7 +580,7 @@ body {
 
 /* Experience Section */
 .experience-section {
-    padding: 6rem 0;
+    padding: var(--section-padding-y) 0;
     background: var(--section-bg);
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.3s forwards;
@@ -721,7 +745,7 @@ body {
 
 /* Skills Section */
 .skills-section {
-    padding: 6rem 0;
+    padding: var(--section-padding-y) 0;
     background: var(--section-bg);
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.4s forwards;
@@ -797,7 +821,7 @@ body {
 
 /* Contact Section Animation */
 .contact-section {
-    padding: 6rem 0;
+    padding: var(--section-padding-y) 0;
     background: var(--section-bg);
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.5s forwards;
@@ -967,6 +991,7 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
+    :root { --section-padding-y: var(--space-3xl); --container-x: 1.5rem; }
     .header-content {
         padding: 0 1rem;
     }
@@ -1033,15 +1058,7 @@ body {
         align-items: center;
     }
 
-    .about-section {
-        padding: 6rem 0 6rem;
-    }
-
-    .experience-section,
-    .skills-section,
-    .contact-section {
-        padding: 4rem 0;
-    }
+    /* Section paddings derive from --section-padding-y */
 
     .section-title {
         font-size: 2rem;
@@ -1074,6 +1091,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    :root { --section-padding-y: var(--space-3xl); --container-x: 1.25rem; }
     .header-content {
         flex-direction: column;
         height: auto;
@@ -1140,15 +1158,7 @@ body {
         padding: 2rem;
     }
 
-    .experience-section,
-    .skills-section,
-    .contact-section {
-        padding: 4rem 0;
-    }
-
-    .about-section {
-        padding: 5rem 0 4rem;
-    }
+    /* Section paddings derive from --section-padding-y */
 
     .about-content {
         grid-template-columns: 1fr;
@@ -1200,6 +1210,7 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+    :root { --section-padding-y: var(--space-2xl); --container-x: 1rem; }
     .navigation {
         padding-right: 60px;
         /* Space for smaller theme toggle */
@@ -1525,9 +1536,7 @@ body {
         border-top: 1px solid var(--border-color);
     }
 
-    .container {
-        padding: 0 1rem;
-    }
+    /* Container gutters controlled by --container-x */
 
     .about-content {
         gap: 2rem;
