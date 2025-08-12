@@ -43,7 +43,6 @@
                 </p>
                 <div class="contact-details" style="margin-top:1rem">
                     <div class="contact-item"><strong>Email:</strong> <span>aditi.gvc@gmail.com</span></div>
-                    <div class="contact-item"><strong>Availability:</strong> <span>Limited slots per month</span></div>
                 </div>
             </div>
         </div>
@@ -125,6 +124,27 @@
             });
         })();
 
+        // Scroll-triggered animations (match index behavior)
+        function initScrollAnimations() {
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll(
+                '.about-section, .experience-section, .skills-section, .contact-section, .experience-item, .skill-category'
+            );
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        }
+
         // Mobile menu
         document.addEventListener('DOMContentLoaded', function () {
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -145,6 +165,9 @@
             window.addEventListener('resize', function () {
                 if (window.innerWidth > 768) { mobileToggle.classList.remove('active'); navTabs.classList.remove('active'); }
             });
+
+            // Initialize animations after DOM ready
+            initScrollAnimations();
         });
     </script>
 </body>

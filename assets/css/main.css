@@ -285,7 +285,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    padding-right: 0;
+    padding-right: 70px;
+    /* keep space for theme toggle so last tab isn't overlapped */
 }
 
 .logo h1 {
@@ -300,14 +301,16 @@ body {
 
 .nav-tabs {
     display: flex;
-    gap: 2rem;
+    gap: 1.75rem;
+    align-items: center;
 }
 
 .nav-tab {
     color: var(--nav-text);
     text-decoration: none;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.45rem 0.9rem;
+    white-space: nowrap;
     border-radius: 1px;
     transition: all var(--transition-duration) ease;
     position: relative;
@@ -331,6 +334,10 @@ body {
 
 .nav-tab:nth-child(4) {
     animation-delay: 0.8s;
+}
+
+.nav-tab:nth-child(5) {
+    animation-delay: 1s;
 }
 
 .nav-tab:hover {
@@ -991,7 +998,11 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
-    :root { --section-padding-y: var(--space-3xl); --container-x: 1.5rem; }
+    :root {
+        --section-padding-y: var(--space-3xl);
+        --container-x: 1.5rem;
+    }
+
     .header-content {
         padding: 0 1rem;
     }
@@ -1091,7 +1102,11 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    :root { --section-padding-y: var(--space-3xl); --container-x: 1.25rem; }
+    :root {
+        --section-padding-y: var(--space-3xl);
+        --container-x: 1.25rem;
+    }
+
     .header-content {
         flex-direction: column;
         height: auto;
@@ -1210,7 +1225,11 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    :root { --section-padding-y: var(--space-2xl); --container-x: 1rem; }
+    :root {
+        --section-padding-y: var(--space-2xl);
+        --container-x: 1rem;
+    }
+
     .navigation {
         padding-right: 60px;
         /* Space for smaller theme toggle */
