@@ -27,6 +27,7 @@
                 <a href="#about" class="nav-tab">ABOUT ME</a>
                 <a href="#experience" class="nav-tab">EXPERIENCE</a>
                 <a href="#skills" class="nav-tab">SKILLS</a>
+                <a href="mentorship.html" class="nav-tab">MENTORSHIP</a>
                 <a href="#contact" class="nav-tab">CONTACT ME</a>
             </nav>
         </div>
@@ -520,18 +521,23 @@
 
             document.querySelectorAll('.nav-tab').forEach(function (link) {
                 const linkText = link.textContent.trim();
-                console.log('Adding handler for:', linkText);
+                const href = (link.getAttribute('href') || '').trim();
+                console.log('Adding handler for:', linkText, 'href:', href);
 
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    console.log('=== CLICKED:', linkText, '===');
+                // Only intercept in-page anchors (href starts with '#').
+                if (href.startsWith('#')) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        console.log('=== CLICKED (in-page):', linkText, '===');
 
-                    if (navigationMap[linkText]) {
-                        navigationMap[linkText]();
-                    } else {
-                        console.log('No handler found for:', linkText);
-                    }
-                });
+                        if (navigationMap[linkText]) {
+                            navigationMap[linkText]();
+                        } else {
+                            console.log('No handler found for:', linkText);
+                        }
+                    });
+                }
+                // Else: allow default navigation (e.g., mentorship.html)
             });
         }
 
