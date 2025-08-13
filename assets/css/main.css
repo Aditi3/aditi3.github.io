@@ -36,6 +36,7 @@
     /* Darker teal variant for pattern */
     --section-bg: #121212;
     --content-text: #EAEAEA;
+    --header-offset: 90px;
 
     /* Spacing scale */
     --space-2xs: 0.25rem;
@@ -540,6 +541,7 @@ body {
     animation: fadeInUp var(--animation-duration) ease-out 0.1s forwards;
     transform: translateY(30px);
     opacity: 0;
+    scroll-margin-top: var(--header-offset);
 }
 
 .about-content {
@@ -588,11 +590,12 @@ body {
 /* Experience Section */
 .experience-section {
     padding: var(--section-padding-y) 0;
-    background: var(--section-bg);
+    background: yellow;
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.3s forwards;
     transform: translateY(30px);
     opacity: 0;
+    scroll-margin-top: var(--header-offset);
 }
 
 .experience-timeline {
@@ -753,11 +756,12 @@ body {
 /* Skills Section */
 .skills-section {
     padding: var(--section-padding-y) 0;
-    background: var(--section-bg);
+    background: red;
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.4s forwards;
     transform: translateY(30px);
     opacity: 0;
+    scroll-margin-top: var(--header-offset);
 }
 
 .skills-grid {

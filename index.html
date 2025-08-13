@@ -484,38 +484,37 @@
         function setupDirectNavigation() {
             console.log('Setting up direct navigation...');
 
+            function headerOffsetPx() {
+                const root = getComputedStyle(document.documentElement);
+                const cssVar = root.getPropertyValue('--header-offset').trim();
+                const parsed = parseInt(cssVar.replace('px',''), 10);
+                return Number.isFinite(parsed) ? parsed : 90;
+            }
+
             const navigationMap = {
                 'ABOUT ME': function () {
-                    const aboutEl = document.getElementById('about');
-                    if (aboutEl) {
-                        const targetPosition = aboutEl.offsetTop - 50;
-                        console.log('Scrolling to About Me at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('about');
+                    if (!el) return;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 },
                 'EXPERIENCE': function () {
-                    const expEl = document.getElementById('experience');
-                    if (expEl) {
-                        const targetPosition = expEl.offsetTop - 50;
-                        console.log('Scrolling to Experience at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('experience');
+                    if (!el) return;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 },
                 'SKILLS': function () {
-                    const skillsEl = document.getElementById('skills');
-                    if (skillsEl) {
-                        const targetPosition = skillsEl.offsetTop - 50;
-                        console.log('Scrolling to Skills at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('skills');
+                    if (!el) return;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 },
                 'CONTACT ME': function () {
-                    const contactEl = document.getElementById('contact');
-                    if (contactEl) {
-                        const targetPosition = contactEl.offsetTop - 50;
-                        console.log('Scrolling to Contact at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('contact');
+                    if (!el) return;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 }
             };
 
@@ -541,16 +540,47 @@
             });
         }
 
+        // Keep CSS var in sync with real header height and correct initial hash landings
+        function setHeaderOffsetVar() {
+            const header = document.querySelector('.main-header');
+            if (!header) return;
+            const offset = Math.round(header.getBoundingClientRect().height);
+            document.documentElement.style.setProperty('--header-offset', offset + 'px');
+        }
+
+        function handleInitialHashScroll() {
+            if (!location.hash) return;
+            const id = location.hash.replace('#', '');
+            const target = document.getElementById(id);
+            if (!target) return;
+            const y = target.getBoundingClientRect().top + window.pageYOffset - (function(){
+                const root = getComputedStyle(document.documentElement);
+                const cssVar = root.getPropertyValue('--header-offset').trim();
+                const parsed = parseInt(cssVar.replace('px',''), 10);
+                return Number.isFinite(parsed) ? parsed : 90;
+            })();
+            window.scrollTo({ top: y, behavior: 'auto' });
+        }
+
         // Initialize everything when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function () {
+                setHeaderOffsetVar();
                 setupDirectNavigation();
                 initScrollAnimations();
+                // Delay a tick to ensure fonts/layout settle, then correct the hash position
+                setTimeout(handleInitialHashScroll, 50);
             });
         } else {
+            setHeaderOffsetVar();
             setupDirectNavigation();
             initScrollAnimations();
+            setTimeout(handleInitialHashScroll, 50);
         }
+
+        window.addEventListener('resize', function(){
+            setHeaderOffsetVar();
+        });
     </script>
 
     <!-- Theme Toggle Button (moved here for debugging) -->
