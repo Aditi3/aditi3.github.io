@@ -495,26 +495,42 @@
                 'ABOUT ME': function () {
                     const el = document.getElementById('about');
                     if (!el) return;
-                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'EXPERIENCE': function () {
                     const el = document.getElementById('experience');
                     if (!el) return;
-                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'SKILLS': function () {
                     const el = document.getElementById('skills');
                     if (!el) return;
-                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'CONTACT ME': function () {
                     const el = document.getElementById('contact');
                     if (!el) return;
-                    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
-                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 }
             };
 
@@ -553,6 +569,7 @@
             const id = location.hash.replace('#', '');
             const target = document.getElementById(id);
             if (!target) return;
+            target.classList.add('no-translate');
             const y = target.getBoundingClientRect().top + window.pageYOffset - (function(){
                 const root = getComputedStyle(document.documentElement);
                 const cssVar = root.getPropertyValue('--header-offset').trim();
@@ -560,6 +577,7 @@
                 return Number.isFinite(parsed) ? parsed : 90;
             })();
             window.scrollTo({ top: y, behavior: 'auto' });
+            setTimeout(function(){ target.classList.remove('no-translate'); }, 250);
         }
 
         // Initialize everything when DOM is ready
@@ -580,6 +598,12 @@
 
         window.addEventListener('resize', function(){
             setHeaderOffsetVar();
+        });
+
+        // Handle BFCache restores and back/forward nav
+        window.addEventListener('pageshow', function(){
+            setHeaderOffsetVar();
+            setTimeout(handleInitialHashScroll, 50);
         });
     </script>
 

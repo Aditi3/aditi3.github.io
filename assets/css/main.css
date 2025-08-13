@@ -531,6 +531,13 @@ body {
     border-radius: 2px;
 }
 
+/* Disable entrance transform/animation while we measure/scroll to avoid initial offset */
+.no-translate {
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+}
+
 /* About Me Section */
 .about-section {
     padding: var(--section-padding-y) 0;
