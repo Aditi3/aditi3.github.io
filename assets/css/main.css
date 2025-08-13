@@ -1318,7 +1318,8 @@ body {
         grid-template-columns: none !important;
         gap: 0 !important;
         text-align: left !important;
-        height: 700px !important;
+        height: auto !important;
+        position: static !important;
     }
 
     .profile-section {
