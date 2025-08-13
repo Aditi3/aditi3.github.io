@@ -1319,7 +1319,6 @@ body {
         gap: 0 !important;
         text-align: left !important;
         height: 700px !important;
-        position: relative !important;
     }
 
     .profile-section {
@@ -1330,6 +1329,8 @@ body {
         padding: 0 !important;
         gap: 0 !important;
         text-align: left !important;
+        height: auto !important;
+        /* override desktop fixed height so details are visible */
     }
 
     .profile-image {
@@ -1359,7 +1360,10 @@ body {
 
     .profile-info {
         width: 100% !important;
-        height: calc(350px - 60px) !important;
+        height: auto !important;
+        /* let details show fully */
+        min-height: 300px !important;
+        /* match image square base */
         padding: 1.2rem !important;
         text-align: left !important;
         order: 2 !important;
@@ -1435,10 +1439,8 @@ body {
         background: var(--card-bg) !important;
         border-radius: 0 0 3px 3px !important;
         flex-shrink: 0 !important;
-        position: absolute !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
+        position: static !important;
+        margin-top: 0.5rem !important;
     }
 
     .social-icon,
