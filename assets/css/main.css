@@ -597,7 +597,7 @@ body {
 /* Experience Section */
 .experience-section {
     padding: var(--section-padding-y) 0;
-    background: yellow;
+    background: var(--section-bg);
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.3s forwards;
     transform: translateY(30px);
@@ -763,7 +763,7 @@ body {
 /* Skills Section */
 .skills-section {
     padding: var(--section-padding-y) 0;
-    background: red;
+    background: var(--section-bg);
     border-top: 1px solid var(--border-color);
     animation: fadeInUp var(--animation-duration) ease-out 0.4s forwards;
     transform: translateY(30px);
