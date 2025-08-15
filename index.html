@@ -79,7 +79,8 @@
                     <a href="https://github.com/Aditi3" class="social-link github" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                     <a href="https://www.instagram.com/kindtrails.with.aditi/" class="social-link instagram" title="Instagram">
+                    <a href="https://www.instagram.com/kindtrails.with.aditi/" class="social-link instagram"
+                        title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" class="social-link spotify"
@@ -92,7 +93,7 @@
                 </div>
             </footer>
         </div>
-        </section>
+    </section>
 
     <!-- Main Content - Scrolling Sections -->
     <main class="main-scrolling-content">
@@ -104,28 +105,18 @@
                     <h2 class="about-greeting">Hello! I'm Aditi</h2>
                     <div class="about-text">
                         <p>
-                            I'm an iOS Engineer & Leader with experience in leading and managing teams, software
-                            development,
-                            framework/application development, product support, and project execution. I've collaborated
-                            with
-                            cross-functional teams to define, design, and ship new features, and have extensive
-                            experience in
-                            owning and leading iOS projects from start to finish.
+                            I’m an Engineering Manager and iOS Developer with over a decade of experience designing,
+                            building, and scaling mobile SDKs and apps that enable tracking, attribution, and user
+                            engagement for products used worldwide. My work blends hands-on development with strategic
+                            leadership — guiding teams from concept to launch, mentoring engineers, and shaping
+                            processes that improve code quality, collaboration, and delivery speed.
                         </p>
                         <p>
-                            Previously, I led, managed, and programmed analytics and user engagement SDK(s) at
-                            <a href="https://clevertap.com/" target="_blank">CleverTap</a> used by numerous
-                            applications.
-                            I ensured the performance, quality, and responsiveness of iOS and auxiliary SDK(s) by
-                            delivering
-                            new SDK features and supporting existing ones.
-                        </p>
-                        <p>
-                            I am enthusiastic about simple & beautiful UI, good quality code, and aspire to work closely
-                            with
-                            new technologies in the field of Mobile Application Development. I'm always excited to take
-                            on new
-                            challenges and collaborate with talented teams to create exceptional mobile experiences.
+                            Whether it’s optimizing an SDK for the latest iOS updates, improving app performance, or
+                            crafting an elegant UI, I focus on creating products that are technically robust, easy to
+                            use, and built to last. Passionate about clean, maintainable code and exceptional user
+                            experiences, I stay curious about emerging mobile technologies and enjoy turning complex
+                            challenges into seamless, impactful solutions.
                         </p>
                     </div>
                 </div>
@@ -344,7 +335,7 @@
                     </div>
                 -->
                 </div>
-    </div>
+            </div>
         </section>
     </main>
 
@@ -362,7 +353,8 @@
                     <a href="https://github.com/Aditi3" target="_blank" class="footer-social-link">
                         <i class="fab fa-github"></i>
                     </a>
-                     <a href="https://www.instagram.com/kindtrails.with.aditi/" target="_blank" class="footer-social-link">
+                    <a href="https://www.instagram.com/kindtrails.with.aditi/" target="_blank"
+                        class="footer-social-link">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" target="_blank"
@@ -487,7 +479,7 @@
             function headerOffsetPx() {
                 const root = getComputedStyle(document.documentElement);
                 const cssVar = root.getPropertyValue('--header-offset').trim();
-                const parsed = parseInt(cssVar.replace('px',''), 10);
+                const parsed = parseInt(cssVar.replace('px', ''), 10);
                 return Number.isFinite(parsed) ? parsed : 90;
             }
 
@@ -496,40 +488,40 @@
                     const el = document.getElementById('about');
                     if (!el) return;
                     el.classList.add('no-translate');
-                    requestAnimationFrame(function(){
+                    requestAnimationFrame(function () {
                         const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
                         window.scrollTo({ top: y, behavior: 'smooth' });
-                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                        setTimeout(function () { el.classList.remove('no-translate'); }, 200);
                     });
                 },
                 'EXPERIENCE': function () {
                     const el = document.getElementById('experience');
                     if (!el) return;
                     el.classList.add('no-translate');
-                    requestAnimationFrame(function(){
+                    requestAnimationFrame(function () {
                         const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
                         window.scrollTo({ top: y, behavior: 'smooth' });
-                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                        setTimeout(function () { el.classList.remove('no-translate'); }, 200);
                     });
                 },
                 'SKILLS': function () {
                     const el = document.getElementById('skills');
                     if (!el) return;
                     el.classList.add('no-translate');
-                    requestAnimationFrame(function(){
+                    requestAnimationFrame(function () {
                         const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
                         window.scrollTo({ top: y, behavior: 'smooth' });
-                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                        setTimeout(function () { el.classList.remove('no-translate'); }, 200);
                     });
                 },
                 'CONTACT ME': function () {
                     const el = document.getElementById('contact');
                     if (!el) return;
                     el.classList.add('no-translate');
-                    requestAnimationFrame(function(){
+                    requestAnimationFrame(function () {
                         const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
                         window.scrollTo({ top: y, behavior: 'smooth' });
-                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                        setTimeout(function () { el.classList.remove('no-translate'); }, 200);
                     });
                 }
             };
@@ -570,14 +562,14 @@
             const target = document.getElementById(id);
             if (!target) return;
             target.classList.add('no-translate');
-            const y = target.getBoundingClientRect().top + window.pageYOffset - (function(){
+            const y = target.getBoundingClientRect().top + window.pageYOffset - (function () {
                 const root = getComputedStyle(document.documentElement);
                 const cssVar = root.getPropertyValue('--header-offset').trim();
-                const parsed = parseInt(cssVar.replace('px',''), 10);
+                const parsed = parseInt(cssVar.replace('px', ''), 10);
                 return Number.isFinite(parsed) ? parsed : 90;
             })();
             window.scrollTo({ top: y, behavior: 'auto' });
-            setTimeout(function(){ target.classList.remove('no-translate'); }, 250);
+            setTimeout(function () { target.classList.remove('no-translate'); }, 250);
         }
 
         // Initialize everything when DOM is ready
@@ -596,12 +588,12 @@
             setTimeout(handleInitialHashScroll, 50);
         }
 
-        window.addEventListener('resize', function(){
+        window.addEventListener('resize', function () {
             setHeaderOffsetVar();
         });
 
         // Handle BFCache restores and back/forward nav
-        window.addEventListener('pageshow', function(){
+        window.addEventListener('pageshow', function () {
             setHeaderOffsetVar();
             setTimeout(handleInitialHashScroll, 50);
         });
@@ -756,7 +748,7 @@
         window.addEventListener('load', setDynamicTimelineHeights);
         window.addEventListener('resize', setDynamicTimelineHeights);
     </script>
-      
+
 </body>
 
 </html>
