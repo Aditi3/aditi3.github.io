@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mentorship • Aditi Agrawal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="images/favicon.png" type="images/favicon.png" sizes="16x16">
+</head>
+<body class="is-preload">
+
+    <!-- Header Navigation (same as index) -->
+    <header class="main-header">
+        <div class="navigation">
+            <div class="logo">
+                <h1><a href="index.html" style="text-decoration:none;color:inherit">Aditi Agrawal</a></h1>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <nav class="nav-tabs">
+                <a href="index.html#about" class="nav-tab">ABOUT ME</a>
+                <a href="index.html#experience" class="nav-tab">EXPERIENCE</a>
+                <a href="index.html#skills" class="nav-tab">SKILLS</a>
+                <a href="mentorship.html" class="nav-tab">MENTORSHIP</a>
+                <a href="index.html#contact" class="nav-tab">CONTACT ME</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero/Intro -->
+    <section class="hero-card-section">
+        <div class="background-pattern"></div>
+        <div class="profile-card" style="max-width:900px">
+            <div class="profile-info" style="width:100%">
+                <h2 class="profile-name">Mentorship</h2>
+                <p class="about-text" style="margin-top:0.75rem">
+                    I mentor engineers on iOS development, SDK design, developer tooling, and career growth.
+                    If you'd like guidance on projects, code reviews, interview prep, or leadership transitions,
+                    feel free to reach out.
+                </p>
+                <div class="contact-details" style="margin-top:1rem">
+                    <div class="contact-item"><strong>Email:</strong> <span>aditi.gvc@gmail.com</span></div>
+                    <div class="contact-item"><strong>Calendly:</strong> <span><a href="https://calendly.com/aditi-gvc/30min" target="_blank">https://calendly.com/aditi-gvc/30min</a></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple CTA Section -->
+    <main class="main-scrolling-content">
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Request Mentorship</h2>
+                <div class="contact-content">
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" action="mailto:aditi.gvc@gmail.com" method="post" enctype="text/plain">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="topic">What would you like help with? *</label>
+                                <textarea id="topic" name="topic" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (same as index) -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 By Aditi Agrawal</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/aditiagrawal" target="_blank" class="footer-social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Aditi3" target="_blank" class="footer-social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/kindtrails.with.aditi/" target="_blank" class="footer-social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" target="_blank" class="footer-social-link">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun" id="themeIcon"></i>
+    </button>
+
+    <!-- Theme toggle & mobile menu JS (minimal to match index behavior) -->
+    <script>
+        // Theme toggle
+        (function () {
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const body = document.body;
+            const current = localStorage.getItem('theme') || 'dark';
+            if (current === 'light') { body.setAttribute('data-theme', 'light'); icon.className = 'fas fa-moon'; }
+            toggle && (toggle.onclick = function () {
+                const isLight = body.hasAttribute('data-theme');
+                if (isLight) { body.removeAttribute('data-theme'); icon.className = 'fas fa-sun'; localStorage.setItem('theme', 'dark'); }
+                else { body.setAttribute('data-theme', 'light'); icon.className = 'fas fa-moon'; localStorage.setItem('theme', 'light'); }
+            });
+        })();
+
+        // Scroll-triggered animations (match index behavior)
+        function initScrollAnimations() {
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll(
+                '.about-section, .experience-section, .skills-section, .contact-section, .experience-item, .skill-category'
+            );
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        }
+
+        // Mobile menu
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navTabs = document.querySelector('.nav-tabs');
+            if (!(mobileToggle && navTabs)) return;
+            mobileToggle.classList.remove('active');
+            navTabs.classList.remove('active');
+            mobileToggle.addEventListener('click', function (e) {
+                e.preventDefault(); e.stopPropagation();
+                mobileToggle.classList.toggle('active');
+                navTabs.classList.toggle('active');
+            });
+            document.addEventListener('click', function (e) {
+                if (!mobileToggle.contains(e.target) && !navTabs.contains(e.target)) {
+                    mobileToggle.classList.remove('active'); navTabs.classList.remove('active');
+                }
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) { mobileToggle.classList.remove('active'); navTabs.classList.remove('active'); }
+            });
+
+            // Initialize animations after DOM ready
+            initScrollAnimations();
+        });
+    </script>
+</body>
+</html>
+
+

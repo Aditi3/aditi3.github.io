@@ -27,6 +27,7 @@
                 <a href="#about" class="nav-tab">ABOUT ME</a>
                 <a href="#experience" class="nav-tab">EXPERIENCE</a>
                 <a href="#skills" class="nav-tab">SKILLS</a>
+                <a href="mentorship.html" class="nav-tab">MENTORSHIP</a>
                 <a href="#contact" class="nav-tab">CONTACT ME</a>
             </nav>
         </div>
@@ -71,11 +72,15 @@
             <!-- Social Links Footer -->
             <footer class="card-footer">
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/aditi-agrawal-64345974/" class="social-link linkedin" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/aditi-agrawal-64345974/" class="social-link linkedin"
+                        title="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a href="https://github.com/Aditi3" class="social-link github" title="GitHub">
                         <i class="fab fa-github"></i>
+                    </a>
+                     <a href="https://www.instagram.com/kindtrails.with.aditi/" class="social-link instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
                     </a>
                     <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" class="social-link spotify"
                         title="Spotify">
@@ -87,7 +92,7 @@
                 </div>
             </footer>
         </div>
-    </section>
+        </section>
 
     <!-- Main Content - Scrolling Sections -->
     <main class="main-scrolling-content">
@@ -136,7 +141,7 @@
                     <!-- Adjust -->
                     <div class="experience-item">
                         <div class="experience-left">
-                            <div class="experience-years">Dec'2022-Present</div>
+                            <div class="experience-years">Dec'2021-Present</div>
                             <div class="experience-position">Senior SDK Engineer</div>
                         </div>
                         <div class="experience-separator">•</div>
@@ -174,8 +179,15 @@
                                 roadmap and ensured performance, quality, and responsiveness of SDK solutions.
                             </p>
                             <div class="project-links">
-                                <a href="https://github.com/CleverTap/clevertap-ios-sdk" class="project-link">iOS
+                                <a href="https://github.com/CleverTap/clevertap-ios-sdk" class="project-link">CleverTap
+                                    iOS
                                     SDK</a>
+                                <a href="https://github.com/CleverTap/CTNotificationContent"
+                                    class="project-link">CTNotificationContent</a>
+                                <a href="https://github.com/CleverTap/CTNotificationService"
+                                    class="project-link">CTNotificationService</a>
+                                <a href="https://github.com/CleverTap/clevertap-geofence-ios"
+                                    class="project-link">CleverTap Geofence iOS SDK</a>
                                 <a href="https://github.com/CleverTap/clevertap-react-native" class="project-link">React
                                     Native SDK</a>
                                 <a href="https://github.com/CleverTap/" class="project-link">More Projects</a>
@@ -218,6 +230,10 @@
                                 version releases, integrated payment systems (PayU, Paytm, Mobikwik, Simpl), and
                                 designed app architecture and UI/UX for optimal performance.
                             </p>
+                            <div class="project-links">
+                                <a href="https://www.youtube.com/watch?v=8aZpkukeiM0" class="project-link">Holachef
+                                    iOS App</a>
+                            </div>
                         </div>
                     </div>
 
@@ -328,7 +344,7 @@
                     </div>
                 -->
                 </div>
-            </div>
+    </div>
         </section>
     </main>
 
@@ -346,7 +362,11 @@
                     <a href="https://github.com/Aditi3" target="_blank" class="footer-social-link">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" target="_blank" class="footer-social-link">
+                     <a href="https://www.instagram.com/kindtrails.with.aditi/" target="_blank" class="footer-social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/312ffw7s6lrj567isgzjda3ebsqu" target="_blank"
+                        class="footer-social-link">
                         <i class="fab fa-spotify"></i>
                     </a>
                 </div>
@@ -464,68 +484,127 @@
         function setupDirectNavigation() {
             console.log('Setting up direct navigation...');
 
+            function headerOffsetPx() {
+                const root = getComputedStyle(document.documentElement);
+                const cssVar = root.getPropertyValue('--header-offset').trim();
+                const parsed = parseInt(cssVar.replace('px',''), 10);
+                return Number.isFinite(parsed) ? parsed : 90;
+            }
+
             const navigationMap = {
                 'ABOUT ME': function () {
-                    const aboutEl = document.getElementById('about');
-                    if (aboutEl) {
-                        const targetPosition = aboutEl.offsetTop - 50;
-                        console.log('Scrolling to About Me at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('about');
+                    if (!el) return;
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'EXPERIENCE': function () {
-                    const expEl = document.getElementById('experience');
-                    if (expEl) {
-                        const targetPosition = expEl.offsetTop - 50;
-                        console.log('Scrolling to Experience at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('experience');
+                    if (!el) return;
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'SKILLS': function () {
-                    const skillsEl = document.getElementById('skills');
-                    if (skillsEl) {
-                        const targetPosition = skillsEl.offsetTop - 50;
-                        console.log('Scrolling to Skills at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('skills');
+                    if (!el) return;
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 },
                 'CONTACT ME': function () {
-                    const contactEl = document.getElementById('contact');
-                    if (contactEl) {
-                        const targetPosition = contactEl.offsetTop - 50;
-                        console.log('Scrolling to Contact at position:', targetPosition);
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
+                    const el = document.getElementById('contact');
+                    if (!el) return;
+                    el.classList.add('no-translate');
+                    requestAnimationFrame(function(){
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffsetPx();
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        setTimeout(function(){ el.classList.remove('no-translate'); }, 200);
+                    });
                 }
             };
 
             document.querySelectorAll('.nav-tab').forEach(function (link) {
                 const linkText = link.textContent.trim();
-                console.log('Adding handler for:', linkText);
+                const href = (link.getAttribute('href') || '').trim();
+                console.log('Adding handler for:', linkText, 'href:', href);
 
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    console.log('=== CLICKED:', linkText, '===');
+                // Only intercept in-page anchors (href starts with '#').
+                if (href.startsWith('#')) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        console.log('=== CLICKED (in-page):', linkText, '===');
 
-                    if (navigationMap[linkText]) {
-                        navigationMap[linkText]();
-                    } else {
-                        console.log('No handler found for:', linkText);
-                    }
-                });
+                        if (navigationMap[linkText]) {
+                            navigationMap[linkText]();
+                        } else {
+                            console.log('No handler found for:', linkText);
+                        }
+                    });
+                }
+                // Else: allow default navigation (e.g., mentorship.html)
             });
+        }
+
+        // Keep CSS var in sync with real header height and correct initial hash landings
+        function setHeaderOffsetVar() {
+            const header = document.querySelector('.main-header');
+            if (!header) return;
+            const offset = Math.round(header.getBoundingClientRect().height);
+            document.documentElement.style.setProperty('--header-offset', offset + 'px');
+        }
+
+        function handleInitialHashScroll() {
+            if (!location.hash) return;
+            const id = location.hash.replace('#', '');
+            const target = document.getElementById(id);
+            if (!target) return;
+            target.classList.add('no-translate');
+            const y = target.getBoundingClientRect().top + window.pageYOffset - (function(){
+                const root = getComputedStyle(document.documentElement);
+                const cssVar = root.getPropertyValue('--header-offset').trim();
+                const parsed = parseInt(cssVar.replace('px',''), 10);
+                return Number.isFinite(parsed) ? parsed : 90;
+            })();
+            window.scrollTo({ top: y, behavior: 'auto' });
+            setTimeout(function(){ target.classList.remove('no-translate'); }, 250);
         }
 
         // Initialize everything when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function () {
+                setHeaderOffsetVar();
                 setupDirectNavigation();
                 initScrollAnimations();
+                // Delay a tick to ensure fonts/layout settle, then correct the hash position
+                setTimeout(handleInitialHashScroll, 50);
             });
         } else {
+            setHeaderOffsetVar();
             setupDirectNavigation();
             initScrollAnimations();
+            setTimeout(handleInitialHashScroll, 50);
         }
+
+        window.addEventListener('resize', function(){
+            setHeaderOffsetVar();
+        });
+
+        // Handle BFCache restores and back/forward nav
+        window.addEventListener('pageshow', function(){
+            setHeaderOffsetVar();
+            setTimeout(handleInitialHashScroll, 50);
+        });
     </script>
 
     <!-- Theme Toggle Button (moved here for debugging) -->
@@ -677,7 +756,7 @@
         window.addEventListener('load', setDynamicTimelineHeights);
         window.addEventListener('resize', setDynamicTimelineHeights);
     </script>
-
+      
 </body>
 
 </html>
