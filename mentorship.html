@@ -56,7 +56,7 @@
                 <h2 class="section-title">Request Mentorship</h2>
                 <div class="contact-content">
                     <div class="contact-form-wrapper">
-                        <form class="contact-form" action="mailto:aditi.gvc@gmail.com" method="post" enctype="text/plain" autocomplete="off">
+                        <form class="contact-form" id="mentorshipForm" autocomplete="off">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Your Name *</label>
@@ -72,6 +72,7 @@
                                 <textarea id="topic" name="topic" rows="3" required placeholder="Describe what you'd like mentorship on - iOS development, career advice, technical skills, etc." autocomplete="off"></textarea>
                             </div>
                             <button type="submit" class="submit-btn">Submit Request</button>
+                            <div id="form-message" class="form-message" style="display:none;"></div>
                         </form>
                     </div>
                 </div>
@@ -146,6 +147,90 @@
             });
         }
 
+        // Submit mentorship form via AJAX (no mailbox)
+        function initMentorshipForm() {
+            const form = document.getElementById('mentorshipForm');
+            const message = document.getElementById('form-message');
+            if (!form || !message) return;
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const topic = formData.get('topic');
+
+                if (!name || !email || !topic) {
+                    message.textContent = 'Please fill in all required fields.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                    return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    message.textContent = 'Please enter a valid email address.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                    return;
+                }
+
+                const submitBtn = form.querySelector('.submit-btn');
+                if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+                try {
+                    // Send using FormSubmit (no account required). Replace with your endpoint if desired.
+                    const endpoint = 'https://formsubmit.co/ajax/aditi.gvc@gmail.com';
+                    const payload = {
+                        name: String(name),
+                        email: String(email),
+                        message: String(topic),
+                        _subject: 'New Mentorship Request',
+                        _template: 'table',
+                        _captcha: 'false'
+                    };
+
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    let data = null;
+                    try { data = await res.json(); } catch (_) { /* ignore */ }
+
+                    if (res.ok && data && (data.success === 'true' || data.success === true)) {
+                        message.textContent = 'Thank you! Your mentorship request has been sent. I\'ll get back to you soon.';
+                        message.className = 'form-message success';
+                        message.style.display = 'block';
+                        form.reset();
+                        return;
+                    }
+
+                    // Handle common activation case for first-time setup
+                    const serverMsg = (data && (data.message || data.error)) ? String(data.message || data.error) : '';
+                    if (res.status === 422 || /not activated|form not found|verify email|not verified|activate/i.test(serverMsg)) {
+                        message.innerHTML = "Almost there — please check your inbox for a verification email from <strong>FormSubmit</strong> and click ‘Activate Form’. After activating, submit the form again. If you don't see it, check spam or visit <a href=\"https://formsubmit.co/\" target=\"_blank\" rel=\"noreferrer noopener\">formsubmit.co</a>.";
+                        message.className = 'form-message error';
+                        message.style.display = 'block';
+                        return;
+                    }
+
+                    // Show any message returned by server to help debugging
+                    message.textContent = serverMsg || 'Submission failed. Please try again in a moment.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                } catch (err) {
+                    message.textContent = 'Sorry, something went wrong. Please email me directly at aditi.gvc@gmail.com.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                }
+                finally {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit Request'; }
+                }
+            });
+        }
+
         // Mobile menu
         document.addEventListener('DOMContentLoaded', function () {
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -169,6 +254,7 @@
 
             // Initialize animations after DOM ready
             initScrollAnimations();
+            initMentorshipForm();
         });
     </script>
 </body>
