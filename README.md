@@ -1,1 +1,1 @@
-## Hey, find me [here](https://aditi3.github.io/).
+## Heya! Find me [here](https://aditi3.github.io/).
