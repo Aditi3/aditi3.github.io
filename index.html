@@ -93,7 +93,7 @@
                 </div>
             </footer>
         </div>
-    </section>
+        </section>
 
     <!-- Main Content - Scrolling Sections -->
     <main class="main-scrolling-content">
@@ -307,25 +307,25 @@
                 <div class="contact-content">
                     <!-- Contact Form -->
                     <div class="contact-form-wrapper">
-                        <form class="contact-form" action="mailto:aditi.gvc@gmail.com" method="post"
-                            enctype="text/plain">
+                        <form class="contact-form" id="contactForm" autocomplete="off">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="firstName">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" required>
+                                    <input type="text" id="firstName" name="firstName" required autocomplete="off">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="lastName">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" required>
+                                    <input type="text" id="lastName" name="lastName" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="message">Type your message here *</label>
-                                <textarea id="message" name="message" rows="3" required></textarea>
+                                <textarea id="message" name="message" rows="3" required autocomplete="off"></textarea>
                             </div>
 
                             <button type="submit" class="submit-btn">Submit</button>
+                            <div id="contact-form-message" class="form-message" style="display:none;"></div>
                         </form>
                     </div>
                     <!--                 
@@ -335,7 +335,7 @@
                     </div>
                 -->
                 </div>
-            </div>
+    </div>
         </section>
     </main>
 
@@ -572,12 +572,86 @@
             setTimeout(function () { target.classList.remove('no-translate'); }, 250);
         }
 
+        // Submit Contact form via AJAX (no mailbox)
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            const message = document.getElementById('contact-form-message');
+            if (!form || !message) return;
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const firstName = String(formData.get('firstName') || '').trim();
+                const lastName = String(formData.get('lastName') || '').trim();
+                const body = String(formData.get('message') || '').trim();
+
+                if (!firstName || !lastName || !body) {
+                    message.textContent = 'Please fill in all required fields.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                    return;
+                }
+
+                const submitBtn = form.querySelector('.submit-btn');
+                if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+                try {
+                    const endpoint = 'https://formsubmit.co/ajax/aditi.gvc@gmail.com';
+                    const payload = {
+                        firstName: firstName,
+                        lastName: lastName,
+                        message: body,
+                        _subject: 'New Contact Form Message',
+                        _template: 'table',
+                        _captcha: 'false'
+                    };
+
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    let data = null;
+                    try { data = await res.json(); } catch (_) { /* ignore */ }
+
+                    if (res.ok && data && (data.success === 'true' || data.success === true)) {
+                        message.textContent = 'Thank you! Your message has been sent.';
+                        message.className = 'form-message success';
+                        message.style.display = 'block';
+                        form.reset();
+                        return;
+                    }
+
+                    const serverMsg = (data && (data.message || data.error)) ? String(data.message || data.error) : '';
+                    if (res.status === 422 || /not activated|form not found|verify email|not verified|activate/i.test(serverMsg)) {
+                        message.innerHTML = "Almost there — please check your inbox for a verification email from <strong>FormSubmit</strong> and click ‘Activate Form’. After activating, submit the form again. If you don't see it, check spam or visit <a href=\"https://formsubmit.co/\" target=\"_blank\" rel=\"noreferrer noopener\">formsubmit.co</a>.";
+                        message.className = 'form-message error';
+                        message.style.display = 'block';
+                        return;
+                    }
+
+                    message.textContent = serverMsg || 'Submission failed. Please try again in a moment.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                } catch (err) {
+                    message.textContent = 'Sorry, something went wrong. Please email me directly at aditi.gvc@gmail.com.';
+                    message.className = 'form-message error';
+                    message.style.display = 'block';
+                } finally {
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Submit'; }
+                }
+            });
+        }
+
         // Initialize everything when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function () {
                 setHeaderOffsetVar();
                 setupDirectNavigation();
                 initScrollAnimations();
+                initContactForm();
                 // Delay a tick to ensure fonts/layout settle, then correct the hash position
                 setTimeout(handleInitialHashScroll, 50);
             });
@@ -585,6 +659,7 @@
             setHeaderOffsetVar();
             setupDirectNavigation();
             initScrollAnimations();
+            initContactForm();
             setTimeout(handleInitialHashScroll, 50);
         }
 
@@ -748,7 +823,7 @@
         window.addEventListener('load', setDynamicTimelineHeights);
         window.addEventListener('resize', setDynamicTimelineHeights);
     </script>
-
+      
 </body>
 
 </html>
