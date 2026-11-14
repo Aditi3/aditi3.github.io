@@ -1287,25 +1287,6 @@
                 <span class="pin orange " style="left:86.3%;top:71.2%;animation-delay:1.04s">Australia</span>
                 <span class="pin orange home" style="left:48.9%;top:37.7%;animation-delay:0s">Germany · home</span>
             </div>
-            <ul class="flag-chips reveal" aria-label="Countries visited">
-                <li><span aria-hidden="true">🇩🇪</span> Germany</li>
-                <li><span aria-hidden="true">🇺🇸</span> USA (California)</li>
-                <li><span aria-hidden="true">🇵🇪</span> Peru</li>
-                <li><span aria-hidden="true">🇮🇳</span> India</li>
-                <li><span aria-hidden="true">🇱🇰</span> Sri Lanka</li>
-                <li><span aria-hidden="true">🇹🇭</span> Thailand</li>
-                <li><span aria-hidden="true">🇦🇺</span> Australia</li>
-                <li><span aria-hidden="true">🇹🇳</span> Tunisia</li>
-                <li><span aria-hidden="true">🇯🇴</span> Jordan</li>
-                <li><span aria-hidden="true">🇳🇱</span> Netherlands</li>
-                <li><span aria-hidden="true">🇧🇪</span> Belgium</li>
-                <li><span aria-hidden="true">🇫🇷</span> France</li>
-                <li><span aria-hidden="true">🇨🇭</span> Switzerland</li>
-                <li><span aria-hidden="true">🇦🇹</span> Austria</li>
-                <li><span aria-hidden="true">🇨🇿</span> Czechia</li>
-                <li><span aria-hidden="true">🇸🇰</span> Slovakia</li>
-                <li><span aria-hidden="true">🇮🇹</span> Italy</li>
-            </ul>
         </section>
 
         <section class="section" id="kindness" data-track="kolaveri">
@@ -1412,7 +1393,7 @@
 
     <button type="button" class="sound-toggle" id="soundToggle" aria-pressed="false">
         <span class="sound-icon" aria-hidden="true">🎵</span>
-        <span id="soundLabel">Turn on the birthday soundtrack</span>
+        <span id="soundLabel">Tap anywhere to start the music</span>
     </button>
     <div class="sound-status" id="soundStatus" role="status" aria-live="polite"></div>
 
@@ -1667,19 +1648,42 @@
             /* File-based tracks (user supplies the files in /audio). */
             function fileTrack(name, src) {
                 return {
-                    name: name, src: src, level: 0, el: null, failed: false,
+                    name: name, src: src, level: 0, el: null, gain: null, failed: false,
+                    ensure: function () {
+                        const self = this;
+                        if (this.el) return;
+                        this.el = new Audio();
+                        this.el.loop = true;
+                        this.el.preload = "auto";
+                        this.el.src = this.src;
+                        this.el.addEventListener("error", function () { self.failed = true; });
+                        // Route through Web Audio where allowed: iOS ignores element.volume,
+                        // and a GainNode makes fades work everywhere. (file:// would taint it.)
+                        const ctx = location.protocol !== "file:" ? getAudio() : null;
+                        if (ctx && ctx.createMediaElementSource) {
+                            try {
+                                const node = ctx.createMediaElementSource(this.el);
+                                this.gain = ctx.createGain();
+                                this.gain.gain.value = this.level * MASTER;
+                                node.connect(this.gain);
+                                this.gain.connect(ctx.destination);
+                            } catch (e) { this.gain = null; }
+                        }
+                        this.setLevel(this.level);
+                    },
+                    // Called inside the first tap: lets iOS/Safari allow later scroll-triggered play().
+                    prime: function () {
+                        if (this.failed) return;
+                        this.ensure();
+                        const el = this.el;
+                        this.setLevel(0);
+                        const p = el.play();
+                        if (p && p.then) p.then(function () { el.pause(); el.currentTime = 0; }).catch(function () {});
+                    },
                     start: function () {
                         const self = this;
                         if (this.failed) return Promise.reject(new Error("missing"));
-                        if (!this.el) {
-                            this.el = new Audio();
-                            this.el.loop = true;
-                            this.el.preload = "auto";
-                            this.el.volume = 0;
-                            this.el.src = this.src;
-                            this.el.addEventListener("error", function () { self.failed = true; });
-                        }
-                        this.el.volume = this.level * MASTER;
+                        this.ensure();
                         const p = this.el.play();
                         return Promise.resolve(p).then(function () {
                             if (self.failed) throw new Error("missing");
@@ -1694,7 +1698,9 @@
                     resume: function () { if (this.el && !this.failed) this.el.play().catch(function () {}); },
                     setLevel: function (v) {
                         this.level = v;
-                        if (this.el) this.el.volume = Math.max(0, Math.min(1, v * MASTER));
+                        if (!this.el) return;
+                        if (this.gain) this.gain.gain.value = Math.max(0, v * MASTER);
+                        else this.el.volume = Math.max(0, Math.min(1, v * MASTER));
                     }
                 };
             }
@@ -1727,6 +1733,8 @@
                     start: function () {
                         const self = this;
                         if (this.failed) return Promise.reject(new Error("YouTube unavailable"));
+                        // Phones never let YouTube start without a tap on its own player: skip the wait.
+                        if (window.matchMedia && matchMedia("(pointer: coarse)").matches) return Promise.reject(new Error("YouTube needs a direct tap on touch devices"));
                         if (location.protocol === "file:") {
                             this.failed = true;
                             return Promise.reject(new Error("YouTube needs http(s)"));
@@ -1793,11 +1801,14 @@
                                 setTimeout(function () { reject(new Error("YouTube too slow")); }, 12000);
                             })
                         ]);
-                        return capped.catch(function () {
+                        return capped.catch(function (e1) {
                             primary.stop();
-                            return attempt(fallback);
+                            return attempt(fallback).catch(function (e2) {
+                                throw (e1 && e1.name === "NotAllowedError") ? e1 : e2;
+                            });
                         });
                     },
+                    prime: function () { if (primary.prime) primary.prime(); },
                     stop: function () { primary.stop(); fallback.stop(); this.active = null; },
                     pause: function () { if (this.active && this.active.pause) this.active.pause(); },
                     resume: function () { if (this.active && this.active.resume) this.active.resume(); },
@@ -1856,7 +1867,15 @@
                     fadeTo(id, 1, FADE_MS);
                     if (prev) fadeOutAndStop(prev);
                     say("Now playing: " + next.name, 3500);
-                }).catch(function () {
+                }).catch(function (err) {
+                    if (err && err.name === "NotAllowedError") {
+                        // Browser blocked playback (no real tap yet): go back to "off" and wait for a tap.
+                        if (!currentId) { setSound(false); armAutoStart(); }
+                        say("Tap once to start the music.", 4000);
+                        wantedFailed = id;
+                        blockedId = id;
+                        return;
+                    }
                     // Keep the previous song going and tell the visitor how to fix it.
                     say("“" + next.name + "” couldn’t be played." + (next.src ? " Check that " + next.src + " is in place." : ""), 7000);
                     wantedFailed = id;
@@ -1867,6 +1886,7 @@
                 });
             }
             let wantedFailed = null;
+            let blockedId = null;
 
             function setWanted(id) {
                 if (id === wantedId) return;   // same section: never restart
@@ -1884,6 +1904,10 @@
                     const ctx = getAudio();
                     if (ctx && ctx.state === "suspended") ctx.resume();
                     switchTo(wantedId);
+                    // Unlock the other songs inside this tap so scroll-triggered switches are allowed on iOS.
+                    Object.keys(TRACKS).forEach(function (id) {
+                        if (id !== wantedId && TRACKS[id].prime) TRACKS[id].prime();
+                    });
                 } else {
                     Object.keys(TRACKS).forEach(function (id) {
                         fadeTo(id, 0, 600, function () { TRACKS[id].stop(); });
@@ -1892,8 +1916,40 @@
                 }
             }
 
+            let autoArmed = false;
+            function disarmAutoStart() {
+                if (!autoArmed) return;
+                autoArmed = false;
+                ["click", "keydown"].forEach(function (t) {
+                    document.removeEventListener(t, onFirstGesture, true);
+                });
+            }
+            // Browsers block sound until a real tap/click/key press (a swipe doesn't count),
+            // so the music starts on the first one anywhere on the page.
+            function onFirstGesture(e) {
+                if (e.type === "keydown" && (e.key === "Escape" || e.key === "Tab")) return;
+                const onBtn = soundBtn && soundBtn.contains(e.target);
+                disarmAutoStart();
+                if (!onBtn && !soundOn) setSound(true);
+            }
+            function armAutoStart() {
+                if (autoArmed) return;
+                autoArmed = true;
+                ["click", "keydown"].forEach(function (t) {
+                    document.addEventListener(t, onFirstGesture, true);
+                });
+            }
+            armAutoStart();
+            // If a scroll-triggered switch was refused, the next tap retries it.
+            document.addEventListener("click", function () {
+                if (soundOn && !switching && blockedId && blockedId === wantedId && wantedId !== currentId) { blockedId = null; wantedFailed = null; switchTo(wantedId); }
+            }, true);
+
             if (soundBtn) {
-                soundBtn.addEventListener("click", function () { setSound(!soundOn); });
+                soundBtn.addEventListener("click", function () {
+                    disarmAutoStart();
+                    setSound(!soundOn);
+                });
             }
 
             // Which section is in the middle band of the viewport?
