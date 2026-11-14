@@ -782,24 +782,69 @@ g            min-height: 270px;
         .heart-copy p { color: #59665f; }
 
         .wish {
-            background:
-                radial-gradient(circle at 12% 20%, rgba(255, 122, 24, 0.35), transparent 28%),
-                radial-gradient(circle at 88% 18%, rgba(30, 111, 217, 0.4), transparent 30%),
-                radial-gradient(circle at 22% 82%, rgba(255, 226, 122, 0.28), transparent 26%),
-                radial-gradient(circle at 78% 78%, rgba(61, 204, 110, 0.28), transparent 26%),
-                #1c2c4a;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: #020617;
             color: var(--cream);
-            padding: 75px 22px;
+            padding: 90px 22px 96px;
             text-align: center;
         }
+        .wish-sky {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .wish-sky span {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.85);
+            animation: starTwinkle 2.6s ease-in-out infinite;
+        }
+        .wish-sky span:nth-child(odd) { animation-duration: 3.4s; }
+        .wish-sky span:nth-child(3n) {
+            width: 2px;
+            height: 2px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            animation-duration: 4.2s;
+        }
+        .wish-sky span:nth-child(5n) {
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 10px 2px rgba(255, 244, 200, 0.9);
+            animation-duration: 2.1s;
+        }
+        .wish > .wrap { position: relative; z-index: 1; }
+        .wish-glow {
+            position: absolute;
+            left: 50%;
+            top: -10px;
+            width: min(640px, 95%);
+            height: 280px;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(255, 210, 90, 0.55) 0%, rgba(255, 176, 48, 0.22) 38%, transparent 72%);
+            pointer-events: none;
+            z-index: 0;
+        }
         .wish h2 {
+            position: relative;
+            z-index: 1;
             font-size: clamp(45px, 8vw, 82px);
             line-height: .95;
             margin: 15px 0;
             letter-spacing: -.06em;
+            color: #fff8e8;
+            text-shadow:
+                0 0 18px rgba(255, 210, 90, 0.55),
+                0 0 48px rgba(255, 176, 48, 0.35);
         }
         .wish h2 span {
-            color: var(--yellow);
+            color: #ffe27a;
             display: inline-block;
             animation: glowPulse 2.2s ease-in-out infinite;
         }
@@ -895,6 +940,10 @@ g            min-height: 270px;
         @keyframes glowPulse {
             0%, 100% { text-shadow: 0 0 0 rgba(255, 226, 122, 0); }
             50% { text-shadow: 0 0 18px rgba(255, 226, 122, 0.7); }
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(0.6); }
         }
         @keyframes pianoGlow {
             0%, 100% { filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.28)) drop-shadow(0 0 16px rgba(255, 224, 138, 0.4)); }
@@ -1156,7 +1205,46 @@ g            min-height: 270px;
     </main>
 
     <section class="wish" id="wish">
+        <div class="wish-sky" aria-hidden="true">
+            <span style="left:6%;top:10%;animation-delay:.1s"></span>
+            <span style="left:14%;top:22%;animation-delay:.4s"></span>
+            <span style="left:22%;top:8%;animation-delay:.8s"></span>
+            <span style="left:31%;top:18%;animation-delay:1.1s"></span>
+            <span style="left:39%;top:6%;animation-delay:.2s"></span>
+            <span style="left:48%;top:14%;animation-delay:1.5s"></span>
+            <span style="left:57%;top:9%;animation-delay:.6s"></span>
+            <span style="left:66%;top:20%;animation-delay:1.8s"></span>
+            <span style="left:74%;top:7%;animation-delay:.3s"></span>
+            <span style="left:83%;top:16%;animation-delay:1.2s"></span>
+            <span style="left:92%;top:11%;animation-delay:.9s"></span>
+            <span style="left:4%;top:38%;animation-delay:1.6s"></span>
+            <span style="left:12%;top:52%;animation-delay:.5s"></span>
+            <span style="left:19%;top:41%;animation-delay:2s"></span>
+            <span style="left:28%;top:60%;animation-delay:.7s"></span>
+            <span style="left:37%;top:46%;animation-delay:1.3s"></span>
+            <span style="left:46%;top:58%;animation-delay:.2s"></span>
+            <span style="left:55%;top:42%;animation-delay:1.7s"></span>
+            <span style="left:64%;top:55%;animation-delay:.4s"></span>
+            <span style="left:73%;top:37%;animation-delay:1.1s"></span>
+            <span style="left:81%;top:49%;animation-delay:.8s"></span>
+            <span style="left:90%;top:43%;animation-delay:1.9s"></span>
+            <span style="left:8%;top:74%;animation-delay:.6s"></span>
+            <span style="left:17%;top:86%;animation-delay:1.4s"></span>
+            <span style="left:26%;top:78%;animation-delay:.3s"></span>
+            <span style="left:35%;top:90%;animation-delay:2.1s"></span>
+            <span style="left:44%;top:72%;animation-delay:.9s"></span>
+            <span style="left:53%;top:84%;animation-delay:.1s"></span>
+            <span style="left:62%;top:76%;animation-delay:1.5s"></span>
+            <span style="left:71%;top:88%;animation-delay:.7s"></span>
+            <span style="left:80%;top:70%;animation-delay:1.2s"></span>
+            <span style="left:89%;top:82%;animation-delay:.5s"></span>
+            <span style="left:96%;top:64%;animation-delay:1.8s"></span>
+            <span style="left:2%;top:58%;animation-delay:1s"></span>
+            <span style="left:50%;top:28%;animation-delay:.4s"></span>
+            <span style="left:97%;top:30%;animation-delay:1.6s"></span>
+        </div>
         <div class="wrap">
+            <div class="wish-glow" aria-hidden="true"></div>
             <h2>HAVE THE<br><span>BEST YEAR</span><br>YET!</h2>
             <p>May this next trip around the sun bring you joy, inspiration, beautiful adventures and everything your heart is looking forward to.
                 Keep being curious, keep creating, keep exploring and keep making the world a little better in your own thoughtful way.
