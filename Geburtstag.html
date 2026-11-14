@@ -1,0 +1,1338 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff6e8">
+    <title>Alles Gute zum Geburtstag, Sebi!</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" sizes="16x16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #24312e;
+            --cream: #fff6e8;
+            --white: #fffdf8;
+            --orange: #ff7a18;
+            --orange-soft: #ffd2a8;
+            --blue: #1e6fd9;
+            --blue-soft: #8ec5ff;
+            --yellow: #ffe27a;
+            --green: #3dcc6e;
+            --green-soft: #b7e8c4;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--ink);
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            line-height: 1.55;
+        }
+        .page-map {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("images/world-map-detailed.jpg");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.16;
+        }
+        .page-map::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(165deg, rgba(255, 122, 24, 0.14), rgba(30, 111, 217, 0.12));
+        }
+        header, .hero, main, .wish, footer { position: relative; z-index: 1; }
+        a { color: inherit; }
+        .wrap { max-width: 1120px; margin: auto; padding: 0 22px; }
+
+        header {
+            padding: 17px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255, 246, 232, .92);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px dashed var(--orange-soft);
+        }
+        nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .logo {
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            font-size: 13px;
+            color: var(--blue);
+        }
+        .logo span { color: var(--orange); }
+        .links { display: flex; gap: 17px; flex-wrap: wrap; }
+        .links a {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            position: relative;
+        }
+        .links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -4px;
+            height: 2px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+        }
+        .links a:hover::after { transform: scaleX(1); }
+        .links a:nth-child(1) { color: var(--orange); }
+        .links a:nth-child(2) { color: #c9a227; }
+        .links a:nth-child(3) { color: var(--blue); }
+        .links a:nth-child(4) { color: #2ea85a; }
+
+        .hero {
+            min-height: calc(100vh - 58px);
+            min-height: calc(100svh - 58px);
+            display: flex;
+            align-items: center;
+            padding: 4.5rem 0 3.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .bunting {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 2px;
+            padding: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .bunting::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #d4b56a;
+            border-radius: 2px;
+        }
+        .flag {
+            flex: 1 1 0;
+            min-width: 0;
+            height: 32px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+        .flag:nth-child(6n+1) { background: #f4a54a; }
+        .flag:nth-child(6n+2) { background: #e85d4c; }
+        .flag:nth-child(6n+3) { background: #2f6fd6; }
+        .flag:nth-child(6n+4) { background: #3dcc6e; }
+        .flag:nth-child(6n+5) { background: #ffe27a; }
+        .flag:nth-child(6n) { background: #e85d4c; }
+        .speckle {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(#e85d4c 1.1px, transparent 1.2px),
+                radial-gradient(#2f6fd6 1px, transparent 1.1px),
+                radial-gradient(#3dcc6e 1.1px, transparent 1.2px),
+                radial-gradient(#f4a54a 0.9px, transparent 1px);
+            background-size: 42px 48px, 36px 40px, 50px 44px, 28px 34px;
+            background-position: 8px 12px, 22px 30px, 4px 40px, 18px 6px;
+            opacity: 0.35;
+        }
+        .hero > .wrap {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-stage {
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(130px, 230px) minmax(240px, 1fr) minmax(90px, 150px);
+            align-items: center;
+            gap: 4px 8px;
+        }
+        .balloon-bunch {
+            position: relative;
+            width: 210px;
+            height: 270px;
+            justify-self: end;
+            animation: cakeFloat 4s ease-in-out infinite;
+        }
+        .wb {
+            position: absolute;
+            width: 58px;
+            height: 72px;
+            border-radius: 50%;
+            opacity: 0.78;
+            background:
+                radial-gradient(circle at 32% 28%, rgba(255,255,255,.55), transparent 46%),
+                var(--c, #7ec8b8);
+        }
+        .wb::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            width: 9px;
+            height: 8px;
+            margin-left: -4.5px;
+            background: var(--c);
+            clip-path: polygon(20% 0, 80% 0, 50% 100%);
+            opacity: 0.85;
+        }
+        .wb.navy { --c: #4a62b5; left: 58px; top: 0; background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,.4) 1.6px, transparent 2px), radial-gradient(circle at 32% 28%, rgba(255,255,255,.45), transparent 46%); background-size: 12px 12px, auto; background-color: #4a62b5; }
+        .wb.mint { --c: #7ec8b8; left: 8px; top: 28px; }
+        .wb.green { --c: #3d9a55; left: 108px; top: 8px; }
+        .wb.yellow { --c: #f0d24a; left: 62px; top: 46px; background-image: radial-gradient(circle at 50% 45%, rgba(255,255,255,.5) 1.8px, transparent 2.2px), radial-gradient(circle at 32% 28%, rgba(255,255,255,.5), transparent 46%); background-size: 11px 11px, auto; background-color: #f0d24a; }
+        .wb.peach { --c: #f0a15a; left: 118px; top: 48px; }
+        .wb.coral { --c: #ef7a4a; left: 18px; top: 88px; }
+        .wb.sky { --c: #8eb8e8; left: 54px; top: 92px; }
+        .wb.red { --c: #e85d4c; left: 96px; top: 86px; background-image: repeating-linear-gradient(#e85d4c 0 6px, #f4c4bc 6px 10px); }
+        .wb.aqua { --c: #8fd4c8; left: 140px; top: 82px; }
+        .bunch-strings {
+            position: absolute;
+            left: 78px;
+            top: 148px;
+            width: 80px;
+            height: 78px;
+        }
+        .bunch-strings span {
+            position: absolute;
+            top: 0;
+            width: 1.5px;
+            height: 78px;
+            background: #8aa0b3;
+            transform-origin: top center;
+        }
+        .bunch-strings span:nth-child(1) { left: 18px; transform: rotate(-16deg); }
+        .bunch-strings span:nth-child(2) { left: 28px; transform: rotate(-8deg); }
+        .bunch-strings span:nth-child(3) { left: 36px; transform: rotate(0deg); }
+        .bunch-strings span:nth-child(4) { left: 44px; transform: rotate(7deg); }
+        .bunch-strings span:nth-child(5) { left: 52px; transform: rotate(14deg); }
+        .balloon-hand {
+            position: absolute;
+            left: 88px;
+            top: 212px;
+            display: flex;
+            align-items: center;
+        }
+        .palm {
+            width: 36px;
+            height: 24px;
+            background: #e8c4a4;
+            border-radius: 12px 14px 12px 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .palm::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: -6px;
+            width: 22px;
+            height: 10px;
+            background: #e8c4a4;
+            border-radius: 8px 8px 4px 4px;
+        }
+        .sleeve {
+            width: 72px;
+            height: 16px;
+            margin-left: -6px;
+            background: repeating-linear-gradient(90deg, #2f6fd6 0 8px, #fffdf8 8px 14px);
+            border-radius: 0 8px 8px 0;
+        }
+        .hero-copy {
+            text-align: center;
+            width: 100%;
+            max-width: 520px;
+            min-width: 0;
+            margin: 0 auto;
+            padding: 0;
+            background: none;
+            border: 0;
+            box-shadow: none;
+        }
+        h1 {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(46px, 8.4vw, 82px);
+            line-height: .98;
+            letter-spacing: 0;
+            margin: 0 0 12px;
+            font-weight: 700;
+            color: #1e56c8;
+            text-transform: none;
+            text-shadow: 0 0 14px rgba(255, 246, 232, 0.95), 0 0 28px rgba(255, 246, 232, 0.85);
+        }
+        h1 .name { color: #1e56c8; display: block; }
+        .hero-copy p {
+            font-size: 15px;
+            max-width: 360px;
+            margin: 0 auto;
+            color: #3f4c47;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 246, 232, 0.9);
+        }
+        .poppers {
+            display: flex;
+            justify-content: space-between;
+            width: min(460px, 100%);
+            margin: 8px auto 0;
+            pointer-events: none;
+        }
+        .popper {
+            width: 70px;
+            height: 56px;
+            position: relative;
+        }
+        .popper .cone {
+            position: absolute;
+            bottom: 2px;
+            width: 0;
+            height: 0;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+        }
+        .popper.left .cone {
+            left: 0;
+            border-left: 36px solid #e85d4c;
+        }
+        .popper.right .cone {
+            right: 0;
+            border-right: 36px solid #e85d4c;
+        }
+        .popper .stream {
+            position: absolute;
+            height: 4px;
+            border-radius: 4px;
+        }
+        .popper.left .stream { left: 32px; }
+        .popper.right .stream { right: 32px; }
+        .popper .stream:nth-child(2) { top: 6px; width: 28px; background: #3dcc6e; transform: rotate(-22deg); }
+        .popper .stream:nth-child(3) { top: 18px; width: 32px; background: #f4a54a; }
+        .popper .stream:nth-child(4) { top: 30px; width: 22px; background: #2f6fd6; transform: rotate(20deg); }
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            justify-self: start;
+        }
+        .stripe-balloon {
+            width: 64px;
+            height: 78px;
+            border-radius: 50%;
+            background: repeating-linear-gradient(-18deg, #3dcc6e 0 8px, #fff6e8 8px 14px);
+            position: relative;
+            animation: cakeFloat 3.6s ease-in-out infinite;
+        }
+        .stripe-balloon::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 1.5px;
+            height: 36px;
+            margin-left: -0.75px;
+            background: #2f6fd6;
+            border-radius: 2px;
+        }
+        .stripe-balloon.alt {
+            background: repeating-linear-gradient(18deg, #2f6fd6 0 7px, #fff6e8 7px 13px);
+            animation-delay: .4s;
+        }
+        .party-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 42px;
+            margin-top: 8px;
+            width: 100%;
+        }
+        .birthday-cake {
+            width: 110px;
+            position: relative;
+            animation: cakeFloat 3.4s 0.3s ease-in-out infinite;
+        }
+        .candles {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4px;
+            height: 36px;
+            position: relative;
+            z-index: 3;
+        }
+        .candle {
+            width: 4px;
+            height: 22px;
+            border-radius: 2px;
+            background: var(--wick, #3dcc6e);
+            position: relative;
+        }
+        .candle:nth-child(odd) { --wick: #f4a54a; height: 26px; }
+        .candle:nth-child(3n) { --wick: #2f6fd6; height: 20px; }
+        .candle:nth-child(4n) { --wick: #3dcc6e; height: 24px; }
+        .candle:nth-child(5n) { --wick: #e85d4c; height: 23px; }
+        .flame {
+            position: absolute;
+            left: 50%;
+            bottom: 100%;
+            width: 7px;
+            height: 10px;
+            margin-left: -3.5px;
+            background: radial-gradient(circle at 50% 70%, #fffce6 0 24%, #ffe27a 100%);
+            border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+            transform-origin: 50% 100%;
+            animation: flicker 0.38s ease-in-out infinite;
+        }
+        .cake-round { position: relative; width: 104px; margin: 0 auto; }
+        .cake-icing {
+            height: 16px;
+            background: #f4a54a;
+            border-radius: 50% 50% 6px 6px;
+            position: relative;
+            z-index: 2;
+        }
+        .cake-body {
+            height: 48px;
+            margin-top: -8px;
+            background: repeating-linear-gradient(#f6c14d 0 12px, #e89a32 12px 14px);
+            border-radius: 0 0 12px 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .party-hat {
+            width: 60px;
+            height: 78px;
+            position: relative;
+            animation: cakeFloat 3.8s ease-in-out infinite;
+        }
+        .hat-cone {
+            display: block;
+            width: 52px;
+            height: 58px;
+            margin: 10px auto 0;
+            background:
+                radial-gradient(circle at 30% 70%, #fff6e8 2.5px, transparent 2.8px),
+                repeating-linear-gradient(#e85d4c 0 9px, #fff6e8 9px 11px);
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        }
+        .party-hat::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            margin-left: -7px;
+            background: #3dcc6e;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .party-hat::after {
+            content: "";
+            position: absolute;
+            left: 2px;
+            right: 2px;
+            bottom: 0;
+            height: 10px;
+            background: #f4a54a;
+            border-radius: 6px;
+        }
+        .gift-box {
+            width: 58px;
+            height: 46px;
+            background:
+                repeating-linear-gradient(90deg, rgba(232, 90, 76, 0.18) 0 8px, transparent 8px 16px),
+                repeating-linear-gradient(0deg, rgba(47, 111, 214, 0.16) 0 8px, transparent 8px 16px),
+                #f6e2c4;
+            border-radius: 4px;
+            position: relative;
+            animation: cakeFloat 3.5s 0.5s ease-in-out infinite;
+        }
+        .gift-box::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -11px;
+            width: 28px;
+            height: 18px;
+            margin-left: -14px;
+            background: #2f6fd6;
+            clip-path: polygon(0 60%, 18% 0, 50% 38%, 82% 0, 100% 60%, 70% 100%, 50% 70%, 30% 100%);
+        }
+        .gift-box::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            margin-left: -4px;
+            background: #2f6fd6;
+        }
+
+        .piano { position: relative; width: 100%; }
+        .play-song-btn {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        .piano-art {
+            display: block;
+            width: 100%;
+            height: auto;
+            pointer-events: none;
+            filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.28));
+        }
+        .piano.playing .piano-art {
+            filter:
+                drop-shadow(0 16px 18px rgba(0, 0, 0, 0.28))
+                drop-shadow(0 0 22px rgba(255, 224, 138, 0.55));
+            animation: pianoGlow 1.6s ease-in-out infinite;
+        }
+        .float-notes {
+            position: absolute;
+            inset: 8% 10% 40% 8%;
+            pointer-events: none;
+            overflow: visible;
+        }
+        .float-notes span {
+            position: absolute;
+            font-size: 1.35rem;
+            opacity: 0;
+            color: #1e6fd9;
+        }
+        .float-notes span:nth-child(1) { left: 8%; bottom: 10%; color: #ff7a18; }
+        .float-notes span:nth-child(2) { left: 42%; bottom: 0; color: #1e6fd9; }
+        .float-notes span:nth-child(3) { right: 12%; bottom: 18%; color: #3dcc6e; }
+        .piano.playing .float-notes span {
+            animation: noteRise 2.2s ease-out infinite;
+        }
+        .piano.playing .float-notes span:nth-child(2) { animation-delay: 0.4s; }
+        .piano.playing .float-notes span:nth-child(3) { animation-delay: 0.85s; }
+        .keyboard {
+            position: absolute;
+            left: 16.8%;
+            top: 53.4%;
+            width: 39%;
+            height: 12.6%;
+            z-index: 2;
+            display: flex;
+            transform: rotate(-7deg) skewX(11deg);
+            transform-origin: left bottom;
+        }
+        .white-key,
+        .black-key {
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+        .white-key { flex: 1 1 0; height: 100%; border-radius: 0 0 3px 3px; }
+        .white-key.pressed { background: rgba(255, 224, 138, 0.55); }
+        .black-key {
+            position: absolute;
+            top: 0;
+            width: 7.2%;
+            height: 58%;
+            z-index: 3;
+            border-radius: 0 0 2px 2px;
+        }
+        .black-key.pressed { background: rgba(232, 195, 106, 0.72); }
+        .k-cs { left: 9%; }
+        .k-ds { left: 21.5%; }
+        .k-fs { left: 46.5%; }
+        .k-gs { left: 59%; }
+        .k-as { left: 71.5%; }
+        .piano-hint {
+            display: block;
+            text-align: center;
+            margin-top: -0.4rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ink);
+            background: rgba(255, 246, 232, 0.82);
+            border-radius: 99px;
+            padding: 0.35rem 0.7rem;
+            font-weight: 800;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 10px;
+            background: none;
+            color: #1e56c8;
+            text-decoration: none;
+            padding: 0;
+            border-radius: 0;
+            font-family: "Dancing Script", cursive;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            box-shadow: none;
+            animation: none;
+        }
+        .cta:hover { color: #163ea3; }
+        .sticker {
+            display: inline-block;
+            border: 1px solid rgba(36, 49, 46, 0.14);
+            border-radius: 18px;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(255, 253, 248, 0.9);
+        }
+        .section { padding: 70px 0; border-top: 2px dashed var(--orange-soft); }
+        .heading { text-align: center; margin-bottom: 32px; }
+        .heading h2 {
+            font-size: clamp(34px, 6vw, 58px);
+            line-height: 1;
+            margin: 13px 0 10px;
+            letter-spacing: -.05em;
+        }
+        .heading p { max-width: 600px; margin: 0 auto; color: #64716a; }
+        .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .card {
+            background: rgba(255, 253, 248, 0.94);
+            border: 1px solid rgba(36, 49, 46, 0.12);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(36, 49, 46, 0.08);
+            min-height: 260px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .28s ease, box-shadow .28s ease;
+        }
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(36, 49, 46, 0.14);
+        }
+        .card-sport {
+            background: linear-gradient(180deg, rgba(255, 210, 168, 0.38) 0%, rgba(255, 253, 248, 0.96) 48%);
+            border-top: 3px solid #e8893a;
+        }
+        .card-paint {
+            background: linear-gradient(180deg, rgba(255, 226, 122, 0.34) 0%, rgba(255, 253, 248, 0.96) 48%);
+            border-top: 3px solid #d4b84a;
+        }
+        .card-travel {
+            background: linear-gradient(180deg, rgba(142, 197, 255, 0.34) 0%, rgba(255, 253, 248, 0.96) 48%);
+            border-top: 3px solid #4a86c8;
+        }
+        .card-books {
+            background: linear-gradient(180deg, rgba(183, 232, 196, 0.4) 0%, rgba(255, 253, 248, 0.96) 48%);
+            border-top: 3px solid #5aaa6e;
+        }
+        .card .emoji { font-size: 45px; line-height: 1; }
+        .card h3 { font-size: 30px; line-height: 1.05; margin: 14px 0 8px; }
+        .card p { max-width: 390px; margin: 0; color: #37443f; }
+        .card .scribble {
+            position: absolute;
+            right: 18px;
+            bottom: 12px;
+            font-size: 45px;
+            opacity: .45;
+            transform: rotate(8deg);
+        }
+
+        .travel-map {
+            position: relative;
+            margin-top: 28px;
+            border: 1px solid rgba(36, 49, 46, 0.14);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 14px 36px rgba(36, 49, 46, 0.1);
+            background: #4a7dad;
+        }
+        .travel-map img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0.92;
+        }
+        .travel-map svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .flight {
+            fill: none;
+            stroke-width: 3;
+            stroke-dasharray: 10 8;
+            stroke-linecap: round;
+            animation: dashMove 18s linear infinite;
+        }
+        .flight.orange { stroke: var(--orange); }
+        .flight.blue { stroke: var(--blue); }
+        .flight.green { stroke: var(--green); }
+        .pin {
+            position: absolute;
+            transform: translate(-50%, -100%);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            background: rgba(255, 253, 248, 0.94);
+            border: 1px solid rgba(36, 49, 46, 0.16);
+            border-radius: 99px;
+            padding: 4px 9px 4px 7px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(36, 49, 46, 0.12);
+            animation: pinDrop 0.7s ease both;
+        }
+        .travel-map .pin:nth-child(3) { animation-delay: 0.15s; }
+        .travel-map .pin:nth-child(4) { animation-delay: 0.3s; }
+        .travel-map .pin:nth-child(5) { animation-delay: 0.45s; }
+        .travel-map .pin:nth-child(6) { animation-delay: 0.6s; }
+        .travel-map .pin:nth-child(7) { animation-delay: 0.75s; }
+        .pin::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+            border: 1.5px solid var(--ink);
+        }
+        .pin.orange::before { background: var(--orange); }
+        .pin.blue::before { background: var(--blue); }
+        .pin.yellow::before { background: var(--yellow); }
+        .pin.green::before { background: var(--green); }
+
+        .banner {
+            background: rgba(255, 253, 248, 0.94);
+            color: var(--ink);
+            border: 1px solid rgba(36, 49, 46, 0.12);
+            border-radius: 22px;
+            box-shadow: 0 14px 36px rgba(36, 49, 46, 0.08);
+            padding: 45px 24px;
+            text-align: center;
+            margin: 12px 0 30px;
+        }
+        .banner .stars {
+            font-size: 22px;
+            letter-spacing: 10px;
+            color: #e8893a;
+            animation: twinkle 2.4s ease-in-out infinite;
+        }
+        .banner blockquote {
+            font-size: clamp(25px, 4vw, 42px);
+            font-weight: 900;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 18px auto;
+        }
+        .banner .sticker { background: #fff4d4; }
+
+        .heart-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+        .heart-art {
+            background:
+                url("images/Kolaveri.jpg") center / cover no-repeat;
+            border: 1px solid rgba(36, 49, 46, 0.12);
+            border-radius: 22px;
+            box-shadow: 0 12px 30px rgba(36, 49, 46, 0.08);
+g            min-height: 270px;
+        }
+        .heart-copy {
+            background: rgba(255, 253, 248, 0.96);
+            border: 1px solid rgba(36, 49, 46, 0.12);
+            border-left: 4px solid #6aaa78;
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 12px 30px rgba(36, 49, 46, 0.08);
+        }
+        .heart-copy .sticker { background: #eef6ef; }
+        .heart-copy h3 { font-size: 31px; margin: 0 0 10px; color: #2d6a40; }
+        .heart-copy p { color: #59665f; }
+
+        .wish {
+            background:
+                radial-gradient(circle at 12% 20%, rgba(255, 122, 24, 0.35), transparent 28%),
+                radial-gradient(circle at 88% 18%, rgba(30, 111, 217, 0.4), transparent 30%),
+                radial-gradient(circle at 22% 82%, rgba(255, 226, 122, 0.28), transparent 26%),
+                radial-gradient(circle at 78% 78%, rgba(61, 204, 110, 0.28), transparent 26%),
+                #1c2c4a;
+            color: var(--cream);
+            padding: 75px 22px;
+            text-align: center;
+        }
+        .wish h2 {
+            font-size: clamp(45px, 8vw, 82px);
+            line-height: .95;
+            margin: 15px 0;
+            letter-spacing: -.06em;
+        }
+        .wish h2 span {
+            color: var(--yellow);
+            display: inline-block;
+            animation: glowPulse 2.2s ease-in-out infinite;
+        }
+        .wish > .wrap > p { max-width: 620px; margin: 18px auto; color: #e0e7df; }
+        #openNote {
+            border: 2px solid var(--cream);
+            background: #fff4d4;
+            color: var(--ink);
+            border-radius: 99px;
+            padding: 14px 22px;
+            font-weight: 1000;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-size: 11px;
+            cursor: pointer;
+            margin-top: 18px;
+            font-family: inherit;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+        }
+        #openNote:hover { transform: rotate(-2deg); }
+        .message {
+            display: none;
+            max-width: 650px;
+            margin: 24px auto 0;
+            padding: 25px;
+            background: #fffdf8;
+            color: var(--ink);
+            border: 1px dashed rgba(255, 122, 24, 0.45);
+            border-radius: 20px;
+            text-align: left;
+        }
+        .message.open { display: block; animation: pop .45s ease; }
+        .message.open .piano { animation: riseIn 0.7s 0.12s both; }
+        .message p {
+            color: var(--ink);
+            max-width: none;
+            margin: 12px 0;
+        }
+        .message .piano {
+            max-width: 320px;
+            margin: 22px auto 6px;
+        }
+        .message .piano-hint {
+            color: var(--ink);
+            background: rgba(255, 244, 212, 0.9);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+        .card.reveal.in:hover {
+            transform: translateY(-7px);
+        }
+        .cards .card:nth-child(1) { transition-delay: 0.05s; }
+        .cards .card:nth-child(2) { transition-delay: 0.12s; }
+        .cards .card:nth-child(3) { transition-delay: 0.19s; }
+        .cards .card:nth-child(4) { transition-delay: 0.26s; }
+
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: none; }
+        }
+        @keyframes kickerPop {
+            0% { opacity: 0; transform: scale(0.86) rotate(-6deg); }
+            70% { transform: scale(1.05) rotate(-1deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        @keyframes ctaPulse {
+            0%, 100% { box-shadow: 0 8px 18px rgba(255, 122, 24, 0.28); }
+            50% { box-shadow: 0 10px 26px rgba(255, 122, 24, 0.5); }
+        }
+        @keyframes dashMove {
+            to { stroke-dashoffset: -220; }
+        }
+        @keyframes pinDrop {
+            from { opacity: 0; transform: translate(-50%, -130%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; letter-spacing: 10px; }
+            50% { opacity: 0.45; letter-spacing: 14px; }
+        }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            40% { transform: scale(1.04); }
+            60% { transform: scale(1.015); }
+        }
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 0 rgba(255, 226, 122, 0); }
+            50% { text-shadow: 0 0 18px rgba(255, 226, 122, 0.7); }
+        }
+        @keyframes pianoGlow {
+            0%, 100% { filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.28)) drop-shadow(0 0 16px rgba(255, 224, 138, 0.4)); }
+            50% { filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.28)) drop-shadow(0 0 28px rgba(255, 224, 138, 0.8)); }
+        }
+        @keyframes noteRise {
+            0% { opacity: 0; transform: translateY(8px) scale(0.8); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-46px) scale(1.1); }
+        }
+        @keyframes pop {
+            from { opacity: 0; transform: scale(.96) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes flicker {
+            0%, 100% { transform: scaleY(1) scaleX(1) rotate(-3deg); }
+            40% { transform: scaleY(1.12) scaleX(0.88) rotate(4deg); }
+            70% { transform: scaleY(0.92) scaleX(1.08) rotate(-2deg); }
+        }
+        @keyframes smoke {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+            40% { opacity: 0.45; }
+            100% { opacity: 0; transform: translateY(-12px) scale(1.1); }
+        }
+        @keyframes cakeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+        footer {
+            padding: 22px;
+            text-align: center;
+            font-size: 11px;
+            color: #7c877f;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            background: var(--cream);
+        }
+        footer strong { color: var(--orange); }
+        footer em { color: var(--blue); font-style: normal; font-weight: 800; }
+
+        @media (max-width: 800px) {
+            .piano { max-width: 360px; margin: 0 auto; }
+        }
+        @media (max-width: 700px) {
+            .links { gap: 10px; }
+            .links a { font-size: 10px; }
+            .cards, .heart-layout { grid-template-columns: 1fr; }
+            .hero {
+                min-height: calc(100vh - 52px);
+                min-height: calc(100svh - 52px);
+                padding: 42px 0 40px;
+            }
+            .hero-stage {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            .balloon-bunch {
+                justify-self: center;
+                transform: scale(0.82);
+                height: 230px;
+            }
+            .hero-side { flex-direction: row; gap: 36px; }
+            .party-row { gap: 22px; }
+            .poppers { display: none; }
+            .hero-copy p { max-width: 28ch; padding: 0; font-size: 14px; }
+            .flag { height: 26px; }
+            .card { min-height: 225px; }
+            .pin { font-size: 9px; padding: 3px 7px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-map" aria-hidden="true"></div>
+    <header>
+        <div class="wrap">
+            <nav>
+                <div class="logo"><span>★</span> Sebastian's big day</div>
+                <div class="links">
+                    <a href="#play">Play</a>
+                    <a href="#create">Create</a>
+                    <a href="#discover">Discover</a>
+                    <a href="#kindness">Kindness</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="speckle" aria-hidden="true"></div>
+        <div class="bunting" aria-hidden="true">
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+            <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+        </div>
+        <div class="wrap">
+            <div class="hero-stage">
+                <div class="balloon-bunch" aria-hidden="true">
+                    <span class="wb mint"></span>
+                    <span class="wb navy"></span>
+                    <span class="wb green"></span>
+                    <span class="wb yellow"></span>
+                    <span class="wb peach"></span>
+                    <span class="wb coral"></span>
+                    <span class="wb sky"></span>
+                    <span class="wb red"></span>
+                    <span class="wb aqua"></span>
+                    <div class="bunch-strings">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="balloon-hand">
+                        <span class="palm"></span>
+                        <span class="sleeve"></span>
+                    </div>
+                </div>
+                <div class="hero-copy">
+                    <h1>Alles Gute<br><span class="name">zum Geburtstag</span>Sebi!</h1>
+                    <p>A little celebration for someone with a big curiosity, a creative spark, an adventurous spirit and a generous heart.</p>
+                    <div class="poppers" aria-hidden="true">
+                        <div class="popper left">
+                            <span class="cone"></span>
+                            <span class="stream"></span>
+                            <span class="stream"></span>
+                            <span class="stream"></span>
+                        </div>
+                        <div class="popper right">
+                            <span class="cone"></span>
+                            <span class="stream"></span>
+                            <span class="stream"></span>
+                            <span class="stream"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-side" aria-hidden="true">
+                    <span class="stripe-balloon"></span>
+                    <span class="stripe-balloon alt"></span>
+                </div>
+            </div>
+            <div class="party-row" aria-hidden="true">
+                <div class="party-hat"><span class="hat-cone"></span></div>
+                <div class="birthday-cake">
+                    <div class="candles">
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                        <div class="candle"><span class="flame"></span></div>
+                    </div>
+                    <div class="cake-round">
+                        <div class="cake-icing"></div>
+                        <div class="cake-body"></div>
+                    </div>
+                </div>
+                <div class="gift-box"></div>
+            </div>
+            <a class="cta" href="#play">Let's celebrate you ↓</a>
+        </div>
+    </section>
+
+    <main class="wrap">
+        <section class="section" id="play">
+            <div class="heading reveal">
+                <h2>Game on, Sebastian!</h2>
+                <p>For the goals, the teamwork, the little victories and the joy of giving it your all. May there always be a new challenge worth getting excited about.</p>
+            </div>
+            <div class="cards">
+                <article class="card card-sport reveal">
+                    <div class="emoji">🏃‍♂️</div>
+                    <h3>Play. Persist. Repeat.</h3>
+                    <p>Keep moving, keep playing, keep surprising yourself. Here's to strong starts, great comebacks and plenty of fun along the way.</p>
+                    <div class="scribble">⚽</div>
+                </article>
+                <article class="card card-paint reveal" id="create">
+                    <div class="emoji">🎨</div>
+                    <h3>Colour outside the lines</h3>
+                    <p>May you always find time to pause, pick up a brush and turn a blank page into something uniquely yours.</p>
+                    <div class="scribble">✺</div>
+                </article>
+                <article class="card card-travel reveal">
+                    <div class="emoji">🌍</div>
+                    <h3>Adventure is calling</h3>
+                    <p>New streets, unfamiliar flavours, beautiful views and stories to bring home.</p>
+                    <div class="scribble">🚂</div>
+                </article>
+                <article class="card card-books reveal">
+                    <div class="emoji">📚</div>
+                    <h3>One more chapter</h3>
+                    <p>For the books that make you think, the pages that make you dream and the ideas that stay with you long after you read them.</p>
+                    <div class="scribble">❝</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="discover">
+            <div class="heading reveal">
+                <span class="sticker">On the way</span>
+                <h2>Where the heart flies</h2>
+                <p>Green for the wide world, orange and blue for the routes in between. May every line on the map become a new memory.</p>
+            </div>
+            <div class="travel-map reveal">
+                <img src="images/world-map-detailed.jpg" width="1600" height="900" alt="World map with destinations">
+                <svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="flight orange" d="M205 230 Q 180 300 255 345"></path>
+                    <path class="flight blue" d="M205 230 Q 360 80 500 190"></path>
+                    <path class="flight green" d="M500 190 Q 510 250 515 300"></path>
+                    <path class="flight orange" d="M500 190 Q 610 180 700 270"></path>
+                    <path class="flight blue" d="M515 300 Q 610 240 700 270"></path>
+                </svg>
+                <span class="pin orange" style="left:20.5%;top:41%">USA</span>
+                <span class="pin yellow" style="left:25.5%;top:61.5%">Peru</span>
+                <span class="pin orange" style="left:50%;top:34%">Germany</span>
+                <span class="pin green" style="left:51.5%;top:53.5%">Africa</span>
+                <span class="pin blue" style="left:70%;top:48%">India</span>
+            </div>
+        </section>
+
+        <div class="banner reveal">
+            <div class="stars">✦ ✦ ✦</div>
+            <blockquote>“May you never lose the curiosity to explore, the courage to create or the kindness to make a difference.”</blockquote>
+            <div class="sticker">A birthday wish for you</div>
+        </div>
+
+        <section class="section" id="kindness">
+            <div class="heading reveal">
+                <h2>A heart that makes a difference.</h2>
+                <p>A heart that thinks beyond itself — and opens doors where learning can take root.</p>
+            </div>
+            <div class="heart-layout reveal">
+                <div class="heart-art" role="img" aria-label="A child skateboarding in a park"></div>
+                <div class="heart-copy">
+                    <div class="sticker">Small acts · Big futures</div>
+                    <h3>Helping little dreams grow.</h3>
+                    <p>Your support for children's education is a beautiful part of your story. Every child deserves the chance to learn, ask questions, discover their strengths and imagine a bright future.</p>
+                    <p>Education is like a seed: once planted, it keeps growing — in families, in communities, in a life full of possibility. May you keep helping open doors. The gift of learning lasts a lifetime.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="heading reveal">
+                <h2>Here's to all that's ahead!</h2>
+                <p>More games to play. More colours to mix. More places to wander. More books to love. More delicious things to cook. More lives to touch.</p>
+            </div>
+        </section>
+    </main>
+
+    <section class="wish" id="wish">
+        <div class="wrap">
+            <h2>HAVE THE<br><span>BEST YEAR</span><br>YET!</h2>
+            <p>May this next trip around the sun bring you joy, inspiration, beautiful adventures and everything your heart is looking forward to.
+                Keep being curious, keep creating, keep exploring and keep making the world a little better in your own thoughtful way.
+                The world is brighter with you in it — and so is my world.
+                Alles Gute zum Geburtstag, Sebastian!</p>
+            <button type="button" id="openNote" aria-expanded="false" aria-controls="birthdayNote">Open a little birthday note ✨</button>
+            <div class="message" id="birthdayNote">
+                <strong>Dear Sebi,</strong>
+                <p>I wanted to give you something that would stay with you for years. I’ve loved reading and listening to you play the piano, and it made me want to give you more moments like those. So, here’s a little something to keep the music going — your very own piano. 🎹</p>
+                <div class="piano" id="piano">
+                    <button type="button" id="playSongBtn" class="play-song-btn" aria-label="Play Alles Gute zum Geburtstag">
+                        <img class="piano-art" src="images/grand-piano.png" width="693" height="648" alt="Grand piano">
+                    </button>
+                    <div class="float-notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♪</span></div>
+                    <div id="keyboard" class="keyboard">
+                        <button type="button" class="white-key" data-note="C4" aria-label="C"></button>
+                        <button type="button" class="white-key" data-note="D4" aria-label="D"></button>
+                        <button type="button" class="white-key" data-note="E4" aria-label="E"></button>
+                        <button type="button" class="white-key" data-note="F4" aria-label="F"></button>
+                        <button type="button" class="white-key" data-note="G4" aria-label="G"></button>
+                        <button type="button" class="white-key" data-note="A4" aria-label="A"></button>
+                        <button type="button" class="white-key" data-note="B4" aria-label="B"></button>
+                        <button type="button" class="white-key" data-note="C5" aria-label="High C"></button>
+                        <button type="button" class="black-key k-cs" data-note="Cs4" aria-label="C sharp"></button>
+                        <button type="button" class="black-key k-ds" data-note="Ds4" aria-label="D sharp"></button>
+                        <button type="button" class="black-key k-fs" data-note="Fs4" aria-label="F sharp"></button>
+                        <button type="button" class="black-key k-gs" data-note="Gs4" aria-label="G sharp"></button>
+                        <button type="button" class="black-key k-as" data-note="As4" aria-label="A sharp"></button>
+                    </div>
+                    <span class="piano-hint">Tap the piano — Alles Gute zum Geburtstag</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>Made with love and a little confetti</footer>
+
+    <script>
+        (function () {
+            if ("IntersectionObserver" in window) {
+                const io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("in");
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+                document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+            } else {
+                document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+            }
+
+            const openNote = document.getElementById("openNote");
+            const note = document.getElementById("birthdayNote");
+            if (openNote && note) {
+                openNote.addEventListener("click", function () {
+                    const open = note.classList.toggle("open");
+                    openNote.setAttribute("aria-expanded", String(open));
+                    openNote.textContent = open
+                        ? "Close the birthday note"
+                        : "Open a little birthday note ✨";
+                    if (open && note.scrollIntoView) {
+                        note.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    }
+                });
+            }
+
+            const NOTES = {
+                C4: 261.63, Cs4: 277.18, D4: 293.66, Ds4: 311.13,
+                E4: 329.63, F4: 349.23, Fs4: 369.99, G4: 392.00,
+                Gs4: 415.30, A4: 440.00, As4: 466.16, B4: 493.88, C5: 523.25
+            };
+
+            const BIRTHDAY_SONG = [
+                ["C4", 0.75], ["C4", 0.25], ["D4", 1], ["C4", 1], ["F4", 1], ["E4", 2],
+                ["C4", 0.75], ["C4", 0.25], ["D4", 1], ["C4", 1], ["G4", 1], ["F4", 2],
+                ["C4", 0.75], ["C4", 0.25], ["C5", 1], ["A4", 1], ["F4", 1], ["E4", 1], ["D4", 2],
+                ["As4", 0.75], ["As4", 0.25], ["A4", 1], ["F4", 1], ["G4", 1], ["F4", 2]
+            ];
+
+            const playBtn = document.getElementById("playSongBtn");
+            const keyboard = document.getElementById("keyboard");
+            const piano = document.getElementById("piano");
+            let audioCtx = null;
+            let songTimer = 0;
+            let playingSong = false;
+
+            function getAudio() {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if (!Ctx) return null;
+                if (!audioCtx) audioCtx = new Ctx();
+                if (audioCtx.state === "suspended") audioCtx.resume();
+                return audioCtx;
+            }
+
+            function highlight(note, ms) {
+                const key = keyboard && keyboard.querySelector('[data-note="' + note + '"]');
+                if (!key) return;
+                key.classList.add("pressed");
+                setTimeout(function () { key.classList.remove("pressed"); }, Math.max(120, ms - 40));
+            }
+
+            function playTone(note, seconds) {
+                const ctx = getAudio();
+                const freq = NOTES[note];
+                if (!ctx || !freq) return;
+                const now = ctx.currentTime;
+                const osc = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "triangle";
+                osc2.type = "sine";
+                osc.frequency.value = freq;
+                osc2.frequency.value = freq * 2;
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.exponentialRampToValueAtTime(0.2, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + seconds);
+                osc.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now);
+                osc2.start(now);
+                osc.stop(now + seconds + 0.05);
+                osc2.stop(now + seconds + 0.05);
+                highlight(note, seconds * 1000);
+            }
+
+            function stopSong() {
+                playingSong = false;
+                clearTimeout(songTimer);
+                if (piano) piano.classList.remove("playing");
+            }
+
+            function playSong() {
+                const ctx = getAudio();
+                if (!ctx) return;
+                stopSong();
+                playingSong = true;
+                if (piano) piano.classList.add("playing");
+                const beat = 0.36;
+                let i = 0;
+                function nextNote() {
+                    if (!playingSong) return;
+                    if (i >= BIRTHDAY_SONG.length) {
+                        stopSong();
+                        return;
+                    }
+                    const pair = BIRTHDAY_SONG[i++];
+                    const seconds = pair[1] * beat;
+                    playTone(pair[0], Math.max(0.12, seconds * 0.92));
+                    songTimer = setTimeout(nextNote, seconds * 1000);
+                }
+                nextNote();
+            }
+
+            if (playBtn) {
+                playBtn.addEventListener("click", function () {
+                    if (playingSong) stopSong();
+                    else playSong();
+                });
+            }
+
+            if (keyboard) {
+                keyboard.querySelectorAll("[data-note]").forEach(function (key) {
+                    key.addEventListener("pointerdown", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        playTone(key.getAttribute("data-note"), 0.45);
+                    });
+                    key.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
