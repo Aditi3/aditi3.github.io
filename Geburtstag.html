@@ -1220,7 +1220,7 @@
     <main class="wrap">
         <section class="section" id="play" data-track="game">
             <div class="heading reveal">
-                <h2>Game on, Sebastian!</h2>
+                <h2>Plenty of game left, Sebastian.</h2>
                 <p>For the goals, the teamwork and the joy of giving it your all. May there always be a new challenge worth getting excited about.</p>
             </div>
             <div class="cards">
@@ -1251,7 +1251,7 @@
             </div>
         </section>
 
-        <section class="section" id="discover">
+        <section class="section" id="discover" data-track="wonderful">
             <div class="heading reveal">
                 <span class="sticker">On the way</span>
                 <h2>Where the heart flies</h2>
@@ -1307,11 +1307,6 @@
                 <li><span aria-hidden="true">🇮🇹</span> Italy</li>
             </ul>
         </section>
-
-        <div class="banner reveal">
-            <div class="stars">✦ ✦ ✦</div>
-            <blockquote>“Stay curious, keep creating, and keep being kind.”</blockquote>
-        </div>
 
         <section class="section" id="kindness" data-track="kolaveri">
             <div class="heading reveal">
@@ -1379,7 +1374,7 @@
         </div>
         <div class="wrap">
             <div class="wish-glow" aria-hidden="true"></div>
-            <h2 class="reveal">HAVE THE<br><span>BEST YEAR</span><br>YET!</h2>
+            <h2 class="reveal">HAVE THE<br><span>BEST YEAR!</span></h2>
             <p class="reveal">Here’s to the year ahead: good company, new places and time for the things you love.
                 Keep being curious, keep creating and keep making the world a little better in your own thoughtful way.
                 The world is brighter with you in it.
@@ -1785,7 +1780,7 @@
             /* Try the YouTube track first; fall back to a local file / the synth melody. */
             function composite(name, primary, fallback) {
                 return {
-                    name: name, src: fallback.src, level: 0, active: null,
+                    name: name, src: primary.src, level: 0, active: null,
                     start: function () {
                         const self = this;
                         function attempt(t) {
@@ -1810,11 +1805,13 @@
                 };
             }
 
+            // Local mp3 first (works offline / on file://); YouTube or synth as backup.
             const TRACKS = {
                 birthday: composite("Zum Geburtstag viel Glück", ytTrack("fNUAqFRIMaE"), synth),
-                game: composite("Somewhere I Belong – Linkin Park", ytTrack("zsCD5XCu6CM"), fileTrack("Somewhere I Belong", "audio/somewhere-i-belong.mp3")),
-                kolaveri: composite("Why This Kolaveri Di?", ytTrack("YR12Z8f1Dh8"), fileTrack("Why This Kolaveri Di?", "audio/why-this-kolaveri-di.mp3"))
-            };
+                game: composite("Somewhere I Belong – Linkin Park", fileTrack("Somewhere I Belong", "audio/somewhere-i-belong.mp3"), ytTrack("zsCD5XCu6CM")),
+                wonderful: fileTrack("What a Wonderful World – Louis Armstrong", "audio/what-a-wonderful-world.mp3"),
+                kolaveri: composite("Why This Kolaveri Di?", fileTrack("Why This Kolaveri Di?", "audio/why-this-kolaveri-di.mp3"), ytTrack("YR12Z8f1Dh8"))
+            }
 
             // Warm up the YouTube player API after load (no audio starts before the button click).
             if (location.protocol !== "file:") {
@@ -1861,7 +1858,7 @@
                     say("Now playing: " + next.name, 3500);
                 }).catch(function () {
                     // Keep the previous song going and tell the visitor how to fix it.
-                    say("“" + next.name + "” couldn’t be played (YouTube blocked or offline)." + (next.src ? " You can add " + next.src + " instead." : ""), 7000);
+                    say("“" + next.name + "” couldn’t be played." + (next.src ? " Check that " + next.src + " is in place." : ""), 7000);
                     wantedFailed = id;
                 }).then(function () {
                     switching = false;

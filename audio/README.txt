@@ -1,5 +1,4 @@
-Place your licensed audio files here, with exactly these names:
+Audio files used by Geburtstag.html (keep these exact names):
   somewhere-i-belong.mp3
+  what-a-wonderful-world.mp3
   why-this-kolaveri-di.mp3
-The files in this folder are empty placeholders. Until replaced, the site
-shows a small notice and keeps the current music playing.
