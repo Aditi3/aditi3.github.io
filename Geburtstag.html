@@ -103,7 +103,7 @@
             display: flex;
             align-items: center;
             padding: 4.5rem 0 3.5rem;
-            overflow: hidden;
+            overflow: visible;
             position: relative;
         }
         .bunting {
@@ -150,7 +150,7 @@
                 radial-gradient(#f4a54a 0.9px, transparent 1px);
             background-size: 42px 48px, 36px 40px, 50px 44px, 28px 34px;
             background-position: 8px 12px, 22px 30px, 4px 40px, 18px 6px;
-            opacity: 0.35;
+            opacity: 0.2;
         }
         .hero > .wrap {
             width: 100%;
@@ -164,100 +164,25 @@
         .hero-stage {
             width: 100%;
             display: grid;
-            grid-template-columns: minmax(130px, 230px) minmax(240px, 1fr) minmax(90px, 150px);
+            grid-template-columns: minmax(180px, 240px) minmax(240px, 1fr) minmax(110px, 170px);
+            grid-template-areas: "bunch copy side";
             align-items: center;
             gap: 4px 8px;
         }
-        .balloon-bunch {
+        .hero-copy { grid-area: copy; }
+        .balloon-bunch, .hero-side {
             position: relative;
-            width: 210px;
-            height: 270px;
-            justify-self: end;
-            animation: cakeFloat 4s ease-in-out infinite;
+            justify-self: center;
+            animation: balloonRise 1.4s cubic-bezier(.2,.8,.2,1) both;
         }
-        .wb {
-            position: absolute;
-            width: 58px;
-            height: 72px;
-            border-radius: 50%;
-            opacity: 0.78;
-            background:
-                radial-gradient(circle at 32% 28%, rgba(255,255,255,.55), transparent 46%),
-                var(--c, #7ec8b8);
-        }
-        .wb::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -6px;
-            width: 9px;
-            height: 8px;
-            margin-left: -4.5px;
-            background: var(--c);
-            clip-path: polygon(20% 0, 80% 0, 50% 100%);
-            opacity: 0.85;
-        }
-        .wb.navy { --c: #4a62b5; left: 58px; top: 0; background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,.4) 1.6px, transparent 2px), radial-gradient(circle at 32% 28%, rgba(255,255,255,.45), transparent 46%); background-size: 12px 12px, auto; background-color: #4a62b5; }
-        .wb.mint { --c: #7ec8b8; left: 8px; top: 28px; }
-        .wb.green { --c: #3d9a55; left: 108px; top: 8px; }
-        .wb.yellow { --c: #f0d24a; left: 62px; top: 46px; background-image: radial-gradient(circle at 50% 45%, rgba(255,255,255,.5) 1.8px, transparent 2.2px), radial-gradient(circle at 32% 28%, rgba(255,255,255,.5), transparent 46%); background-size: 11px 11px, auto; background-color: #f0d24a; }
-        .wb.peach { --c: #f0a15a; left: 118px; top: 48px; }
-        .wb.coral { --c: #ef7a4a; left: 18px; top: 88px; }
-        .wb.sky { --c: #8eb8e8; left: 54px; top: 92px; }
-        .wb.red { --c: #e85d4c; left: 96px; top: 86px; background-image: repeating-linear-gradient(#e85d4c 0 6px, #f4c4bc 6px 10px); }
-        .wb.aqua { --c: #8fd4c8; left: 140px; top: 82px; }
-        .bunch-strings {
-            position: absolute;
-            left: 78px;
-            top: 148px;
-            width: 80px;
-            height: 78px;
-        }
-        .bunch-strings span {
-            position: absolute;
-            top: 0;
-            width: 1.5px;
-            height: 78px;
-            background: #8aa0b3;
-            transform-origin: top center;
-        }
-        .bunch-strings span:nth-child(1) { left: 18px; transform: rotate(-16deg); }
-        .bunch-strings span:nth-child(2) { left: 28px; transform: rotate(-8deg); }
-        .bunch-strings span:nth-child(3) { left: 36px; transform: rotate(0deg); }
-        .bunch-strings span:nth-child(4) { left: 44px; transform: rotate(7deg); }
-        .bunch-strings span:nth-child(5) { left: 52px; transform: rotate(14deg); }
-        .balloon-hand {
-            position: absolute;
-            left: 88px;
-            top: 212px;
-            display: flex;
-            align-items: center;
-        }
-        .palm {
-            width: 36px;
-            height: 24px;
-            background: #e8c4a4;
-            border-radius: 12px 14px 12px 10px;
-            position: relative;
-            z-index: 1;
-        }
-        .palm::before {
-            content: "";
-            position: absolute;
-            left: 4px;
-            top: -6px;
-            width: 22px;
-            height: 10px;
-            background: #e8c4a4;
-            border-radius: 8px 8px 4px 4px;
-        }
-        .sleeve {
-            width: 72px;
-            height: 16px;
-            margin-left: -6px;
-            background: repeating-linear-gradient(90deg, #2f6fd6 0 8px, #fffdf8 8px 14px);
-            border-radius: 0 8px 8px 0;
-        }
+        .balloon-bunch { grid-area: bunch; width: 210px; }
+        .hero-side { grid-area: side; width: 130px; animation-delay: .25s; }
+        .art-svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 10px 10px rgba(36, 49, 46, .12)); animation: cakeFloat 5s ease-in-out infinite; }
+        .hero-side .art-svg { animation-duration: 6s; animation-delay: .6s; }
+        .bl { transform-origin: 110px 262px; animation: balloonSway 4.2s ease-in-out infinite alternate; animation-delay: var(--d); }
+        .bl.r { transform-origin: 80px 320px; animation-duration: 5s; }
+        .str { fill: none; stroke: #8aa0b3; stroke-width: 1.4; stroke-linecap: round; }
+        .bow { transform-origin: 110px 262px; animation: bowWiggle 3s ease-in-out infinite; }
         .hero-copy {
             text-align: center;
             width: 100%;
@@ -289,205 +214,144 @@
             font-style: italic;
             text-shadow: 0 0 10px rgba(255, 246, 232, 0.9);
         }
-        .poppers {
-            display: flex;
-            justify-content: space-between;
-            width: min(460px, 100%);
-            margin: 8px auto 0;
+        .popper {
+            flex: 0 0 auto;
+            width: 76px;
+            height: 88px;
             pointer-events: none;
         }
-        .popper {
-            width: 70px;
-            height: 56px;
-            position: relative;
+        .popper-art {
+            display: block;
+            width: 76px;
+            height: 88px;
+            overflow: visible;
         }
-        .popper .cone {
-            position: absolute;
-            bottom: 2px;
-            width: 0;
-            height: 0;
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
+        .popper.left .popper-art { transform: rotate(-42deg); }
+        .popper.right .popper-art { transform: rotate(42deg); }
+        .popper-art .burst {
+            animation: burstPulse 1s ease-in-out infinite;
+            transform-origin: 40px 20px;
         }
-        .popper.left .cone {
-            left: 0;
-            border-left: 36px solid #e85d4c;
+        .popper-art .spark {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: sparkBurst 1.15s ease-out infinite;
         }
-        .popper.right .cone {
-            right: 0;
-            border-right: 36px solid #e85d4c;
-        }
-        .popper .stream {
-            position: absolute;
-            height: 4px;
-            border-radius: 4px;
-        }
-        .popper.left .stream { left: 32px; }
-        .popper.right .stream { right: 32px; }
-        .popper .stream:nth-child(2) { top: 6px; width: 28px; background: #3dcc6e; transform: rotate(-22deg); }
-        .popper .stream:nth-child(3) { top: 18px; width: 32px; background: #f4a54a; }
-        .popper .stream:nth-child(4) { top: 30px; width: 22px; background: #2f6fd6; transform: rotate(20deg); }
-        .hero-side {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 28px;
-            justify-self: start;
-        }
-        .stripe-balloon {
-            width: 64px;
-            height: 78px;
-            border-radius: 50%;
-            background: repeating-linear-gradient(-18deg, #3dcc6e 0 8px, #fff6e8 8px 14px);
-            position: relative;
-            animation: cakeFloat 3.6s ease-in-out infinite;
-        }
-        .stripe-balloon::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            width: 1.5px;
-            height: 36px;
-            margin-left: -0.75px;
-            background: #2f6fd6;
-            border-radius: 2px;
-        }
-        .stripe-balloon.alt {
-            background: repeating-linear-gradient(18deg, #2f6fd6 0 7px, #fff6e8 7px 13px);
-            animation-delay: .4s;
-        }
+        .popper-art .spark.k2 { animation-delay: .15s; }
+        .popper-art .spark.k3 { animation-delay: .28s; }
+        .popper-art .spark.k4 { animation-delay: .4s; }
+
         .party-row {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 42px;
-            margin-top: 8px;
+            gap: 34px;
+            margin-top: 22px;
+            padding-bottom: 12px;
             width: 100%;
-        }
-        .birthday-cake {
-            width: 110px;
             position: relative;
-            animation: cakeFloat 3.4s 0.3s ease-in-out infinite;
         }
+        .party-row::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: min(560px, 92%);
+            height: 6px;
+            transform: translateX(-50%);
+            border-radius: 99px;
+            background: radial-gradient(ellipse at center, rgba(36, 49, 46, .22), transparent 70%);
+        }
+        .party-row > * { animation: itemPop .7s cubic-bezier(.3,1.6,.5,1) both; }
+        .party-row > :nth-child(1) { animation-delay: .5s; }
+        .party-row > :nth-child(2) { animation-delay: .65s; }
+        .party-row > :nth-child(3) { animation-delay: .8s; }
+        .party-row > :nth-child(4) { animation-delay: .95s; }
+        .party-row > :nth-child(5) { animation-delay: 1.1s; }
+        .birthday-cake { width: 120px; position: relative; }
         .candles {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 4px;
-            height: 36px;
-            position: relative;
-            z-index: 3;
+            display: flex; justify-content: center; align-items: flex-end;
+            gap: 4px; height: 36px; position: relative; z-index: 3;
         }
-        .candle {
-            width: 4px;
-            height: 22px;
-            border-radius: 2px;
-            background: var(--wick, #3dcc6e);
-            position: relative;
-        }
+        .candle { width: 4px; height: 22px; border-radius: 2px; background: var(--wick, #3dcc6e); position: relative; }
         .candle:nth-child(odd) { --wick: #f4a54a; height: 26px; }
         .candle:nth-child(3n) { --wick: #2f6fd6; height: 20px; }
         .candle:nth-child(4n) { --wick: #3dcc6e; height: 24px; }
         .candle:nth-child(5n) { --wick: #e85d4c; height: 23px; }
         .flame {
-            position: absolute;
-            left: 50%;
-            bottom: 100%;
-            width: 7px;
-            height: 10px;
-            margin-left: -3.5px;
+            position: absolute; left: 50%; bottom: 100%;
+            width: 7px; height: 11px; margin-left: -3.5px;
             background: radial-gradient(circle at 50% 70%, #fffce6 0 24%, #ffe27a 100%);
             border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
             transform-origin: 50% 100%;
+            box-shadow: 0 0 10px 3px rgba(255, 200, 80, .55);
             animation: flicker 0.38s ease-in-out infinite;
         }
-        .cake-round { position: relative; width: 104px; margin: 0 auto; }
-        .cake-icing {
-            height: 16px;
-            background: #f4a54a;
-            border-radius: 50% 50% 6px 6px;
-            position: relative;
-            z-index: 2;
-        }
+        .candle:nth-child(even) .flame { animation-delay: .17s; }
+        .cake-round { position: relative; width: 112px; margin: 0 auto; }
+        .cake-icing { height: 18px; background: #f4a54a; border-radius: 50% 50% 6px 6px; position: relative; z-index: 2; }
         .cake-body {
-            height: 48px;
-            margin-top: -8px;
+            height: 52px; margin-top: -8px;
             background: repeating-linear-gradient(#f6c14d 0 12px, #e89a32 12px 14px);
-            border-radius: 0 0 12px 12px;
-            position: relative;
-            z-index: 1;
+            border-radius: 0 0 12px 12px; position: relative; z-index: 1;
         }
-        .party-hat {
-            width: 60px;
-            height: 78px;
-            position: relative;
-            animation: cakeFloat 3.8s ease-in-out infinite;
-        }
+        .party-hat { width: 60px; height: 78px; position: relative; transform-origin: 50% 100%; }
+        .party-hat.tilt { animation: itemPop .7s .65s cubic-bezier(.3,1.6,.5,1) both, hatWobble 3.2s 1.4s ease-in-out infinite; }
         .hat-cone {
-            display: block;
-            width: 52px;
-            height: 58px;
-            margin: 10px auto 0;
+            display: block; width: 52px; height: 58px; margin: 10px auto 0;
             background:
                 radial-gradient(circle at 30% 70%, #fff6e8 2.5px, transparent 2.8px),
                 repeating-linear-gradient(#e85d4c 0 9px, #fff6e8 9px 11px);
             clip-path: polygon(50% 0, 100% 100%, 0 100%);
         }
         .party-hat::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 0;
-            width: 14px;
-            height: 14px;
-            margin-left: -7px;
-            background: #3dcc6e;
-            border-radius: 50%;
-            z-index: 2;
+            content: ""; position: absolute; left: 50%; top: 0;
+            width: 14px; height: 14px; margin-left: -7px;
+            background: #3dcc6e; border-radius: 50%; z-index: 2;
+            animation: cakeFloat 1.6s ease-in-out infinite;
         }
         .party-hat::after {
-            content: "";
-            position: absolute;
-            left: 2px;
-            right: 2px;
-            bottom: 0;
-            height: 10px;
-            background: #f4a54a;
-            border-radius: 6px;
+            content: ""; position: absolute; left: 2px; right: 2px; bottom: 0;
+            height: 10px; background: #f4a54a; border-radius: 6px;
         }
         .gift-box {
-            width: 58px;
-            height: 46px;
+            width: 58px; height: 46px; border-radius: 4px; position: relative;
             background:
                 repeating-linear-gradient(90deg, rgba(232, 90, 76, 0.18) 0 8px, transparent 8px 16px),
                 repeating-linear-gradient(0deg, rgba(47, 111, 214, 0.16) 0 8px, transparent 8px 16px),
                 #f6e2c4;
-            border-radius: 4px;
-            position: relative;
-            animation: cakeFloat 3.5s 0.5s ease-in-out infinite;
         }
         .gift-box::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: -11px;
-            width: 28px;
-            height: 18px;
-            margin-left: -14px;
-            background: #2f6fd6;
+            content: ""; position: absolute; left: 50%; top: -11px;
+            width: 28px; height: 18px; margin-left: -14px; background: #2f6fd6;
             clip-path: polygon(0 60%, 18% 0, 50% 38%, 82% 0, 100% 60%, 70% 100%, 50% 70%, 30% 100%);
+            transform-origin: 50% 100%;
+            animation: bowWiggle 2.4s ease-in-out infinite;
         }
         .gift-box::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 8px;
-            margin-left: -4px;
-            background: #2f6fd6;
+            content: ""; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 8px; margin-left: -4px; background: #2f6fd6;
         }
+        .gift-box { animation: itemPop .7s 1.1s cubic-bezier(.3,1.6,.5,1) both, giftHop 3.6s 2s ease-in-out infinite; }
+
+        /* confetti + title flourish */
+        .confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .confetti i {
+            position: absolute; top: -20px; width: 6px; height: 11px; border-radius: 2px;
+            background: var(--c); opacity: 0;
+            animation: confettiFall var(--t) linear var(--w) infinite;
+        }
+        .confetti i:nth-child(3n) { border-radius: 50%; width: 9px; height: 9px; }
+        .t-line { display: inline-block; animation: titleIn .9s cubic-bezier(.2,.9,.3,1.2) both; }
+        .t-line.l1 { animation-delay: .15s; }
+        .t-line.l2 { animation-delay: .4s; }
+        .t-line.l3 { animation-delay: .7s; }
+        h1 .sebi { display: block; margin: 0 auto; width: max-content; animation: titleIn .9s .7s cubic-bezier(.2,.9,.3,1.2) both, heartBeat 2.4s 1.8s ease-in-out infinite; }
+        .hero-copy { position: relative; }
+        .spark-deco { position: absolute; color: #f4a54a; font-size: 22px; animation: starTwinkle 2.2s ease-in-out infinite; pointer-events: none; }
+        .spark-deco.s1 { left: 2%; top: 4%; }
+        .spark-deco.s2 { right: 4%; top: 30%; color: #2f6fd6; animation-delay: .7s; font-size: 18px; }
+        .spark-deco.s3 { left: 8%; bottom: 22%; color: #3dcc6e; animation-delay: 1.3s; font-size: 20px; }
 
         .piano { position: relative; width: 100%; }
         .play-song-btn {
@@ -710,11 +574,6 @@
             box-shadow: 0 4px 12px rgba(36, 49, 46, 0.12);
             animation: pinDrop 0.7s ease both;
         }
-        .travel-map .pin:nth-child(3) { animation-delay: 0.15s; }
-        .travel-map .pin:nth-child(4) { animation-delay: 0.3s; }
-        .travel-map .pin:nth-child(5) { animation-delay: 0.45s; }
-        .travel-map .pin:nth-child(6) { animation-delay: 0.6s; }
-        .travel-map .pin:nth-child(7) { animation-delay: 0.75s; }
         .pin::before {
             content: "";
             display: inline-block;
@@ -767,7 +626,7 @@
             border: 1px solid rgba(36, 49, 46, 0.12);
             border-radius: 22px;
             box-shadow: 0 12px 30px rgba(36, 49, 46, 0.08);
-g            min-height: 270px;
+            min-height: 270px;
         }
         .heart-copy {
             background: rgba(255, 253, 248, 0.96);
@@ -785,7 +644,11 @@ g            min-height: 270px;
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            background: #020617;
+            background:
+                radial-gradient(ellipse at 50% 12%, rgba(255, 190, 80, 0.16), transparent 55%),
+                radial-gradient(ellipse at 15% 85%, rgba(70, 90, 200, 0.28), transparent 55%),
+                radial-gradient(ellipse at 88% 70%, rgba(120, 70, 190, 0.2), transparent 50%),
+                linear-gradient(180deg, #020617 0%, #0a1233 55%, #141a45 100%);
             color: var(--cream);
             padding: 90px 22px 96px;
             text-align: center;
@@ -891,15 +754,117 @@ g            min-height: 270px;
             color: var(--ink);
             background: rgba(255, 244, 212, 0.9);
         }
+        .sound-toggle {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: calc(100vw - 32px);
+            padding: 12px 18px;
+            border: 2px solid var(--cream);
+            border-radius: 99px;
+            background: var(--blue);
+            color: #fff;
+            font: 800 12px/1.2 "Trebuchet MS", Arial, sans-serif;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(30, 111, 217, 0.4);
+            animation: ctaPulse 2.4s ease-in-out infinite;
+        }
+        .sound-toggle:hover { background: #1a5fc0; }
+        .sound-toggle:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+        .sound-toggle.on { background: var(--green); color: #12301c; animation: none; box-shadow: 0 10px 26px rgba(61, 204, 110, 0.4); }
+        .sound-toggle .sound-icon { font-size: 18px; }
+        .sound-status {
+            position: fixed;
+            right: 16px;
+            bottom: 72px;
+            z-index: 50;
+            max-width: min(340px, calc(100vw - 32px));
+            padding: 9px 14px;
+            border-radius: 14px;
+            background: rgba(255, 253, 248, 0.96);
+            color: var(--ink);
+            border: 1px solid rgba(36, 49, 46, 0.16);
+            box-shadow: 0 8px 22px rgba(36, 49, 46, 0.16);
+            font-size: 12px;
+            opacity: 0;
+            transform: translateY(6px);
+            pointer-events: none;
+            transition: opacity .35s ease, transform .35s ease;
+        }
+        .sound-status.show { opacity: 1; transform: none; }
         .reveal {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(28px);
+            filter: blur(6px);
+            transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .9s cubic-bezier(.2,.7,.2,1);
         }
         .reveal.in {
             opacity: 1;
             transform: none;
+            filter: none;
         }
+        .heading.reveal h2::after {
+            content: "";
+            display: block;
+            height: 3px;
+            width: 0;
+            margin: 12px auto 0;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--yellow), var(--blue));
+            transition: width 1s .35s cubic-bezier(.2,.7,.2,1);
+        }
+        .heading.reveal.in h2::after { width: 72px; }
+        .card .emoji { transition: transform .4s cubic-bezier(.3,1.6,.5,1); display: inline-block; }
+        .card:hover .emoji { transform: scale(1.18) rotate(-8deg); }
+        .card .scribble { transition: transform .5s ease, opacity .5s ease; }
+        .card:hover .scribble { transform: rotate(-4deg) scale(1.15); opacity: .7; }
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 60;
+            transform-origin: left; transform: scaleX(0);
+            background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue));
+            pointer-events: none;
+        }
+        .travel-map .pin { animation-play-state: paused; }
+        .travel-map.in .pin { animation-play-state: running; }
+        .travel-map .flight { opacity: 0; transition: opacity 1.2s ease .6s; }
+        .travel-map.in .flight { opacity: 1; }
+        .pin.home { background: #fff4d4; border-color: var(--orange); z-index: 3; margin-top: -20px; }
+        .pin.home::before { background: var(--orange); box-shadow: 0 0 0 0 rgba(255,122,24,.5); animation: homePulse 2.4s ease-out infinite; }
+        .pin.below { transform: translate(-50%, 6px); }
+        @keyframes pinDropBelow { from { opacity: 0; transform: translate(-50%, -6px) scale(.8); } to { opacity: 1; transform: translate(-50%, 6px) scale(1); } }
+        .pin.below { animation-name: pinDropBelow; }
+        .travel-map .dot {
+            position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%;
+            background: var(--blue); border: 1.5px solid #fffdf8; box-shadow: 0 0 0 2px rgba(30,111,217,.25);
+            animation: dotIn .6s ease both; animation-play-state: paused;
+        }
+        .travel-map.in .dot { animation-play-state: running; }
+        @keyframes dotIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+        @keyframes homePulse { 0% { box-shadow: 0 0 0 0 rgba(255,122,24,.55); } 100% { box-shadow: 0 0 0 9px rgba(255,122,24,0); } }
+        .flag-chips {
+            list-style: none; margin: 22px 0 0; padding: 0;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+        }
+        .flag-chips li {
+            background: rgba(255, 253, 248, .94); border: 1px solid rgba(36, 49, 46, .12);
+            border-radius: 99px; padding: 5px 12px 5px 8px; font-size: 12px; font-weight: 700; color: #37443f;
+            box-shadow: 0 4px 10px rgba(36, 49, 46, .06);
+        }
+        .flag-chips li span { font-size: 16px; vertical-align: -2px; margin-right: 3px; }
+        .wish-sky .shoot {
+            position: absolute; width: 90px; height: 2px; border-radius: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0), #fff);
+            box-shadow: none; opacity: 0; transform: rotate(-30deg);
+            animation: shoot 9s ease-in infinite;
+        }
+        .wish-sky .shoot.a { left: 70%; top: 12%; animation-delay: 2s; }
+        .wish-sky .shoot.b { left: 35%; top: 6%; animation-delay: 6.5s; animation-duration: 11s; }
         .card.reveal.in:hover {
             transform: translateY(-7px);
         }
@@ -908,6 +873,23 @@ g            min-height: 270px;
         .cards .card:nth-child(3) { transition-delay: 0.19s; }
         .cards .card:nth-child(4) { transition-delay: 0.26s; }
 
+        @keyframes shoot {
+            0%, 86% { opacity: 0; transform: translate(0, 0) rotate(-30deg); }
+            88% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-220px, 127px) rotate(-30deg); }
+        }
+        @keyframes balloonRise { from { opacity: 0; transform: translateY(80px) scale(.8); } to { opacity: 1; transform: none; } }
+        @keyframes balloonSway { from { transform: rotate(calc(var(--a) * -1)); } to { transform: rotate(var(--a)); } }
+        @keyframes bowWiggle { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+        @keyframes itemPop { from { opacity: 0; transform: translateY(26px) scale(.6); } to { opacity: 1; transform: none; } }
+        @keyframes hatWobble { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+        @keyframes giftHop { 0%, 82%, 100% { transform: translateY(0); } 88% { transform: translateY(-10px); } 94% { transform: translateY(0); } 97% { transform: translateY(-3px); } }
+        @keyframes titleIn { from { opacity: 0; transform: translateY(30px) scale(.9) rotate(-2deg); } to { opacity: 1; transform: none; } }
+        @keyframes confettiFall {
+            0% { transform: translate3d(0, -10px, 0) rotate(0deg); opacity: 0; }
+            8% { opacity: .9; }
+            100% { transform: translate3d(var(--x), 105vh, 0) rotate(var(--r)); opacity: .6; }
+        }
         @keyframes riseIn {
             from { opacity: 0; transform: translateY(22px); }
             to { opacity: 1; transform: none; }
@@ -972,6 +954,15 @@ g            min-height: 270px;
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-7px); }
         }
+        @keyframes burstPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        @keyframes sparkBurst {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 0; }
+            18% { opacity: 1; }
+            100% { transform: translate(6px, -18px) rotate(160deg) scale(1); opacity: 0; }
+        }
         footer {
             padding: 22px;
             text-align: center;
@@ -997,17 +988,24 @@ g            min-height: 270px;
                 padding: 42px 0 40px;
             }
             .hero-stage {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: "bunch side" "copy copy";
                 justify-items: center;
             }
-            .balloon-bunch {
-                justify-self: center;
-                transform: scale(0.82);
-                height: 230px;
-            }
-            .hero-side { flex-direction: row; gap: 36px; }
-            .party-row { gap: 22px; }
-            .poppers { display: none; }
+            .balloon-bunch { width: 150px; }
+            .hero-side { width: 84px; }
+            .party-row { gap: 12px; margin-top: 12px; }
+            .birthday-cake { width: 96px; }
+            .cake-round { width: 92px; }
+            .party-hat { width: 46px; transform: scale(.8); }
+            .gift-box { width: 46px; height: 38px; }
+            .popper, .popper-art { width: 44px; height: 54px; }
+            .logo { display: none; }
+            nav { justify-content: center; }
+            .links { gap: 16px; justify-content: center; }
+            .hero { padding-bottom: 96px; }
+            .sound-toggle { padding: 10px 14px; font-size: 11px; right: 10px; bottom: 10px; }
+            .sound-status { right: 10px; bottom: 60px; }
             .hero-copy p { max-width: 28ch; padding: 0; font-size: 14px; }
             .flag { height: 26px; }
             .card { min-height: 225px; }
@@ -1015,11 +1013,14 @@ g            min-height: 270px;
         }
         @media (prefers-reduced-motion: reduce) {
             * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
-            .reveal { opacity: 1; transform: none; }
+            .reveal { opacity: 1; transform: none; filter: none; }
+            .confetti { display: none; }
+            .balloon-bunch, .hero-side, .party-row > *, .t-line { opacity: 1 !important; }
         }
     </style>
 </head>
 <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     <div class="page-map" aria-hidden="true"></div>
     <header>
         <div class="wrap">
@@ -1035,8 +1036,9 @@ g            min-height: 270px;
         </div>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="top" data-track="birthday">
         <div class="speckle" aria-hidden="true"></div>
+        <div class="confetti" id="confetti" aria-hidden="true"></div>
         <div class="bunting" aria-hidden="true">
             <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
             <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
@@ -1052,48 +1054,128 @@ g            min-height: 270px;
         <div class="wrap">
             <div class="hero-stage">
                 <div class="balloon-bunch" aria-hidden="true">
-                    <span class="wb mint"></span>
-                    <span class="wb navy"></span>
-                    <span class="wb green"></span>
-                    <span class="wb yellow"></span>
-                    <span class="wb peach"></span>
-                    <span class="wb coral"></span>
-                    <span class="wb sky"></span>
-                    <span class="wb red"></span>
-                    <span class="wb aqua"></span>
-                    <div class="bunch-strings">
-                        <span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                    <div class="balloon-hand">
-                        <span class="palm"></span>
-                        <span class="sleeve"></span>
-                    </div>
+                    <svg class="art-svg" viewBox="0 0 220 300" aria-hidden="true">
+<defs><radialGradient id="shine" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></radialGradient>
+<pattern id="stripeRed" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#f4c4bc"/><rect width="12" height="6" fill="#e85d4c"/></pattern>
+<pattern id="dotNavy" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#4a62b5"/><circle cx="4" cy="4" r="1.6" fill="#fff" opacity=".5"/><circle cx="10" cy="10" r="1.6" fill="#fff" opacity=".5"/></pattern></defs>
+<g class="bl" style="--d:0.0s;--a:-5deg">
+  <path class="str" d="M60 123 C 70 157, 105 190, 110 262"/>
+  <polygon points="55,124 65,124 60,116" fill="#4a62b5"/>
+  <ellipse cx="60" cy="78" rx="31" ry="39" fill="url(#dotNavy)"/>
+  <ellipse cx="60" cy="78" rx="31" ry="39" fill="url(#shine)"/>
+  <ellipse cx="48.2" cy="60.5" rx="5.0" ry="10.9" fill="#fff" opacity=".55" transform="rotate(-24 48.2 60.5)"/>
+  
+</g>
+<g class="bl" style="--d:0.5s;--a:4deg">
+  <path class="str" d="M150 119 C 142 153, 114 188, 110 262"/>
+  <polygon points="145,120 155,120 150,112" fill="#3d9a55"/>
+  <ellipse cx="150" cy="74" rx="31" ry="39" fill="#3d9a55"/>
+  <ellipse cx="150" cy="74" rx="31" ry="39" fill="url(#shine)"/>
+  <ellipse cx="138.2" cy="56.5" rx="5.0" ry="10.9" fill="#fff" opacity=".55" transform="rotate(-24 138.2 56.5)"/>
+  
+</g>
+<g class="bl" style="--d:1.0s;--a:-2deg">
+  <path class="str" d="M104 97 C 105 131, 109 176, 110 262"/>
+  <polygon points="99,98 109,98 104,90" fill="#f0d24a"/>
+  <ellipse cx="104" cy="52" rx="31" ry="39" fill="#f0d24a"/>
+  <ellipse cx="104" cy="52" rx="31" ry="39" fill="url(#shine)"/>
+  <ellipse cx="92.2" cy="34.5" rx="5.0" ry="10.9" fill="#fff" opacity=".55" transform="rotate(-24 92.2 34.5)"/>
+  
+</g>
+<g class="bl" style="--d:1.5s;--a:-6deg">
+  <path class="str" d="M28 183 C 44 217, 102 220, 110 262"/>
+  <polygon points="23,184 33,184 28,176" fill="#7ec8b8"/>
+  <ellipse cx="28" cy="138" rx="31" ry="39" fill="#7ec8b8"/>
+  <ellipse cx="28" cy="138" rx="31" ry="39" fill="url(#shine)"/>
+  <ellipse cx="16.2" cy="120.5" rx="5.0" ry="10.9" fill="#fff" opacity=".55" transform="rotate(-24 16.2 120.5)"/>
+  
+</g>
+<g class="bl" style="--d:0.8s;--a:6deg">
+  <path class="str" d="M190 179 C 174 213, 118 218, 110 262"/>
+  <polygon points="185,180 195,180 190,172" fill="#8fd4c8"/>
+  <ellipse cx="190" cy="134" rx="31" ry="39" fill="#8fd4c8"/>
+  <ellipse cx="190" cy="134" rx="31" ry="39" fill="url(#shine)"/>
+  <ellipse cx="178.2" cy="116.5" rx="5.0" ry="10.9" fill="#fff" opacity=".55" transform="rotate(-24 178.2 116.5)"/>
+  
+</g>
+<g class="bl" style="--d:0.3s;--a:-3deg">
+  <path class="str" d="M70 194 C 78 228, 106 225, 110 262"/>
+  <polygon points="65,195 75,195 70,187" fill="#ef7a4a"/>
+  <ellipse cx="70" cy="148" rx="32" ry="40" fill="#ef7a4a"/>
+  <ellipse cx="70" cy="148" rx="32" ry="40" fill="url(#shine)"/>
+  <ellipse cx="57.8" cy="130.0" rx="5.1" ry="11.2" fill="#fff" opacity=".55" transform="rotate(-24 57.8 130.0)"/>
+  
+</g>
+<g class="bl" style="--d:1.2s;--a:3deg">
+  <path class="str" d="M146 192 C 139 226, 114 224, 110 262"/>
+  <polygon points="141,193 151,193 146,185" fill="#8eb8e8"/>
+  <ellipse cx="146" cy="146" rx="32" ry="40" fill="#8eb8e8"/>
+  <ellipse cx="146" cy="146" rx="32" ry="40" fill="url(#shine)"/>
+  <ellipse cx="133.8" cy="128.0" rx="5.1" ry="11.2" fill="#fff" opacity=".55" transform="rotate(-24 133.8 128.0)"/>
+  
+</g>
+<g class="bl" style="--d:0.6s;--a:1deg">
+  <path class="str" d="M108 170 C 108 204, 110 213, 110 262"/>
+  <polygon points="103,171 113,171 108,163" fill="#e85d4c"/>
+  <ellipse cx="108" cy="122" rx="34" ry="42" fill="url(#stripeRed)"/>
+  <ellipse cx="108" cy="122" rx="34" ry="42" fill="url(#shine)"/>
+  <ellipse cx="95.1" cy="103.1" rx="5.4" ry="11.8" fill="#fff" opacity=".55" transform="rotate(-24 95.1 103.1)"/>
+  
+</g>
+<g class="bow"><path d="M110 262 L96 276 L108 270 Z M110 262 L124 276 L112 270 Z" fill="#2f6fd6"/><path d="M110 262 C 104 285, 100 292, 96 298 M110 262 C 116 285, 120 292, 124 298" stroke="#2f6fd6" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="110" cy="262" r="5" fill="#ffe27a" stroke="#2f6fd6" stroke-width="2"/></g>
+</svg>
                 </div>
                 <div class="hero-copy">
-                    <h1>Alles Gute<br><span class="name">zum Geburtstag</span>Sebi!</h1>
-                    <p>A little celebration for someone with a big curiosity, a creative spark, an adventurous spirit and a generous heart.</p>
-                    <div class="poppers" aria-hidden="true">
-                        <div class="popper left">
-                            <span class="cone"></span>
-                            <span class="stream"></span>
-                            <span class="stream"></span>
-                            <span class="stream"></span>
-                        </div>
-                        <div class="popper right">
-                            <span class="cone"></span>
-                            <span class="stream"></span>
-                            <span class="stream"></span>
-                            <span class="stream"></span>
-                        </div>
-                    </div>
+                    <span class="spark-deco s1" aria-hidden="true">✦</span>
+                    <span class="spark-deco s2" aria-hidden="true">✦</span>
+                    <span class="spark-deco s3" aria-hidden="true">✧</span>
+                    <h1><span class="t-line l1">Alles Gute</span><br><span class="name t-line l2">zum Geburtstag</span><span class="t-line l3 sebi">Sebi!</span></h1>
+                    <p>Curious, creative, adventurous and generous. Here’s to another year of you.</p>
                 </div>
                 <div class="hero-side" aria-hidden="true">
-                    <span class="stripe-balloon"></span>
-                    <span class="stripe-balloon alt"></span>
+                    <svg class="art-svg" viewBox="0 0 160 330" aria-hidden="true">
+<defs><radialGradient id="shine2" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></radialGradient>
+<pattern id="stripeOr" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(-28)"><rect width="16" height="16" fill="#fff6e8"/><rect width="9" height="16" fill="#ff7a18"/></pattern>
+<pattern id="stripeBl" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><rect width="16" height="16" fill="#fff6e8"/><rect width="9" height="16" fill="#2f6fd6"/></pattern></defs>
+<g class="bl r" style="--d:0.2s;--a:-4deg">
+  <path class="str" d="M50 148 C 56 182, 77 231, 80 320"/>
+  <polygon points="45,149 55,149 50,141" fill="#ff7a18"/>
+  <ellipse cx="50" cy="92" rx="40" ry="50" fill="url(#stripeOr)"/>
+  <ellipse cx="50" cy="92" rx="40" ry="50" fill="url(#shine2)"/>
+  <ellipse cx="34.8" cy="69.5" rx="6.4" ry="14.0" fill="#fff" opacity=".55" transform="rotate(-24 34.8 69.5)"/>
+  
+</g>
+<g class="bl r" style="--d:0.9s;--a:4deg">
+  <path class="str" d="M108 206 C 102 240, 83 260, 80 320"/>
+  <polygon points="103,207 113,207 108,199" fill="#2f6fd6"/>
+  <ellipse cx="108" cy="150" rx="40" ry="50" fill="url(#stripeBl)"/>
+  <ellipse cx="108" cy="150" rx="40" ry="50" fill="url(#shine2)"/>
+  <ellipse cx="92.8" cy="127.5" rx="6.4" ry="14.0" fill="#fff" opacity=".55" transform="rotate(-24 92.8 127.5)"/>
+  
+</g>
+</svg>
                 </div>
             </div>
             <div class="party-row" aria-hidden="true">
-                <div class="party-hat"><span class="hat-cone"></span></div>
+                <div class="popper left">
+                    <svg class="popper-art" viewBox="0 0 80 100">
+                        <g class="burst">
+                            <path d="M40 18 C32 6 30 -4 26 -16" fill="none" stroke="#3dcc6e" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C50 8 58 2 66 -6" fill="none" stroke="#f4a54a" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C54 14 64 12 74 10" fill="none" stroke="#2f6fd6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C44 4 52 -2 50 -14" fill="none" stroke="#ff7a18" stroke-width="2.6" stroke-linecap="round"/>
+                            <rect class="spark k1" x="22" y="-2" width="6" height="2.5" rx="1" fill="#3dcc6e"/>
+                            <rect class="spark k2" x="58" y="2" width="5" height="2.5" rx="1" fill="#2f6fd6"/>
+                            <rect class="spark k3" x="48" y="-12" width="4" height="4" rx="1" fill="#f4a54a"/>
+                            <rect class="spark k4" x="68" y="14" width="5" height="2" rx="1" fill="#ff7a18"/>
+                        </g>
+                        <polygon points="40,88 12,20 68,20" fill="#e85d4c"/>
+                        <circle cx="32" cy="44" r="2.2" fill="#ffe27a"/>
+                        <circle cx="44" cy="52" r="1.8" fill="#ffe27a"/>
+                        <circle cx="28" cy="58" r="1.5" fill="#ffe27a"/>
+                    </svg>
+                </div>
+                <div class="party-hat tilt"><span class="hat-cone"></span></div>
                 <div class="birthday-cake">
                     <div class="candles">
                         <div class="candle"><span class="flame"></span></div>
@@ -1112,28 +1194,46 @@ g            min-height: 270px;
                     </div>
                 </div>
                 <div class="gift-box"></div>
+                <div class="popper right">
+                    <svg class="popper-art" viewBox="0 0 80 100">
+                        <g class="burst">
+                            <path d="M40 18 C32 6 30 -4 26 -16" fill="none" stroke="#3dcc6e" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C50 8 58 2 66 -6" fill="none" stroke="#f4a54a" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C54 14 64 12 74 10" fill="none" stroke="#2f6fd6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M40 18 C44 4 52 -2 50 -14" fill="none" stroke="#ff7a18" stroke-width="2.6" stroke-linecap="round"/>
+                            <rect class="spark k1" x="22" y="-2" width="6" height="2.5" rx="1" fill="#3dcc6e"/>
+                            <rect class="spark k2" x="58" y="2" width="5" height="2.5" rx="1" fill="#2f6fd6"/>
+                            <rect class="spark k3" x="48" y="-12" width="4" height="4" rx="1" fill="#f4a54a"/>
+                            <rect class="spark k4" x="68" y="14" width="5" height="2" rx="1" fill="#ff7a18"/>
+                        </g>
+                        <polygon points="40,88 12,20 68,20" fill="#e85d4c"/>
+                        <circle cx="32" cy="44" r="2.2" fill="#ffe27a"/>
+                        <circle cx="44" cy="52" r="1.8" fill="#ffe27a"/>
+                        <circle cx="28" cy="58" r="1.5" fill="#ffe27a"/>
+                    </svg>
+                </div>
             </div>
-            <a class="cta" href="#play">Let's celebrate you ↓</a>
+            <a class="cta" href="#play">Let’s begin ↓</a>
         </div>
     </section>
 
     <main class="wrap">
-        <section class="section" id="play">
+        <section class="section" id="play" data-track="game">
             <div class="heading reveal">
                 <h2>Game on, Sebastian!</h2>
-                <p>For the goals, the teamwork, the little victories and the joy of giving it your all. May there always be a new challenge worth getting excited about.</p>
+                <p>For the goals, the teamwork and the joy of giving it your all. May there always be a new challenge worth getting excited about.</p>
             </div>
             <div class="cards">
                 <article class="card card-sport reveal">
                     <div class="emoji">🏃‍♂️</div>
                     <h3>Play. Persist. Repeat.</h3>
-                    <p>Keep moving, keep playing, keep surprising yourself. Here's to strong starts, great comebacks and plenty of fun along the way.</p>
+                    <p>Keep moving, keep playing, keep surprising yourself and plenty of fun along the way.</p>
                     <div class="scribble">⚽</div>
                 </article>
                 <article class="card card-paint reveal" id="create">
                     <div class="emoji">🎨</div>
                     <h3>Colour outside the lines</h3>
-                    <p>May you always find time to pause, pick up a brush and turn a blank page into something uniquely yours.</p>
+                    <p>Make time to pick up a brush and turn a blank page into something of your own.</p>
                     <div class="scribble">✺</div>
                 </article>
                 <article class="card card-travel reveal">
@@ -1145,7 +1245,7 @@ g            min-height: 270px;
                 <article class="card card-books reveal">
                     <div class="emoji">📚</div>
                     <h3>One more chapter</h3>
-                    <p>For the books that make you think, the pages that make you dream and the ideas that stay with you long after you read them.</p>
+                    <p>For the books that make you think, and the ideas that stay with you long after the last page.</p>
                     <div class="scribble">❝</div>
                 </article>
             </div>
@@ -1155,32 +1255,65 @@ g            min-height: 270px;
             <div class="heading reveal">
                 <span class="sticker">On the way</span>
                 <h2>Where the heart flies</h2>
-                <p>Green for the wide world, orange and blue for the routes in between. May every line on the map become a new memory.</p>
+                <p>Always back and forth from Germany: 17 countries so far, and plenty of map left. May every line become a good story.</p>
             </div>
             <div class="travel-map reveal">
-                <img src="images/world-map-detailed.jpg" width="1600" height="900" alt="World map with destinations">
+                <img src="images/world-map-detailed.jpg" width="2500" height="1584" alt="World map showing trips from Germany">
                 <svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
-                    <path class="flight orange" d="M205 230 Q 180 300 255 345"></path>
-                    <path class="flight blue" d="M205 230 Q 360 80 500 190"></path>
-                    <path class="flight green" d="M500 190 Q 510 250 515 300"></path>
-                    <path class="flight orange" d="M500 190 Q 610 180 700 270"></path>
-                    <path class="flight blue" d="M515 300 Q 610 240 700 270"></path>
+                    <path class="flight orange" d="M489 211 Q 326 138 163 248"></path>
+                    <path class="flight orange" d="M489 211 Q 359 204 229 367"></path>
+                    <path class="flight green" d="M489 211 Q 488 222 486 262"></path>
+                    <path class="flight green" d="M489 211 Q 528 213 568 270"></path>
+                    <path class="flight blue" d="M489 211 Q 592 191 694 294"></path>
+                    <path class="flight blue" d="M489 211 Q 596 200 703 324"></path>
+                    <path class="flight blue" d="M489 211 Q 626 178 764 307"></path>
+                    <path class="flight orange" d="M489 211 Q 676 188 863 399"></path>
                 </svg>
-                <span class="pin orange" style="left:20.5%;top:41%">USA</span>
-                <span class="pin yellow" style="left:25.5%;top:61.5%">Peru</span>
-                <span class="pin orange" style="left:50%;top:34%">Germany</span>
-                <span class="pin green" style="left:51.5%;top:53.5%">Africa</span>
-                <span class="pin blue" style="left:70%;top:48%">India</span>
+                <span class="dot" title="Netherlands" style="left:47.5%;top:37.0%;animation-delay:0.68s"></span>
+                <span class="dot" title="Belgium" style="left:47.2%;top:37.8%;animation-delay:0.74s"></span>
+                <span class="dot" title="France" style="left:46.6%;top:40.3%;animation-delay:0.80s"></span>
+                <span class="dot" title="Switzerland" style="left:48.4%;top:40.2%;animation-delay:0.86s"></span>
+                <span class="dot" title="Austria" style="left:50.3%;top:39.8%;animation-delay:0.92s"></span>
+                <span class="dot" title="Czechia" style="left:50.6%;top:38.5%;animation-delay:0.98s"></span>
+                <span class="dot" title="Slovakia" style="left:51.8%;top:39.1%;animation-delay:1.04s"></span>
+                <span class="dot" title="Italy" style="left:49.7%;top:42.4%;animation-delay:1.10s"></span>
+                <span class="pin orange " style="left:16.3%;top:44.3%;animation-delay:0.20s">USA</span>
+                <span class="pin yellow " style="left:22.9%;top:65.5%;animation-delay:0.32s">Peru</span>
+                <span class="pin green below" style="left:48.6%;top:46.8%;animation-delay:0.44s">Tunisia</span>
+                <span class="pin green below" style="left:56.8%;top:48.1%;animation-delay:0.56s">Jordan</span>
+                <span class="pin blue " style="left:69.4%;top:52.5%;animation-delay:0.68s">India</span>
+                <span class="pin blue below" style="left:70.3%;top:57.9%;animation-delay:0.80s">Sri Lanka</span>
+                <span class="pin blue " style="left:76.4%;top:54.9%;animation-delay:0.92s">Thailand</span>
+                <span class="pin orange " style="left:86.3%;top:71.2%;animation-delay:1.04s">Australia</span>
+                <span class="pin orange home" style="left:48.9%;top:37.7%;animation-delay:0s">Germany · home</span>
             </div>
+            <ul class="flag-chips reveal" aria-label="Countries visited">
+                <li><span aria-hidden="true">🇩🇪</span> Germany</li>
+                <li><span aria-hidden="true">🇺🇸</span> USA (California)</li>
+                <li><span aria-hidden="true">🇵🇪</span> Peru</li>
+                <li><span aria-hidden="true">🇮🇳</span> India</li>
+                <li><span aria-hidden="true">🇱🇰</span> Sri Lanka</li>
+                <li><span aria-hidden="true">🇹🇭</span> Thailand</li>
+                <li><span aria-hidden="true">🇦🇺</span> Australia</li>
+                <li><span aria-hidden="true">🇹🇳</span> Tunisia</li>
+                <li><span aria-hidden="true">🇯🇴</span> Jordan</li>
+                <li><span aria-hidden="true">🇳🇱</span> Netherlands</li>
+                <li><span aria-hidden="true">🇧🇪</span> Belgium</li>
+                <li><span aria-hidden="true">🇫🇷</span> France</li>
+                <li><span aria-hidden="true">🇨🇭</span> Switzerland</li>
+                <li><span aria-hidden="true">🇦🇹</span> Austria</li>
+                <li><span aria-hidden="true">🇨🇿</span> Czechia</li>
+                <li><span aria-hidden="true">🇸🇰</span> Slovakia</li>
+                <li><span aria-hidden="true">🇮🇹</span> Italy</li>
+            </ul>
         </section>
 
         <div class="banner reveal">
             <div class="stars">✦ ✦ ✦</div>
-            <blockquote>“May you never lose the curiosity to explore, the courage to create or the kindness to make a difference.”</blockquote>
-            <div class="sticker">A birthday wish for you</div>
+            <blockquote>“Stay curious, keep creating, and keep being kind.”</blockquote>
         </div>
 
-        <section class="section" id="kindness">
+        <section class="section" id="kindness" data-track="kolaveri">
             <div class="heading reveal">
                 <h2>A heart that makes a difference.</h2>
                 <p>A heart that thinks beyond itself — and opens doors where learning can take root.</p>
@@ -1190,8 +1323,8 @@ g            min-height: 270px;
                 <div class="heart-copy">
                     <div class="sticker">Small acts · Big futures</div>
                     <h3>Helping little dreams grow.</h3>
-                    <p>Your support for children's education is a beautiful part of your story. Every child deserves the chance to learn, ask questions, discover their strengths and imagine a bright future.</p>
-                    <p>Education is like a seed: once planted, it keeps growing — in families, in communities, in a life full of possibility. May you keep helping open doors. The gift of learning lasts a lifetime.</p>
+                    <p>Your support for children’s education is a quiet, lasting part of your story. Every child deserves the chance to learn, ask questions and imagine a bright future.</p>
+                    <p>Education keeps growing — in families, in communities, in whole lives. Thank you for helping open those doors.</p>
                 </div>
             </div>
         </section>
@@ -1206,6 +1339,7 @@ g            min-height: 270px;
 
     <section class="wish" id="wish">
         <div class="wish-sky" aria-hidden="true">
+            <span class="shoot a"></span><span class="shoot b"></span>
             <span style="left:6%;top:10%;animation-delay:.1s"></span>
             <span style="left:14%;top:22%;animation-delay:.4s"></span>
             <span style="left:22%;top:8%;animation-delay:.8s"></span>
@@ -1245,12 +1379,12 @@ g            min-height: 270px;
         </div>
         <div class="wrap">
             <div class="wish-glow" aria-hidden="true"></div>
-            <h2>HAVE THE<br><span>BEST YEAR</span><br>YET!</h2>
-            <p>May this next trip around the sun bring you joy, inspiration, beautiful adventures and everything your heart is looking forward to.
-                Keep being curious, keep creating, keep exploring and keep making the world a little better in your own thoughtful way.
-                The world is brighter with you in it — and so is my world.
+            <h2 class="reveal">HAVE THE<br><span>BEST YEAR</span><br>YET!</h2>
+            <p class="reveal">Here’s to the year ahead: good company, new places and time for the things you love.
+                Keep being curious, keep creating and keep making the world a little better in your own thoughtful way.
+                The world is brighter with you in it.
                 Alles Gute zum Geburtstag, Sebastian!</p>
-            <button type="button" id="openNote" aria-expanded="false" aria-controls="birthdayNote">Open a little birthday note ✨</button>
+            <button type="button" id="openNote" aria-expanded="false" aria-controls="birthdayNote">Open a birthday note</button>
             <div class="message" id="birthdayNote">
                 <strong>Dear Sebi,</strong>
                 <p>I wanted to give you something that would stay with you for years. I’ve loved reading and listening to you play the piano, and it made me want to give you more moments like those. So, here’s a little something to keep the music going — your very own piano. 🎹</p>
@@ -1279,7 +1413,13 @@ g            min-height: 270px;
             </div>
         </div>
     </section>
-    <footer>Made with love and a little confetti</footer>
+    <footer>Made with love</footer>
+
+    <button type="button" class="sound-toggle" id="soundToggle" aria-pressed="false">
+        <span class="sound-icon" aria-hidden="true">🎵</span>
+        <span id="soundLabel">Turn on the birthday soundtrack</span>
+    </button>
+    <div class="sound-status" id="soundStatus" role="status" aria-live="polite"></div>
 
     <script>
         (function () {
@@ -1305,7 +1445,7 @@ g            min-height: 270px;
                     openNote.setAttribute("aria-expanded", String(open));
                     openNote.textContent = open
                         ? "Close the birthday note"
-                        : "Open a little birthday note ✨";
+                        : "Open a birthday note";
                     if (open && note.scrollIntoView) {
                         note.scrollIntoView({ behavior: "smooth", block: "nearest" });
                     }
@@ -1420,6 +1560,369 @@ g            min-height: 270px;
                     });
                 });
             }
+
+            /* ---------- Scroll progress ---------- */
+            const bar = document.getElementById("scrollProgress");
+            if (bar) {
+                let tick = false;
+                const update = function () {
+                    const max = document.documentElement.scrollHeight - window.innerHeight;
+                    bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ")";
+                    tick = false;
+                };
+                window.addEventListener("scroll", function () {
+                    if (!tick) { tick = true; requestAnimationFrame(update); }
+                }, { passive: true });
+                update();
+            }
+
+            /* ---------- Hero confetti ---------- */
+            const confetti = document.getElementById("confetti");
+            if (confetti && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+                const colors = ["#f4a54a", "#e85d4c", "#2f6fd6", "#3dcc6e", "#ffe27a", "#ff7a18"];
+                const count = window.innerWidth < 700 ? 8 : 16;
+                for (let i = 0; i < count; i++) {
+                    const c = document.createElement("i");
+                    c.style.left = (Math.random() * 100) + "%";
+                    c.style.setProperty("--c", colors[i % colors.length]);
+                    c.style.setProperty("--t", (11 + Math.random() * 7).toFixed(1) + "s");
+                    c.style.setProperty("--w", (-Math.random() * 12).toFixed(1) + "s");
+                    c.style.setProperty("--x", (Math.random() * 120 - 60).toFixed(0) + "px");
+                    c.style.setProperty("--r", (360 + Math.random() * 540).toFixed(0) + "deg");
+                    confetti.appendChild(c);
+                }
+            }
+
+            /* ---------- Scroll-aware soundtrack ---------- */
+            const soundBtn = document.getElementById("soundToggle");
+            const soundLabel = document.getElementById("soundLabel");
+            const soundStatus = document.getElementById("soundStatus");
+            const FADE_MS = 1800;
+            const MASTER = 0.7;
+            let soundOn = false;
+            let currentId = null;      // track currently audible / fading in
+            let wantedId = "birthday"; // track for the section in view
+            let statusTimer = 0;
+            let switching = false;
+
+            function say(msg, ms) {
+                if (!soundStatus) return;
+                soundStatus.textContent = msg;
+                soundStatus.classList.add("show");
+                clearTimeout(statusTimer);
+                statusTimer = setTimeout(function () { soundStatus.classList.remove("show"); }, ms || 4500);
+            }
+
+            /* Synthesized "Alles Gute zum Geburtstag" loop (no audio file needed). */
+            const synth = {
+                name: "Alles Gute zum Geburtstag",
+                level: 0, gain: null, timer: 0, running: false, nextTime: 0, idx: 0,
+                start: function () {
+                    const ctx = getAudio();
+                    if (!ctx) return Promise.reject(new Error("Web Audio is not supported"));
+                    if (!this.gain) {
+                        this.gain = ctx.createGain();
+                        this.gain.gain.value = this.level * MASTER;
+                        this.gain.connect(ctx.destination);
+                    }
+                    if (this.running) return Promise.resolve();
+                    this.running = true;
+                    this.idx = 0;
+                    this.nextTime = ctx.currentTime + 0.1;
+                    const self = this;
+                    this.timer = setInterval(function () { self.schedule(); }, 250);
+                    this.schedule();
+                    return Promise.resolve();
+                },
+                schedule: function () {
+                    const ctx = audioCtx;
+                    if (!ctx || !this.running) return;
+                    const beat = 0.5;
+                    while (this.nextTime < ctx.currentTime + 0.6) {
+                        const n = BIRTHDAY_SONG[this.idx];
+                        const dur = n[1] * beat;
+                        this.note(n[0], this.nextTime, Math.max(0.15, dur * 0.95));
+                        this.nextTime += dur;
+                        this.idx++;
+                        if (this.idx >= BIRTHDAY_SONG.length) { this.idx = 0; this.nextTime += beat * 3; }
+                    }
+                },
+                note: function (name, t, d) {
+                    const ctx = audioCtx, freq = NOTES[name];
+                    if (!freq) return;
+                    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain();
+                    o.type = "triangle"; o2.type = "sine";
+                    o.frequency.value = freq; o2.frequency.value = freq * 2;
+                    g.gain.setValueAtTime(0.0001, t);
+                    g.gain.exponentialRampToValueAtTime(0.16, t + 0.03);
+                    g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+                    o.connect(g); o2.connect(g); g.connect(this.gain);
+                    o.start(t); o2.start(t); o.stop(t + d + 0.05); o2.stop(t + d + 0.05);
+                },
+                stop: function () {
+                    this.running = false;
+                    clearInterval(this.timer);
+                },
+                setLevel: function (v) {
+                    this.level = v;
+                    if (this.gain) this.gain.gain.value = v * MASTER;
+                }
+            };
+
+            /* File-based tracks (user supplies the files in /audio). */
+            function fileTrack(name, src) {
+                return {
+                    name: name, src: src, level: 0, el: null, failed: false,
+                    start: function () {
+                        const self = this;
+                        if (this.failed) return Promise.reject(new Error("missing"));
+                        if (!this.el) {
+                            this.el = new Audio();
+                            this.el.loop = true;
+                            this.el.preload = "auto";
+                            this.el.volume = 0;
+                            this.el.src = this.src;
+                            this.el.addEventListener("error", function () { self.failed = true; });
+                        }
+                        this.el.volume = this.level * MASTER;
+                        const p = this.el.play();
+                        return Promise.resolve(p).then(function () {
+                            if (self.failed) throw new Error("missing");
+                        }).catch(function (err) {
+                            // Missing/empty file, unsupported format or blocked playback.
+                            if (self.el && self.el.error) self.failed = true;
+                            throw err;
+                        });
+                    },
+                    stop: function () { if (this.el) this.el.pause(); },
+                    pause: function () { if (this.el) this.el.pause(); },
+                    resume: function () { if (this.el && !this.failed) this.el.play().catch(function () {}); },
+                    setLevel: function (v) {
+                        this.level = v;
+                        if (this.el) this.el.volume = Math.max(0, Math.min(1, v * MASTER));
+                    }
+                };
+            }
+
+            /* YouTube tracks (official embedded player, hidden). Needs http(s), not file://. */
+            const ytHost = document.createElement("div");
+            ytHost.setAttribute("aria-hidden", "true");
+            ytHost.style.cssText = "position:fixed;left:0;bottom:0;width:200px;height:200px;opacity:.01;pointer-events:none;z-index:-1;overflow:hidden";
+            document.body.appendChild(ytHost);
+
+            let ytApiPromise = null;
+            function ytApi() {
+                if (window.YT && window.YT.Player) return Promise.resolve();
+                if (ytApiPromise) return ytApiPromise;
+                ytApiPromise = new Promise(function (resolve, reject) {
+                    const prev = window.onYouTubeIframeAPIReady;
+                    window.onYouTubeIframeAPIReady = function () { if (prev) prev(); resolve(); };
+                    const tag = document.createElement("script");
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    tag.onerror = function () { ytApiPromise = null; reject(new Error("YouTube API blocked")); };
+                    document.head.appendChild(tag);
+                    setTimeout(function () { reject(new Error("YouTube API timeout")); }, 8000);
+                });
+                return ytApiPromise;
+            }
+
+            function ytTrack(videoId) {
+                return {
+                    level: 0, player: null, ready: null, waiter: null, failed: false,
+                    start: function () {
+                        const self = this;
+                        if (this.failed) return Promise.reject(new Error("YouTube unavailable"));
+                        if (location.protocol === "file:") {
+                            this.failed = true;
+                            return Promise.reject(new Error("YouTube needs http(s)"));
+                        }
+                        return ytApi().then(function () {
+                            if (!self.ready) {
+                                self.ready = new Promise(function (resolve, reject) {
+                                    const holder = document.createElement("div");
+                                    holder.id = "yt-" + videoId;
+                                    ytHost.appendChild(holder);
+                                    self.player = new YT.Player(holder.id, {
+                                        width: "200", height: "200", videoId: videoId,
+                                        playerVars: { controls: 0, disablekb: 1, playsinline: 1, rel: 0, loop: 1, playlist: videoId, origin: location.origin },
+                                        events: {
+                                            onReady: function () { resolve(); },
+                                            onError: function () {
+                                                self.failed = true;
+                                                reject(new Error("YouTube error"));
+                                                if (self.waiter) { self.waiter.reject(new Error("YouTube error")); self.waiter = null; }
+                                            },
+                                            onStateChange: function (e) {
+                                                if (e.data === 1 && self.waiter) { self.waiter.resolve(); self.waiter = null; }
+                                                if (e.data === 0) { self.player.seekTo(0); self.player.playVideo(); }
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                            return self.ready;
+                        }).then(function () {
+                            return new Promise(function (resolve, reject) {
+                                self.waiter = { resolve: resolve, reject: reject };
+                                self.setLevel(self.level);
+                                self.player.playVideo();
+                                setTimeout(function () {
+                                    if (self.waiter) { self.waiter = null; reject(new Error("YouTube did not start")); }
+                                }, 7000);
+                            });
+                        });
+                    },
+                    stop: function () { if (this.player && this.player.pauseVideo) this.player.pauseVideo(); },
+                    pause: function () { this.stop(); },
+                    resume: function () { if (this.player && this.player.playVideo) this.player.playVideo(); },
+                    setLevel: function (v) {
+                        this.level = v;
+                        if (this.player && this.player.setVolume) this.player.setVolume(Math.round(Math.max(0, Math.min(1, v * MASTER)) * 100));
+                    }
+                };
+            }
+
+            /* Try the YouTube track first; fall back to a local file / the synth melody. */
+            function composite(name, primary, fallback) {
+                return {
+                    name: name, src: fallback.src, level: 0, active: null,
+                    start: function () {
+                        const self = this;
+                        function attempt(t) {
+                            t.setLevel(self.level);
+                            return t.start().then(function () { self.active = t; });
+                        }
+                        const capped = Promise.race([
+                            attempt(primary),
+                            new Promise(function (_, reject) {
+                                setTimeout(function () { reject(new Error("YouTube too slow")); }, 12000);
+                            })
+                        ]);
+                        return capped.catch(function () {
+                            primary.stop();
+                            return attempt(fallback);
+                        });
+                    },
+                    stop: function () { primary.stop(); fallback.stop(); this.active = null; },
+                    pause: function () { if (this.active && this.active.pause) this.active.pause(); },
+                    resume: function () { if (this.active && this.active.resume) this.active.resume(); },
+                    setLevel: function (v) { this.level = v; if (this.active) this.active.setLevel(v); }
+                };
+            }
+
+            const TRACKS = {
+                birthday: composite("Zum Geburtstag viel Glück", ytTrack("fNUAqFRIMaE"), synth),
+                game: composite("Somewhere I Belong – Linkin Park", ytTrack("zsCD5XCu6CM"), fileTrack("Somewhere I Belong", "audio/somewhere-i-belong.mp3")),
+                kolaveri: composite("Why This Kolaveri Di?", ytTrack("YR12Z8f1Dh8"), fileTrack("Why This Kolaveri Di?", "audio/why-this-kolaveri-di.mp3"))
+            };
+
+            // Warm up the YouTube player API after load (no audio starts before the button click).
+            if (location.protocol !== "file:") {
+                window.addEventListener("load", function () { setTimeout(function () { ytApi().catch(function () {}); }, 1200); });
+            }
+
+            const fades = {};
+            function fadeTo(id, target, ms, done) {
+                const t = TRACKS[id];
+                if (!t) return;
+                if (fades[id]) clearInterval(fades[id]);
+                const from = t.level, t0 = performance.now();
+                // setInterval keeps fades running even if rAF is throttled.
+                fades[id] = setInterval(function () {
+                    const k = Math.min(1, (performance.now() - t0) / ms);
+                    t.setLevel(from + (target - from) * k);
+                    if (k >= 1) {
+                        clearInterval(fades[id]);
+                        fades[id] = 0;
+                        if (done) done();
+                    }
+                }, 40);
+            }
+
+            function fadeOutAndStop(id) {
+                fadeTo(id, 0, FADE_MS, function () {
+                    if (id !== currentId) TRACKS[id].stop();
+                });
+            }
+
+            function switchTo(id) {
+                if (!soundOn || !TRACKS[id] || id === currentId || switching) return;
+                const prev = currentId;
+                const next = TRACKS[id];
+                switching = true;
+                // Never let a slow/hanging load block later switches.
+                const timeout = new Promise(function (_, reject) {
+                    setTimeout(function () { reject(new Error("timeout")); }, 30000);
+                });
+                Promise.race([next.start(), timeout]).then(function () {
+                    currentId = id;
+                    fadeTo(id, 1, FADE_MS);
+                    if (prev) fadeOutAndStop(prev);
+                    say("Now playing: " + next.name, 3500);
+                }).catch(function () {
+                    // Keep the previous song going and tell the visitor how to fix it.
+                    say("“" + next.name + "” couldn’t be played (YouTube blocked or offline)." + (next.src ? " You can add " + next.src + " instead." : ""), 7000);
+                    wantedFailed = id;
+                }).then(function () {
+                    switching = false;
+                    // The visitor may have scrolled on while we were loading.
+                    if (soundOn && wantedId !== currentId && wantedId !== wantedFailed) switchTo(wantedId);
+                });
+            }
+            let wantedFailed = null;
+
+            function setWanted(id) {
+                if (id === wantedId) return;   // same section: never restart
+                wantedId = id;
+                wantedFailed = null;
+                switchTo(id);
+            }
+
+            function setSound(on) {
+                soundOn = on;
+                soundBtn.classList.toggle("on", on);
+                soundBtn.setAttribute("aria-pressed", String(on));
+                soundLabel.textContent = on ? "Soundtrack on · tap to mute" : "Turn on the birthday soundtrack";
+                if (on) {
+                    const ctx = getAudio();
+                    if (ctx && ctx.state === "suspended") ctx.resume();
+                    switchTo(wantedId);
+                } else {
+                    Object.keys(TRACKS).forEach(function (id) {
+                        fadeTo(id, 0, 600, function () { TRACKS[id].stop(); });
+                    });
+                    currentId = null;
+                }
+            }
+
+            if (soundBtn) {
+                soundBtn.addEventListener("click", function () { setSound(!soundOn); });
+            }
+
+            // Which section is in the middle band of the viewport?
+            const trackSections = document.querySelectorAll("[data-track]");
+            if ("IntersectionObserver" in window) {
+                const sectionIO = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) setWanted(entry.target.getAttribute("data-track"));
+                    });
+                }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+                trackSections.forEach(function (el) { sectionIO.observe(el); });
+            }
+
+            // Pause politely when the tab is hidden; resume when it returns.
+            document.addEventListener("visibilitychange", function () {
+                if (!soundOn) return;
+                if (document.hidden) {
+                    if (audioCtx && audioCtx.state === "running") audioCtx.suspend();
+                    Object.keys(TRACKS).forEach(function (id) {
+                        if (TRACKS[id].pause) TRACKS[id].pause();
+                    });
+                } else {
+                    if (audioCtx) audioCtx.resume();
+                    if (currentId && TRACKS[currentId].resume) TRACKS[currentId].resume();
+                }
+            });
         })();
     </script>
 </body>
