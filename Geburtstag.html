@@ -649,21 +649,24 @@
             background: #fff;
             border-radius: 50%;
             box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.85);
-            animation: starTwinkle 2.6s ease-in-out infinite;
+            animation: starSoft 5s ease-in-out infinite;
         }
-        .wish-sky span:nth-child(odd) { animation-duration: 3.4s; }
+        .wish-sky span:nth-child(odd) { animation-duration: 6.5s; }
         .wish-sky span:nth-child(3n) {
             width: 2px;
             height: 2px;
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            animation-duration: 4.2s;
+            animation-duration: 8s;
         }
         .wish-sky span:nth-child(5n) {
             width: 4px;
             height: 4px;
             box-shadow: 0 0 10px 2px rgba(255, 244, 200, 0.9);
-            animation-duration: 2.1s;
+            animation-duration: 4.2s;
         }
+        @keyframes starSoft { 0%, 100% { opacity: .95; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
+        .wish-glow { animation: glowBreathe 7s ease-in-out infinite; }
+        @keyframes glowBreathe { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
         .wish > .wrap { position: relative; z-index: 1; }
         .wish-glow {
             position: absolute;
@@ -691,7 +694,7 @@
         .wish h2 span {
             color: #ffe27a;
             display: inline-block;
-            animation: glowPulse 2.2s ease-in-out infinite;
+            animation: glowPulse 4.5s ease-in-out infinite;
         }
         .wish > .wrap > p { max-width: 620px; margin: 18px auto; color: #e0e7df; }
         #openNote {
@@ -721,8 +724,25 @@
             border-radius: 20px;
             text-align: left;
         }
-        .message.open { display: block; animation: pop .45s ease; }
-        .message.open .piano { animation: riseIn 0.7s 0.12s both; }
+        /* The letter unfolds from the top like a folded note, then its lines appear one by one. */
+        .wish .wrap { perspective: 1200px; }
+        .message.open { display: block; transform-origin: 50% 0; animation: noteUnfold .9s cubic-bezier(.2,.8,.2,1) both; }
+        .message.open > * { animation: riseIn .7s both; }
+        .message.open > :nth-child(1) { animation-delay: .45s; }
+        .message.open > :nth-child(2) { animation-delay: .6s; }
+        .message.open > :nth-child(3) { animation-delay: .75s; }
+        .message.open > :nth-child(n+4) { animation-delay: .9s; }
+        @keyframes noteUnfold {
+            0% { opacity: 0; transform: rotateX(-80deg) scaleY(.6); }
+            60% { opacity: 1; }
+            100% { opacity: 1; transform: none; }
+        }
+        .message > strong { font-family: "Dancing Script", cursive; font-size: 28px; color: #1e56c8; display: block; }
+        .note-signoff { margin: 26px 0 4px !important; text-align: center; color: #3f4c47 !important; font-style: italic; }
+        .note-signoff .sig { display: block; margin-top: 8px; font-family: "Dancing Script", cursive; font-style: normal; font-size: 26px; color: #1e56c8; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+        .wish button:focus-visible { outline-color: var(--yellow); }
+        .play-song-btn:focus-visible { outline-offset: -4px; border-radius: 12px; }
         .message p {
             color: var(--ink);
             max-width: none;
@@ -812,6 +832,18 @@
         .sound-toggle:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
         .sound-toggle.on { background: var(--green); color: #12301c; animation: none; box-shadow: 0 10px 26px rgba(61, 204, 110, 0.4); }
         .sound-toggle .sound-icon { font-size: 18px; }
+        .sound-text { display: flex; flex-direction: column; min-width: 0; text-align: left; }
+        #soundLabel { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sound-hint { display: none; font-size: 10px; opacity: .75; letter-spacing: .05em; }
+        .sound-toggle.on .sound-hint { display: block; }
+        .eq { display: none; align-items: flex-end; gap: 2px; height: 14px; }
+        .eq i { width: 3px; height: 100%; border-radius: 2px; background: currentColor; transform-origin: bottom; animation: eqBounce .9s ease-in-out infinite; }
+        .eq i:nth-child(2) { animation-delay: .25s; }
+        .eq i:nth-child(3) { animation-delay: .5s; }
+        .sound-toggle.on .eq { display: flex; }
+        .sound-toggle.on .sound-icon { display: none; }
+        .sound-toggle.quiet .eq i { animation-play-state: paused; transform: scaleY(.25); }
+        @keyframes eqBounce { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
         .sound-status {
             position: fixed;
             right: 16px;
@@ -896,7 +928,7 @@
             box-shadow: none; opacity: 0; transform: rotate(-30deg);
             animation: shoot 9s ease-in infinite;
         }
-        .wish-sky .shoot.a { left: 70%; top: 12%; animation-delay: 2s; }
+        .wish-sky .shoot.a { left: 70%; top: 12%; animation-delay: 3s; animation-duration: 16s; }
         .wish-sky .shoot.b { left: 35%; top: 6%; animation-delay: 6.5s; animation-duration: 11s; }
         .card.reveal.in:hover {
             transform: translateY(-7px);
@@ -1052,7 +1084,7 @@
     <header>
         <div class="wrap">
             <nav>
-                <div class="logo"><span>★</span> Sebastian's big day</div>
+                <div class="logo"><span>★</span> Sebastian’s big day</div>
                 <div class="links">
                     <a href="#play">Play</a>
                     <a href="#create">Create</a>
@@ -1157,7 +1189,7 @@
                     <span class="spark-deco s2" aria-hidden="true">✦</span>
                     <span class="spark-deco s3" aria-hidden="true">✧</span>
                     <h1><span class="t-line l1">Alles Gute</span><br><span class="name t-line l2">zum Geburtstag</span><span class="t-line l3 sebi">Sebi!</span></h1>
-                    <p>Curious, creative, adventurous and generous. Here’s to another year of you.</p>
+                    <p>Here’s to another year of you.</p>
                 </div>
                 <div class="hero-side" aria-hidden="true">
                     <svg class="art-svg" viewBox="0 0 160 330" aria-hidden="true">
@@ -1260,7 +1292,7 @@
                 <article class="card card-paint reveal" id="create">
                     <div class="emoji">🎨</div>
                     <h3>Colour outside the lines</h3>
-                    <p>Make time to pick up a brush and turn a blank page into something of your own.</p>
+                    <p>May you always find a little time to pause, pick up a brush and turn a blank page into something of your own.</p>
                     <div class="scribble">✺</div>
                 </article>
                 <article class="card card-travel reveal">
@@ -1285,7 +1317,7 @@
                 <p>Always back and forth from Germany: 17 countries so far, and plenty of map left. May every line become a good story.</p>
             </div>
             <div class="travel-map reveal">
-                <img src="images/world-map-detailed.jpg" width="2500" height="1584" alt="World map showing trips from Germany">
+                <img src="images/world-map-detailed.jpg" width="2500" height="1584" loading="lazy" decoding="async" alt="World map showing trips from Germany">
                 <svg viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
                     <path class="flight orange" d="M489 211 Q 326 138 163 248"></path>
                     <path class="flight orange" d="M489 211 Q 359 204 229 367"></path>
@@ -1334,7 +1366,7 @@
 
         <section class="section">
             <div class="heading reveal">
-                <h2>Here's to all that's ahead!</h2>
+                <h2>Here’s to all that’s ahead!</h2>
                 <p>More games to play. More colours to mix. More places to wander. More books to love. More delicious things to cook. More lives to touch.</p>
             </div>
         </section>
@@ -1342,7 +1374,7 @@
 
     <section class="wish" id="wish">
         <div class="wish-sky" aria-hidden="true">
-            <span class="shoot a"></span><span class="shoot b"></span>
+            <span class="shoot a"></span>
             <span style="left:6%;top:10%;animation-delay:.1s"></span>
             <span style="left:14%;top:22%;animation-delay:.4s"></span>
             <span style="left:22%;top:8%;animation-delay:.8s"></span>
@@ -1385,11 +1417,10 @@
             <h2 class="reveal">HAVE THE<br><span>BEST YEAR!</span></h2>
             <p class="reveal">Here’s to the year ahead: good company, new places and time for the things you love.
                 Keep being curious, keep creating and keep making the world a little better in your own thoughtful way.
-                The world is brighter with you in it.
-                Alles Gute zum Geburtstag, Sebastian!</p>
+                The world is brighter with you in it.</p>
             <button type="button" id="openNote" aria-expanded="false" aria-controls="birthdayNote">Open a birthday note</button>
             <div class="message" id="birthdayNote">
-                <strong>Dear Sebi,</strong>
+                <strong>Dear Sebastian,</strong>
                                 <p class="gift-intro">I couldn’t pick just one thing, so I’m letting you choose. Which adventure would you like?</p>
                 <div class="gift-options" id="giftOptions">
                     <button type="button" class="gift-option wrapped" data-gift="rafting" aria-pressed="false" aria-label="Gift 1, still wrapped. Tap to unwrap.">
@@ -1433,6 +1464,7 @@
                     <span class="piano-hint">Tap the piano</span>
                 </div>
                 </div>
+                <p class="note-signoff">Whichever you pick, the best part is that we get to do it together.</p>
             </div>
         </div>
     </section>
@@ -1440,7 +1472,8 @@
 
     <button type="button" class="sound-toggle" id="soundToggle" aria-pressed="false">
         <span class="sound-icon" aria-hidden="true">🎵</span>
-        <span id="soundLabel">Tap anywhere to start the music</span>
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sound-text"><span id="soundLabel">Tap anywhere to start the music</span><small class="sound-hint">Tap to mute</small></span>
     </button>
     <div class="sound-status" id="soundStatus" role="status" aria-live="polite"></div>
 
@@ -2072,6 +2105,20 @@
                 duckReasons[reason] = on;
                 ducked = duckReasons.note || duckReasons.piano;
                 if (currentId) fadeTo(currentId, ducked ? 0 : 1, 500);
+                updateSoundLabel();
+            }
+
+            // The sound button shows what is playing right now (or why it is quiet).
+            function updateSoundLabel() {
+                if (!soundBtn || !soundLabel) return;
+                let text;
+                if (!soundOn) text = "Turn on the birthday soundtrack";
+                else if (ducked) text = "Paused for the birthday note";
+                else if (currentId) text = TRACKS[currentId].name;
+                else text = "Starting the music…";
+                soundLabel.textContent = text;
+                soundBtn.classList.toggle("quiet", soundOn && (ducked || !currentId));
+                soundBtn.setAttribute("aria-label", soundOn ? "Now playing: " + text + ". Tap to mute." : text);
             }
 
             function switchTo(id) {
@@ -2087,7 +2134,7 @@
                     currentId = id;
                     fadeTo(id, ducked ? 0 : 1, FADE_MS);
                     if (prev) fadeOutAndStop(prev);
-                    say("Now playing: " + next.name, 3500);
+                    updateSoundLabel();
                 }).catch(function (err) {
                     if (err && err.name === "NotAllowedError") {
                         // Browser blocked playback (no real tap yet): go back to "off" and wait for a tap.
@@ -2120,7 +2167,7 @@
                 soundOn = on;
                 soundBtn.classList.toggle("on", on);
                 soundBtn.setAttribute("aria-pressed", String(on));
-                soundLabel.textContent = on ? "Soundtrack on · tap to mute" : "Turn on the birthday soundtrack";
+                updateSoundLabel();
                 if (on) {
                     const ctx = getAudio();
                     if (ctx && ctx.state === "suspended") ctx.resume();
