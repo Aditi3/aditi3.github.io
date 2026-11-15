@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#fff6e8">
+    <meta name="description" content="A little birthday page for Sebi.">
+    <meta property="og:title" content="Alles Gute zum Geburtstag, Sebi!">
+    <meta property="og:description" content="A little birthday page — turn the sound on.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://aditi3.github.io/images/grand-piano.png">
     <title>Alles Gute zum Geburtstag, Sebi!</title>
     <link rel="icon" href="images/favicon.png" type="image/png" sizes="16x16">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -405,6 +410,7 @@
             display: flex;
             transform: rotate(-7deg) skewX(11deg);
             transform-origin: left bottom;
+            pointer-events: none; /* taps anywhere on the piano play the recording */
         }
         .white-key,
         .black-key {
@@ -589,30 +595,6 @@
         .pin.yellow::before { background: var(--yellow); }
         .pin.green::before { background: var(--green); }
 
-        .banner {
-            background: rgba(255, 253, 248, 0.94);
-            color: var(--ink);
-            border: 1px solid rgba(36, 49, 46, 0.12);
-            border-radius: 22px;
-            box-shadow: 0 14px 36px rgba(36, 49, 46, 0.08);
-            padding: 45px 24px;
-            text-align: center;
-            margin: 12px 0 30px;
-        }
-        .banner .stars {
-            font-size: 22px;
-            letter-spacing: 10px;
-            color: #e8893a;
-            animation: twinkle 2.4s ease-in-out infinite;
-        }
-        .banner blockquote {
-            font-size: clamp(25px, 4vw, 42px);
-            font-weight: 900;
-            line-height: 1.2;
-            max-width: 800px;
-            margin: 18px auto;
-        }
-        .banner .sticker { background: #fff4d4; }
 
         .heart-layout {
             display: grid;
@@ -750,6 +732,57 @@
             max-width: 320px;
             margin: 22px auto 6px;
         }
+        .message [hidden] { display: none !important; }
+        .gift-option { overflow: hidden; }
+        .gift-cover {
+            position: absolute; inset: 0; z-index: 2; border-radius: 16px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+            background:
+                linear-gradient(90deg, transparent calc(50% - 7px), #2f6fd6 calc(50% - 7px) calc(50% + 7px), transparent calc(50% + 7px)),
+                linear-gradient(0deg, transparent calc(50% - 7px), #2f6fd6 calc(50% - 7px) calc(50% + 7px), transparent calc(50% + 7px)),
+                repeating-linear-gradient(-45deg, #ff7a18 0 12px, #ffb066 12px 24px);
+            color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+            transition: transform .55s cubic-bezier(.5,-0.3,.6,1.3), opacity .45s ease .1s;
+        }
+        .gift-box-icon { font-size: 34px; animation: giftWiggle 2.6s ease-in-out infinite; }
+        .gift-option:nth-child(2) .gift-box-icon { animation-delay: .4s; }
+        .gift-option:nth-child(3) .gift-box-icon { animation-delay: .8s; }
+        .gift-cover-label { font-weight: 900; font-size: 15px; background: rgba(36, 49, 46, .35); padding: 2px 10px; border-radius: 99px; }
+        .gift-cover-hint { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+        .gift-option.wrapped { border-style: solid; border-color: transparent; }
+        .gift-option.wrapped .gift-emoji, .gift-option.wrapped .gift-text { visibility: hidden; }
+        .gift-option.unwrapping .gift-cover { transform: translateY(-110%) rotate(-8deg); opacity: 0; }
+        .gift-option:not(.wrapped) .gift-cover { display: none; }
+        .gift-option.just-opened .gift-emoji { animation: itemPop .6s cubic-bezier(.3,1.6,.5,1) both; }
+        .gift-option.just-opened .gift-text { animation: pop .5s .1s ease both; }
+        .gift-choose-hint { display: none; font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: .05em; text-transform: uppercase; }
+        .gift-option:not(.wrapped):not([aria-pressed="true"]) .gift-choose-hint { display: block; }
+        @keyframes giftWiggle { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-8deg) scale(1.08); } 90% { transform: rotate(8deg) scale(1.08); } 95% { transform: rotate(-3deg); } }
+        .gift-option.wrapped:hover .gift-box-icon { animation-duration: .8s; }
+        .gift-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 6px; }
+        .gift-option {
+            position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px;
+            padding: 18px 12px 16px; text-align: center; font: inherit; color: var(--ink); cursor: pointer;
+            background: #fffdf8; border: 2px dashed rgba(255, 122, 24, .35); border-radius: 18px;
+            transition: transform .3s cubic-bezier(.3,1.4,.5,1), border-color .25s, background .25s, box-shadow .25s;
+        }
+        .gift-option:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(36, 49, 46, .12); border-color: var(--orange); }
+        .gift-option:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+        .gift-option .gift-emoji { font-size: 38px; line-height: 1; transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+        .gift-option:hover .gift-emoji { transform: scale(1.15) rotate(-6deg); }
+        .gift-text { display: flex; flex-direction: column; gap: 4px; }
+        .gift-option strong { font-size: 15px; line-height: 1.2; }
+        .gift-option small { font-size: 12px; line-height: 1.4; color: #59665f; }
+        .gift-option[aria-pressed="true"] {
+            border-style: solid; border-color: var(--orange); background: #fff4d4;
+            box-shadow: 0 10px 24px rgba(255, 122, 24, .22); transform: translateY(-4px);
+        }
+        .gift-option[aria-pressed="true"]::after {
+            content: "✓"; position: absolute; top: 8px; right: 10px; width: 22px; height: 22px; border-radius: 50%;
+            background: var(--orange); color: #fff; font-size: 13px; font-weight: 900; line-height: 22px; text-align: center;
+            animation: itemPop .4s cubic-bezier(.3,1.6,.5,1) both;
+        }
+        .gift-result { min-height: 1.5em; text-align: center; font-weight: 700; margin: 10px 0 0; }
         .message .piano-hint {
             color: var(--ink);
             background: rgba(255, 244, 212, 0.9);
@@ -894,11 +927,6 @@
             from { opacity: 0; transform: translateY(22px); }
             to { opacity: 1; transform: none; }
         }
-        @keyframes kickerPop {
-            0% { opacity: 0; transform: scale(0.86) rotate(-6deg); }
-            70% { transform: scale(1.05) rotate(-1deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
         @keyframes ctaPulse {
             0%, 100% { box-shadow: 0 8px 18px rgba(255, 122, 24, 0.28); }
             50% { box-shadow: 0 10px 26px rgba(255, 122, 24, 0.5); }
@@ -945,11 +973,6 @@
             40% { transform: scaleY(1.12) scaleX(0.88) rotate(4deg); }
             70% { transform: scaleY(0.92) scaleX(1.08) rotate(-2deg); }
         }
-        @keyframes smoke {
-            0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
-            40% { opacity: 0.45; }
-            100% { opacity: 0; transform: translateY(-12px) scale(1.1); }
-        }
         @keyframes cakeFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-7px); }
@@ -982,6 +1005,10 @@
             .links { gap: 10px; }
             .links a { font-size: 10px; }
             .cards, .heart-layout { grid-template-columns: 1fr; }
+            .gift-options { grid-template-columns: 1fr; }
+            .gift-option.wrapped { min-height: 130px; }
+            .gift-option { flex-direction: row; text-align: left; gap: 14px; padding: 14px 16px; }
+            .gift-option .gift-emoji { font-size: 32px; }
             .hero {
                 min-height: calc(100vh - 52px);
                 min-height: calc(100svh - 52px);
@@ -1030,7 +1057,7 @@
                     <a href="#play">Play</a>
                     <a href="#create">Create</a>
                     <a href="#discover">Discover</a>
-                    <a href="#kindness">Kindness</a>
+                    <a href="#kindness">📖</a>
                 </div>
             </nav>
         </div>
@@ -1220,14 +1247,14 @@
     <main class="wrap">
         <section class="section" id="play" data-track="game">
             <div class="heading reveal">
-                <h2>Plenty of game left, Sebastian.</h2>
+                <h2>Plenty of game left.</h2>
                 <p>For the goals, the teamwork and the joy of giving it your all. May there always be a new challenge worth getting excited about.</p>
             </div>
             <div class="cards">
                 <article class="card card-sport reveal">
                     <div class="emoji">🏃‍♂️</div>
                     <h3>Play. Persist. Repeat.</h3>
-                    <p>Keep moving, keep playing, keep surprising yourself and plenty of fun along the way.</p>
+                    <p>Keep moving, keep playing, keep surprising yourself and have plenty of fun along the way.</p>
                     <div class="scribble">⚽</div>
                 </article>
                 <article class="card card-paint reveal" id="create">
@@ -1363,9 +1390,28 @@
             <button type="button" id="openNote" aria-expanded="false" aria-controls="birthdayNote">Open a birthday note</button>
             <div class="message" id="birthdayNote">
                 <strong>Dear Sebi,</strong>
-                <p>I wanted to give you something that would stay with you for years. I’ve loved reading and listening to you play the piano, and it made me want to give you more moments like those. So, here’s a little something to keep the music going — your very own piano. 🎹</p>
+                                <p class="gift-intro">I couldn’t pick just one thing, so I’m letting you choose. Which adventure would you like?</p>
+                <div class="gift-options" id="giftOptions">
+                    <button type="button" class="gift-option wrapped" data-gift="rafting" aria-pressed="false" aria-label="Gift 1, still wrapped. Tap to unwrap.">
+                        <span class="gift-cover" aria-hidden="true"><span class="gift-box-icon">🎁</span><span class="gift-cover-label">Gift 1</span><span class="gift-cover-hint">Tap to unwrap</span></span>
+                        <span class="gift-emoji" aria-hidden="true">🛶</span>
+                        <span class="gift-text"><strong>River rafting in Slovenia</strong><small>Turquoise water, mountain scenery and a bit of adrenaline.</small><span class="gift-choose-hint">Tap to choose</span></span>
+                    </button>
+                    <button type="button" class="gift-option wrapped" data-gift="piano" aria-pressed="false" aria-label="Gift 2, still wrapped. Tap to unwrap.">
+                        <span class="gift-cover" aria-hidden="true"><span class="gift-box-icon">🎁</span><span class="gift-cover-label">Gift 2</span><span class="gift-cover-hint">Tap to unwrap</span></span>
+                        <span class="gift-emoji" aria-hidden="true">🎹</span>
+                        <span class="gift-text"><strong>A piano</strong><small>To keep the music going.</small><span class="gift-choose-hint">Tap to choose</span></span>
+                    </button>
+                    <button type="button" class="gift-option wrapped" data-gift="canyoning" aria-pressed="false" aria-label="Gift 3, still wrapped. Tap to unwrap.">
+                        <span class="gift-cover" aria-hidden="true"><span class="gift-box-icon">🎁</span><span class="gift-cover-label">Gift 3</span><span class="gift-cover-hint">Tap to unwrap</span></span>
+                        <span class="gift-emoji" aria-hidden="true">🏞️</span>
+                        <span class="gift-text"><strong>Canyoning in Slovenia</strong><small>Slides, jumps and abseils through the gorges.</small><span class="gift-choose-hint">Tap to choose</span></span>
+                    </button>
+                </div>
+                <p class="gift-result" id="giftResult" role="status" aria-live="polite"></p>
+                <div class="gift-piano" id="giftPiano">
                 <div class="piano" id="piano">
-                    <button type="button" id="playSongBtn" class="play-song-btn" aria-label="Play Alles Gute zum Geburtstag">
+                    <button type="button" id="playSongBtn" class="play-song-btn" aria-label="Play the birthday song">
                         <img class="piano-art" src="images/grand-piano.png" width="693" height="648" alt="Grand piano">
                     </button>
                     <div class="float-notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♪</span></div>
@@ -1384,7 +1430,8 @@
                         <button type="button" class="black-key k-gs" data-note="Gs4" aria-label="G sharp"></button>
                         <button type="button" class="black-key k-as" data-note="As4" aria-label="A sharp"></button>
                     </div>
-                    <span class="piano-hint">Tap the piano — Alles Gute zum Geburtstag</span>
+                    <span class="piano-hint">Tap the piano</span>
+                </div>
                 </div>
             </div>
         </div>
@@ -1418,6 +1465,10 @@
             if (openNote && note) {
                 openNote.addEventListener("click", function () {
                     const open = note.classList.toggle("open");
+                    if (!open) stopBirthdayAudio();
+                    noteOpen = open;
+                    updateNoteDuck();
+                    if (open) loadBirthdayBuffer().catch(function () {});
                     openNote.setAttribute("aria-expanded", String(open));
                     openNote.textContent = open
                         ? "Close the birthday note"
@@ -1425,6 +1476,37 @@
                     if (open && note.scrollIntoView) {
                         note.scrollIntoView({ behavior: "smooth", block: "nearest" });
                     }
+                });
+            }
+
+            /* ---------- Gift picker ---------- */
+            const giftBox = document.getElementById("giftOptions");
+            const giftResult = document.getElementById("giftResult");
+            const GIFT_TEXT = {
+                rafting: "River rafting in Slovenia — noted. Let’s pick the dates together.",
+                piano: "A piano it is. Give it a try below.",
+                canyoning: "Canyoning in Slovenia — noted. Let’s pick the dates together."
+            };
+            if (giftBox) {
+                giftBox.querySelectorAll(".gift-option").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        // First tap unwraps this gift; a tap on an unwrapped gift chooses it.
+                        if (btn.classList.contains("wrapped")) {
+                            if (btn.classList.contains("unwrapping")) return;
+                            btn.classList.add("unwrapping");
+                            setTimeout(function () {
+                                btn.classList.remove("wrapped", "unwrapping");
+                                btn.classList.add("just-opened");
+                                btn.removeAttribute("aria-label");
+                            }, 500);
+                            return;
+                        }
+                        const choice = btn.getAttribute("data-gift");
+                        giftBox.querySelectorAll(".gift-option").forEach(function (b) {
+                            b.setAttribute("aria-pressed", String(b === btn));
+                        });
+                        if (giftResult) giftResult.textContent = GIFT_TEXT[choice] || "";
+                    });
                 });
             }
 
@@ -1516,10 +1598,124 @@
                 nextNote();
             }
 
+            /* Tapping the piano plays the recorded birthday song.
+               Preferred path: download + decode the whole file and play it through Web Audio
+               (works on any server, incl. ones without byte-range support that break Safari/iOS).
+               Then: a plain <audio> element. Last resort: the built-in synth melody. */
+            const BIRTHDAY_FILES = [
+                ["images/BirthdaySongAudio.m4a", "audio/mp4"],         // originals as backups
+                ["images/BirthdaySong.mp3", "audio/mpeg"]
+            ];
+            let birthdayBuffer = null;
+            let birthdayLoading = null;
+            let birthdaySrcNode = null;
+            let birthdayAudio = null;
+            let birthdayAudioPlaying = false;
+
+            function decode(ctx, data) {
+                return new Promise(function (resolve, reject) {
+                    const p = ctx.decodeAudioData(data, resolve, reject); // callback form for older Safari
+                    if (p && p.then) p.then(resolve, reject);
+                });
+            }
+            function loadBirthdayBuffer() {
+                if (birthdayBuffer) return Promise.resolve(birthdayBuffer);
+                if (birthdayLoading) return birthdayLoading;
+                const ctx = getAudio();
+                if (!ctx || !window.fetch) return Promise.reject(new Error("no Web Audio"));
+                let chain = Promise.reject(new Error("start"));
+                BIRTHDAY_FILES.forEach(function (f) {
+                    chain = chain.catch(function () {
+                        return fetch(f[0]).then(function (r) {
+                            if (!r.ok) throw new Error("HTTP " + r.status);
+                            return r.arrayBuffer();
+                        }).then(function (data) { return decode(ctx, data); });
+                    });
+                });
+                birthdayLoading = chain.then(function (buf) { birthdayBuffer = buf; return buf; })
+                    .catch(function (err) { birthdayLoading = null; throw err; });
+                return birthdayLoading;
+            }
+
+            // Silent key highlights that follow the birthday melody while the recording plays.
+            let keyLightTimer = 0;
+            function startKeyLights() {
+                clearTimeout(keyLightTimer);
+                let i = 0;
+                (function step() {
+                    if (!birthdayAudioPlaying) return;
+                    const n = BIRTHDAY_SONG[i % BIRTHDAY_SONG.length];
+                    i++;
+                    const ms = n[1] * 520;
+                    highlight(n[0], ms);
+                    keyLightTimer = setTimeout(step, ms);
+                })();
+            }
+
+            function stopBirthdayAudio() {
+                clearTimeout(keyLightTimer);
+                if (birthdaySrcNode) {
+                    const n = birthdaySrcNode;
+                    birthdaySrcNode = null;
+                    n.onended = null;
+                    try { n.stop(); } catch (e) {}
+                }
+                if (birthdayAudio) { birthdayAudio.pause(); birthdayAudio.currentTime = 0; }
+                if (birthdayAudioPlaying) {
+                    birthdayAudioPlaying = false;
+                    if (piano) piano.classList.remove("playing");
+                    setDuck("piano", false);
+                }
+            }
+
+            function playBirthdayElement() {
+                if (!birthdayAudio) {
+                    birthdayAudio = document.createElement("audio");
+                    BIRTHDAY_FILES.forEach(function (f) {
+                        const source = document.createElement("source");
+                        source.src = f[0];
+                        source.type = f[1];
+                        birthdayAudio.appendChild(source);
+                    });
+                    birthdayAudio.preload = "auto";
+                    birthdayAudio.addEventListener("ended", stopBirthdayAudio);
+                }
+                const p = birthdayAudio.play();
+                if (p && p.then) p.then(startKeyLights, function () {});
+                if (p && p.catch) p.catch(function () {
+                    // Could not play the recording at all: say so and use the built-in melody.
+                    birthdayAudioPlaying = false;
+                    setDuck("piano", false);
+                    say("Couldn’t load the birthday recording — playing the built-in melody instead.", 6000);
+                    playSong();
+                });
+            }
+
+            function playBirthdayAudio() {
+                stopSong();
+                const ctx = getAudio();            // resumes the audio context inside this tap
+                birthdayAudioPlaying = true;
+                if (piano) piano.classList.add("playing");
+                setDuck("piano", true);
+                loadBirthdayBuffer().then(function (buf) {
+                    if (!birthdayAudioPlaying) return;   // stopped while loading
+                    const node = ctx.createBufferSource();
+                    node.buffer = buf;
+                    node.connect(ctx.destination);
+                    node.onended = function () { if (birthdaySrcNode === node) { birthdaySrcNode = null; stopBirthdayAudio(); } };
+                    birthdaySrcNode = node;
+                    node.start();
+                    startKeyLights();
+                }).catch(function () {
+                    if (birthdayAudioPlaying) playBirthdayElement();
+                });
+            }
+
             if (playBtn) {
                 playBtn.addEventListener("click", function () {
-                    if (playingSong) stopSong();
-                    else playSong();
+                    if (birthdayAudioPlaying) stopBirthdayAudio();
+                    else if (playingSong) stopSong();
+                    else playBirthdayAudio();
                 });
             }
 
@@ -1853,6 +2049,31 @@
                 });
             }
 
+            // Silence the background music while the piano song plays, then bring it back.
+            // Two reasons to stay silent: the birthday note is open, or the piano song is playing.
+            let ducked = false;
+            const duckReasons = { note: false, piano: false };
+            // The open birthday note silences the music only while it is on screen;
+            // scroll back up and the section's song fades back in.
+            let noteOpen = false;
+            let noteInView = false;
+            function updateNoteDuck() { setDuck("note", noteOpen && noteInView); }
+            if ("IntersectionObserver" in window && note) {
+                new IntersectionObserver(function (entries) {
+                    noteInView = entries[0].isIntersecting;
+                    if (!noteInView && birthdayAudioPlaying) stopBirthdayAudio();
+                    updateNoteDuck();
+                }, { threshold: 0 }).observe(note);
+            } else {
+                noteInView = true;
+            }
+
+            function setDuck(reason, on) {
+                duckReasons[reason] = on;
+                ducked = duckReasons.note || duckReasons.piano;
+                if (currentId) fadeTo(currentId, ducked ? 0 : 1, 500);
+            }
+
             function switchTo(id) {
                 if (!soundOn || !TRACKS[id] || id === currentId || switching) return;
                 const prev = currentId;
@@ -1864,7 +2085,7 @@
                 });
                 Promise.race([next.start(), timeout]).then(function () {
                     currentId = id;
-                    fadeTo(id, 1, FADE_MS);
+                    fadeTo(id, ducked ? 0 : 1, FADE_MS);
                     if (prev) fadeOutAndStop(prev);
                     say("Now playing: " + next.name, 3500);
                 }).catch(function (err) {
@@ -1928,6 +2149,8 @@
             // so the music starts on the first one anywhere on the page.
             function onFirstGesture(e) {
                 if (e.type === "keydown" && (e.key === "Escape" || e.key === "Tab")) return;
+                // Playing the piano must not kick off the background soundtrack.
+                if (e.target && e.target.closest && e.target.closest("#piano")) return;
                 const onBtn = soundBtn && soundBtn.contains(e.target);
                 disarmAutoStart();
                 if (!onBtn && !soundOn) setSound(true);
